@@ -1,0 +1,49 @@
+.btn {
+  text-decoration: none;
+  display: inline-block;
+  border: 4px solid #fff;
+  background: #eee;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 1em 1.5em;
+  color: #444;
+  white-space: nowrap;
+
+  &:hover {
+    background: darken(#eee, 10%);
+    border: 4px solid darken(#fff, 10%);
+    transition: all ease-in-out 300ms;
+  }
+
+  &__primary {
+    background: $blue;
+    border-color: $blue;
+    color: #fff;
+    &:hover {
+      background: darken($blue, 10%);
+      border-color: darken($blue, 10%);
+    }
+  }
+
+  &__banner {
+    background: transparent;
+    color: #fff;
+
+    &:hover {
+      background: $red;
+      border-color: $red;
+    }
+  }
+
+  &__secondary {
+    background: white;
+    border-color: $red;
+    color: $red;
+
+    &:hover {
+      background: $red;
+      border-color: darken($red, 10%);
+      color: white;
+    }
+  }
+}

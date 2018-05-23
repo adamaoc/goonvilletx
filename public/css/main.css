@@ -1,0 +1,377 @@
+@import url("https://fonts.googleapis.com/css?family=Black+Ops+One|Permanent+Marker|Roboto:400,900");
+* {
+  box-sizing: border-box; }
+
+body {
+  background: #eee;
+  color: #444;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0; }
+
+h1 {
+  font-family: 'Black Ops One', sans-serif;
+  font-weight: bold; }
+
+h2 {
+  font-size: 2rem;
+  margin: 0;
+  font-weight: 400;
+  text-transform: uppercase; }
+
+.btn {
+  text-decoration: none;
+  display: inline-block;
+  border: 4px solid #fff;
+  background: #eee;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 1em 1.5em;
+  color: #444;
+  white-space: nowrap; }
+  .btn:hover {
+    background: #d5d5d5;
+    border: 4px solid #e6e6e6;
+    transition: all ease-in-out 300ms; }
+  .btn__primary {
+    background: #273147;
+    border-color: #273147;
+    color: #fff; }
+    .btn__primary:hover {
+      background: #151a26;
+      border-color: #151a26; }
+  .btn__banner {
+    background: transparent;
+    color: #fff; }
+    .btn__banner:hover {
+      background: #cb1a2b;
+      border-color: #cb1a2b; }
+  .btn__secondary {
+    background: white;
+    border-color: #cb1a2b;
+    color: #cb1a2b; }
+    .btn__secondary:hover {
+      background: #cb1a2b;
+      border-color: #9e1421;
+      color: white; }
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
+  background: rgba(39, 49, 71, 0.6); }
+  @media (min-width: 42rem) {
+    .site-header {
+      flex-direction: row; } }
+  .site-header__logo img {
+    width: 200px; }
+  .site-header .site-nav {
+    margin-left: 0;
+    display: flex;
+    flex-wrap: wrap; }
+    @media (min-width: 42rem) {
+      .site-header .site-nav {
+        margin-left: auto; } }
+    .site-header .site-nav__link {
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 1em;
+      text-decoration: none;
+      white-space: nowrap; }
+      @media (min-width: 42rem) {
+        .site-header .site-nav__link {
+          padding: 1em 2em; } }
+      .site-header .site-nav__link:hover {
+        background: #cb1a2b; }
+
+.large-banner {
+  background-size: cover;
+  background-position: center center;
+  background-image: url("/public/images/banners/nf-slider-1.jpg");
+  padding: 1rem;
+  height: 80vh;
+  padding-top: 10em;
+  display: flex;
+  align-items: center; }
+  @media (min-width: 42rem) {
+    .large-banner {
+      height: 30em;
+      padding-top: 5em; } }
+  .large-banner__content {
+    padding: 0; }
+    @media (min-width: 42rem) {
+      .large-banner__content {
+        padding: 0 2em; } }
+  .large-banner h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 0 1em; }
+    @media (min-width: 42rem) {
+      .large-banner h1 {
+        font-size: 4rem; } }
+  .large-banner .btn {
+    margin-left: 0; }
+    @media (min-width: 42rem) {
+      .large-banner .btn {
+        margin-left: 1em; } }
+
+.game-data {
+  margin-top: -1em; }
+  @media (min-width: 1000px) {
+    .game-data {
+      display: flex; } }
+
+.next-game {
+  background: #273147;
+  padding: 2rem 0; }
+  @media (min-width: 1000px) {
+    .next-game {
+      flex-basis: 50%;
+      flex-grow: 0;
+      flex-shrink: 0; } }
+  .next-game__actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem; }
+    .next-game__actions h5 {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.2rem;
+      color: #4b5e89;
+      margin: 0; }
+    .next-game__actions .btn__primary--dark {
+      margin-left: 1rem;
+      background: #151a26; }
+      .next-game__actions .btn__primary--dark:hover {
+        background: #030405; }
+  .next-game__players {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    max-width: 34em;
+    margin: 0 auto; }
+    @media (min-width: 1000px) {
+      .next-game__players {
+        margin: 0 0 0 auto; } }
+  .next-game__vs {
+    color: #4b5e89;
+    font-size: 1.2rem;
+    font-family: 'Permanent Marker', cursive; }
+  .next-game__player1, .next-game__player2 {
+    font-weight: 900;
+    text-decoration: uppercase;
+    font-size: 2rem;
+    color: white; }
+
+.game-countdown {
+  background: #cb1a2b; }
+  @media (min-width: 1000px) {
+    .game-countdown {
+      flex-basis: 50%;
+      flex-grow: 0;
+      flex-shrink: 0; } }
+  .game-countdown__date {
+    color: #fff;
+    padding: 2rem;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.5rem;
+    font-family: 'Permanent Marker', cursive; }
+
+.innerpage-about {
+  display: flex;
+  background: white;
+  padding: 2em 0; }
+  @media (min-width: 720px) {
+    .innerpage-about {
+      justify-content: flex-end; } }
+  .innerpage-about__content {
+    padding: 1em; }
+    @media (min-width: 720px) {
+      .innerpage-about__content {
+        max-width: 50%; } }
+    .innerpage-about__content .header-sup {
+      display: block;
+      font-family: 'Permanent Marker', cursive;
+      color: #6076a7;
+      font-size: 1.3rem; }
+    .innerpage-about__content p {
+      color: #aaa;
+      line-height: 1.5;
+      font-size: 1.2rem; }
+
+.innerpage-schedule {
+  padding: 2em 0; }
+
+.schedule-list {
+  width: 100%;
+  padding: 1em; }
+  @media (min-width: 915px) {
+    .schedule-list {
+      max-width: 50%; } }
+  .schedule-list ul {
+    margin: 2em 0 0;
+    padding: 0;
+    list-style: none;
+    max-width: 500px; }
+  .schedule-list li {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1em;
+    margin-bottom: 1em; }
+  .schedule-list__more {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1em 0;
+    max-width: 500px; }
+    .schedule-list__more p {
+      color: #aaa;
+      padding-right: 1em;
+      max-width: 300px; }
+  .schedule-list__icon {
+    background: #273147;
+    color: white;
+    width: 50px;
+    height: 50px;
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .schedule-list__icon:hover {
+      background: #394868; }
+
+.innerpage-team {
+  background: white;
+  padding: 2em 0; }
+
+.team-block {
+  display: flex; }
+  .team-block a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    font-family: 'Black Ops One', cursive; }
+
+.team-coaches {
+  flex-basis: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background: #cb1a2b; }
+  .team-coaches:hover {
+    background: #9e1421; }
+
+.team-team {
+  flex-basis: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background: #273147; }
+  .team-team:hover {
+    background: #151a26; }
+
+.innerpage-sponsors {
+  padding: 2em 0;
+  background: white; }
+
+.sponsors {
+  display: flex;
+  height: 200px; }
+  .sponsors__banner {
+    background: #273147;
+    flex-basis: 300px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .sponsors__banner h2 {
+      color: white; }
+  .sponsors__logos {
+    display: flex;
+    align-items: center; }
+    .sponsors__logos ul {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+    .sponsors__logos li {
+      margin: 1em;
+      display: inline-block; }
+    .sponsors__logos img {
+      max-width: 200px; }
+
+.site-footer {
+  background: #273147;
+  padding: 3em 0 0; }
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto; }
+  .footer-top__grid-1, .footer-top__grid-2, .footer-top__grid-3 {
+    margin: 1em;
+    color: #aaa; }
+    .footer-top__grid-1 span, .footer-top__grid-2 span, .footer-top__grid-3 span {
+      display: block;
+      margin-top: 1rem; }
+  .footer-top__grid-1 {
+    text-align: right; }
+  .footer-top img {
+    max-width: 100px; }
+  .footer-top h4 {
+    color: #cb1a2b;
+    font-family: 'Permanent Marker', cursive;
+    margin-bottom: 1rem; }
+  .footer-top a {
+    text-decoration: none;
+    color: #aaa; }
+
+.footer-social {
+  max-width: 900px;
+  margin: 2em auto; }
+  .footer-social__icons {
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .footer-social__icons a {
+      width: 50px;
+      height: 50px;
+      background: #151a26;
+      margin: 1em;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .footer-social__icons a:hover {
+        background: #cb1a2b; }
+    .footer-social__icons svg {
+      width: 25px;
+      height: 25px; }
+
+.footer-lower {
+  background: #151a26;
+  padding: 2em 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #aaa; }
+  .footer-lower a {
+    color: white;
+    text-decoration: none; }

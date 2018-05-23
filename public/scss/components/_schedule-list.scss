@@ -1,0 +1,50 @@
+.innerpage-schedule {
+  padding: 2em 0;
+}
+
+.schedule-list {
+  width: 100%;
+  padding: 1em;
+  @media (min-width: 915px) {
+    max-width: 50%;
+  }
+  ul {
+    margin: 2em 0 0;
+    padding: 0;
+    list-style: none;
+    max-width: 500px;
+  }
+  li {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 1em;
+    margin-bottom: 1em;
+  }
+  &__more {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1em 0;
+    max-width: 500px;
+    p {
+      color: #aaa;
+      padding-right: 1em;
+      max-width: 300px;
+    }
+  }
+  &__icon {
+    background: $blue;
+    color: white;
+    width: 50px;
+    height: 50px;
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      background: lighten($blue, 10%);
+    }
+  }
+}

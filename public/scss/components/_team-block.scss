@@ -1,0 +1,38 @@
+.innerpage-team {
+  background: white;
+  padding: 2em 0;
+}
+
+.team-block {
+  display: flex;
+  a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    font-family: 'Black Ops One', cursive;
+  }
+}
+.team-coaches {
+  flex-basis: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background: $red;
+  &:hover {
+    background: darken($red, 10%);
+  }
+}
+
+.team-team {
+  flex-basis: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  background: $blue;
+  &:hover {
+    background: darken($blue, 10%);
+  }
+}

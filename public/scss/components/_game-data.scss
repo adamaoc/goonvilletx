@@ -1,0 +1,76 @@
+
+.game-data {
+  margin-top: -1em;
+  @media (min-width: 1000px) {
+    display: flex;
+  }
+}
+
+.next-game {
+  background: $blue;
+  padding: 2rem 0;
+  @media (min-width: 1000px) {
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+    h5 {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.2rem;
+      color: lighten($blue, 20%);
+      margin: 0;
+    }
+    .btn__primary--dark {
+      margin-left: 1rem;
+      background: darken($blue, 10%);
+      &:hover {
+        background: darken($blue, 20%);
+      }
+    }
+  }
+  &__players {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    max-width: 34em;
+    margin: 0 auto;
+    @media (min-width: 1000px) {
+      margin: 0 0 0 auto;
+    }
+  }
+  &__vs {
+    color: lighten($blue, 20%);
+    font-size: 1.2rem;
+    font-family: 'Permanent Marker', cursive;
+  }
+  &__player1,
+  &__player2 {
+    font-weight: 900;
+    text-decoration: uppercase;
+    font-size: 2rem;
+    color: white;
+  }
+}
+
+.game-countdown {
+  background: $red;
+  @media (min-width: 1000px) {
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+  &__date {
+    color: #fff;
+    padding: 2rem;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.5rem;
+    font-family: 'Permanent Marker', cursive;
+  }
+}
