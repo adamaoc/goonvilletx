@@ -1,4 +1,6 @@
-php-mvc-stub
+Goonville, TX
 ============
 
-Stubbed out MVC setup for new PHP projects
+Base project for goonviletx.com website.
+
+To startup the front-end just `npm install` and then run `gulp watch`.

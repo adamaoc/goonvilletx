@@ -30,6 +30,15 @@ h2 {
   text-transform: uppercase;
 }
 
+.page-coming-soon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+@import "pages/home";
+
 @import "components/buttons";
 @import "components/navigation";
 @import "components/banners";

@@ -1,6 +1,6 @@
 <?php
 
-class Home extends Controller
+class About extends Controller
 {
 	public function index()
 	{
@@ -8,13 +8,8 @@ class Home extends Controller
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
     $social_links = $socialModel->getSocialLinks();
-    $gamesModel = $this->model('GamesModel');
-    $curSchedule = $gamesModel->getCurrentSchedule(0, 5);
-
-    $game_data = $curSchedule[0];
-
     $header_data = array(
-      'title' => 'Goonville, TX'
+      'title' => 'About Goonville, TX | The North Forney Falcons'
     );
 
     $footer_data = array(
@@ -22,11 +17,9 @@ class Home extends Controller
       'social_links' => $social_links
     );
 
-		$this->view('home/index', array(
+		$this->view('about/index', array(
       'header_data' => $header_data,
-      'footer_data' => $footer_data,
-      'games' => $curSchedule,
-      'game_data' => $game_data
+      'footer_data' => $footer_data
     ));
 	}
 }
