@@ -9,19 +9,30 @@
   justify-content: center;
   max-width: 900px;
   margin: 0 auto;
+  flex-direction: column;
+  @media (min-width: 580px) {
+    flex-direction: row;
+  }
 
   &__grid-1,
   &__grid-2,
   &__grid-3 {
     margin: 1em;
     color: #aaa;
+    text-align: center;
+    @media (min-width: 580px) {
+      text-align: left;
+    }
     span {
       display: block;
       margin-top: 1rem;
     }
   }
   &__grid-1 {
-    text-align: right;
+    text-align: center;
+    @media (min-width: 580px) {
+      text-align: right;
+    }
   }
   img {
     max-width: 100px;

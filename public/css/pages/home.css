@@ -1,11 +1,17 @@
 .home-page .innerpage-about {
-  background-image: url("/public/images/innerpage/NF-trophy-welcome-box.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: -25px center; }
+  padding: 0 1em; }
+  @media (min-width: 720px) {
+    .home-page .innerpage-about {
+      background-image: url("/public/images/innerpage/NF-trophy-welcome-box.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: -25px center; } }
 
 .home-page .innerpage-schedule {
-  background-image: url("/public/images/innerpage/shedulerresults_bg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: right top; }
+  padding: 0 1em; }
+  @media (min-width: 720px) {
+    .home-page .innerpage-schedule {
+      background-image: url("/public/images/innerpage/shedulerresults_bg.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: right top; } }

@@ -28,16 +28,27 @@ h2 {
   height: 50vh; }
 
 .home-page .innerpage-about {
-  background-image: url("/public/images/innerpage/NF-trophy-welcome-box.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: -25px center; }
+  padding: 0 1em; }
+  @media (min-width: 720px) {
+    .home-page .innerpage-about {
+      background-image: url("/public/images/innerpage/NF-trophy-welcome-box.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: -25px center; } }
 
 .home-page .innerpage-schedule {
-  background-image: url("/public/images/innerpage/shedulerresults_bg.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: right top; }
+  padding: 0 1em; }
+  @media (min-width: 720px) {
+    .home-page .innerpage-schedule {
+      background-image: url("/public/images/innerpage/shedulerresults_bg.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: right top; } }
+
+.game-page {
+  padding: 3em 1em;
+  max-width: 1080px;
+  margin: 0 auto; }
 
 .btn {
   text-decoration: none;
@@ -302,7 +313,8 @@ h2 {
     height: 200px;
     font-size: 1.6rem;
     text-transform: uppercase;
-    font-family: 'Black Ops One', cursive; }
+    font-family: 'Black Ops One', cursive;
+    padding: 1em; }
 
 .team-coaches {
   flex-basis: 50%;
@@ -326,15 +338,22 @@ h2 {
 
 .sponsors {
   display: flex;
-  height: 200px; }
+  flex-direction: column; }
+  @media (min-width: 950px) {
+    .sponsors {
+      flex-direction: row;
+      height: 200px; } }
   .sponsors__banner {
     background: #273147;
-    flex-basis: 300px;
+    flex-basis: 150px;
     flex-grow: 0;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center; }
+    @media (min-width: 950px) {
+      .sponsors__banner {
+        flex-basis: 300px; } }
     .sponsors__banner h2 {
       color: white; }
   .sponsors__logos {
@@ -343,10 +362,16 @@ h2 {
     .sponsors__logos ul {
       list-style: none;
       margin: 0;
-      padding: 0; }
+      padding: 0;
+      width: 100%; }
     .sponsors__logos li {
       margin: 1em;
-      display: inline-block; }
+      display: inline-block;
+      width: 100%;
+      text-align: center; }
+      @media (min-width: 800px) {
+        .sponsors__logos li {
+          width: auto; } }
     .sponsors__logos img {
       max-width: 200px; }
 
@@ -359,15 +384,26 @@ h2 {
   align-items: center;
   justify-content: center;
   max-width: 900px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  flex-direction: column; }
+  @media (min-width: 580px) {
+    .footer-top {
+      flex-direction: row; } }
   .footer-top__grid-1, .footer-top__grid-2, .footer-top__grid-3 {
     margin: 1em;
-    color: #aaa; }
+    color: #aaa;
+    text-align: center; }
+    @media (min-width: 580px) {
+      .footer-top__grid-1, .footer-top__grid-2, .footer-top__grid-3 {
+        text-align: left; } }
     .footer-top__grid-1 span, .footer-top__grid-2 span, .footer-top__grid-3 span {
       display: block;
       margin-top: 1rem; }
   .footer-top__grid-1 {
-    text-align: right; }
+    text-align: center; }
+    @media (min-width: 580px) {
+      .footer-top__grid-1 {
+        text-align: right; } }
   .footer-top img {
     max-width: 100px; }
   .footer-top h4 {
