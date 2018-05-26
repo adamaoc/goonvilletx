@@ -31,18 +31,19 @@ h2 {
   padding: 0 1em; }
   @media (min-width: 720px) {
     .home-page .innerpage-about {
-      background-image: url("/public/images/innerpage/NF-trophy-welcome-box.jpg");
-      background-size: cover;
+      background-image: url("/public/images/innerpage/champs.jpg");
+      background-size: contain;
       background-repeat: no-repeat;
-      background-position: -25px center;
+      background-position: left center;
       padding: 6em 1em; } }
 
 .home-page .innerpage-schedule {
-  padding: 0 1em; }
+  padding: 0 1em;
+  background-color: #f4f3f8; }
   @media (min-width: 720px) {
     .home-page .innerpage-schedule {
-      background-image: url("/public/images/innerpage/shedulerresults_bg.jpg");
-      background-size: cover;
+      background-image: url("/public/images/innerpage/schedule-number-one.jpg");
+      background-size: contain;
       background-repeat: no-repeat;
       background-position: right top; } }
 
