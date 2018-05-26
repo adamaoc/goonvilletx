@@ -9,7 +9,7 @@ $date = $data['date'];
     <div class="next-game__actions">
       <h5>Next Game</h5>
       <a href="/schedule/<?= $id ?>" class="btn btn__primary btn__primary--dark">More Info</a>
-      <a href="/schedule/<?= $id ?>#location" class="btn btn__primary btn__primary--dark">Location Map</a>
+      <a href="/schedule/<?= $id ?>#location" class="btn btn__primary btn__primary--dark location-btn">Location Map</a>
     </div>
     <div class="next-game__players">
       <div class="next-game__player1">

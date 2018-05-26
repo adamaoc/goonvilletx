@@ -30,7 +30,7 @@ class Schedule extends Controller
 
   public function getIndex($model, $baseData)
   {
-    $curSchedule = $model->getCurrentSchedule(1, 5);
+    $curSchedule = $model->getCurrentScheduleAll();
     $pastGames = $model->getAllPastGames();
 
     $this->view('schedule/index', array(

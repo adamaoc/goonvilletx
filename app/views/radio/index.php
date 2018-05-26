@@ -2,7 +2,7 @@
 
 <div class="large-banner">
   <div class="large-banner__content">
-    <h1>Goonville, TX</h1>
+    <h1>Goonville, TX Radio</h1>
     <a href="/about" class="btn btn__banner">About Us</a>
   </div>
 </div>

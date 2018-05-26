@@ -6,20 +6,21 @@
   </div>
 </div>
 
-<div class="innerpage-schedule">
-  <div class="schedule-list">
-    <h2>2018-2019 Schedule</h2>
-    <?php getComponent('ScheduleList', $data['games']) ?>
+<section class="schedule-page__wrap">
+  <div class="innerpage-schedule">
+    <div class="schedule-list">
+      <h2>2018-2019 Schedule</h2>
+      <?php getComponent('ScheduleList', $data['games']); ?>
+    </div>
   </div>
-</div>
 
 
-<div class="innerpage-schedule">
-  <div class="schedule-list">
-    <h2>Game Results</h2>
-    <?php getComponent('ScheduleList', $data['past_games']) ?>
+  <div class="innerpage-schedule">
+    <div class="schedule-list">
+      <h2>Game Results</h2>
+      <?php getComponent('GameResults', $data['past_games']); ?>
+    </div>
   </div>
-</div>
-
+</section>
 
 <?php getFooter($data['footer_data']); ?>

@@ -66,10 +66,24 @@ class GamesModel
 		return $buildarr;
 	}
 
+  public function getCurrentScheduleAll()
+  {
+    $list = $this->games['games'];
+    $date_now = date("Y-m-d");
+    array_multisort($list, SORT_ASC);
+    foreach ($list as $game) {
+      $listDate = $game['date'];
+      if($listDate > $date_now) {
+        $buildarr[] = $game;
+      }
+    }
 
+    return $buildarr;
+  }
 
   public function getPastGames($startnum, $endnum)
 	{
+    die;
 		$list = $this->games['games'];
     $date_now = date("Y-m-d");
 		array_multisort($list, SORT_ASC);

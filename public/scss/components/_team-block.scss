@@ -5,6 +5,8 @@
 
 .team-block {
   display: flex;
+  max-width: 100%;
+  overflow: hidden;
   a {
     color: white;
     text-decoration: none;

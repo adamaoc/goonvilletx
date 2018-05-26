@@ -1,0 +1,22 @@
+.schedule-page__wrap {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 700px) {
+    flex-direction: row;
+  }
+
+  .innerpage-schedule {
+    flex-basis: auto;
+    @media (min-width: 700px) {
+      flex-basis: 50%;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+    .schedule-list {
+      @media (min-width: 915px) {
+        max-width: 100%;
+      }
+    }
+  }
+}

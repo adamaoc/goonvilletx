@@ -1,5 +1,8 @@
 .innerpage-schedule {
-  padding: 6em 0;
+  padding: 1em 0;
+  @media (min-width: 915px) {
+    padding: 6em 0;
+  }
 }
 
 .schedule-list {
@@ -18,7 +21,6 @@
     background: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding-right: 1em;
     margin-bottom: 1em;
   }
@@ -46,5 +48,17 @@
     &:hover {
       background: lighten($blue, 10%);
     }
+  }
+  &__date {
+    padding: 0 2rem;
+  }
+  &__teams {
+    margin-left: auto;
+    padding-right: 2rem;
+  }
+  h3 {
+    font-weight: 200;
+    font-style: italic;
+    padding-left: 1rem;
   }
 }

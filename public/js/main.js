@@ -1,6 +1,5 @@
 console.log('Goonville, TX');
 
-
 // countdown timer
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
@@ -49,3 +48,33 @@ if (gameDateElm.length > 0) {
   var deadline = new Date(Date.parse(new Date(gameDate)) + 0 * 24 * 60 * 60 * 1000);
   initializeClock('clockdiv', deadline);
 }
+
+
+// navigation control
+
+var navigation = {
+  init: function() {
+    this.mobileBtn = document.getElementsByClassName('site-header__mobile')[0];
+    this.navMenu = document.getElementById('siteNav');
+    this.isOpen = false;
+    this.setupEvents();
+  },
+  setupEvents: function() {
+    this.mobileBtn.addEventListener('click', this.toggleMenu.bind(this));
+  },
+  toggleMenu: function() {
+    if (this.isOpen) {
+      // close
+      this.navMenu.classList.remove('open');
+      this.isOpen = false;
+      document.body.style.overflow = '';
+    } else {
+      // open
+      this.navMenu.classList.add('open');
+      this.isOpen = true;
+      document.body.style.overflow = 'hidden';
+    }
+  }
+}
+
+navigation.init();

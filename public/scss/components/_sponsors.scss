@@ -36,12 +36,13 @@
       width: 100%;
     }
     li {
-      margin: 1em;
+      margin: 0;
       display: inline-block;
       width: 100%;
       text-align: center;
       @media (min-width: 800px) {
         width: auto;
+        margin: 1em;
       }
     }
     img {
