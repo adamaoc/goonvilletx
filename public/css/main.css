@@ -34,7 +34,8 @@ h2 {
       background-image: url("/public/images/innerpage/NF-trophy-welcome-box.jpg");
       background-size: cover;
       background-repeat: no-repeat;
-      background-position: -25px center; } }
+      background-position: -25px center;
+      padding: 6em 1em; } }
 
 .home-page .innerpage-schedule {
   padding: 0 1em; }
@@ -295,7 +296,7 @@ h2 {
       color: #6076a7;
       font-size: 1.3rem; }
     .innerpage-about__content p {
-      color: #aaa;
+      color: #737373;
       line-height: 1.5;
       font-size: 1.2rem; }
 
