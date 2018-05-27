@@ -6,7 +6,7 @@
   </div>
   <div class="site-header__mobile">
     <svg id="menu" viewBox="0 0 32 32">
-      <path d="M2 6h28v6h-28zM2 14h28v6h-28zM2 22h28v6h-28z" fill="#cb1a2b"></path>
+      <path d="M2 6h28v6h-28zM2 14h28v6h-28zM2 22h28v6h-28z" fill="#f1f1f1"></path>
     </svg>
   </div>
   <nav class="site-nav" id="siteNav">
