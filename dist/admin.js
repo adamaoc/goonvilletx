@@ -166,7 +166,7 @@ var pageEditor = {
     this.close();
   }
 };
-},{}],7:[function(require,module,exports) {
+},{}],4:[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /** @license React v16.4.1
@@ -1965,7 +1965,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
   return react;
 });
-},{}],11:[function(require,module,exports) {
+},{}],13:[function(require,module,exports) {
 /*
 object-assign
 (c) Sindre Sorhus
@@ -2110,7 +2110,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
-},{}],12:[function(require,module,exports) {
+},{}],16:[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -2128,7 +2128,7 @@ if ('development' !== 'production') {
 }
 
 module.exports = emptyObject;
-},{}],15:[function(require,module,exports) {
+},{}],17:[function(require,module,exports) {
 "use strict";
 
 /**
@@ -2165,7 +2165,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
-},{}],13:[function(require,module,exports) {
+},{}],15:[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -2228,7 +2228,7 @@ if ('development' !== 'production') {
 }
 
 module.exports = warning;
-},{"./emptyFunction":15}],17:[function(require,module,exports) {
+},{"./emptyFunction":17}],25:[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -2242,7 +2242,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
-},{}],16:[function(require,module,exports) {
+},{}],18:[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -2321,7 +2321,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 }
 
 module.exports = checkPropTypes;
-},{"./lib/ReactPropTypesSecret":17}],10:[function(require,module,exports) {
+},{"./lib/ReactPropTypesSecret":25}],11:[function(require,module,exports) {
 /** @license React v16.4.1
  * react.development.js
  *
@@ -3802,7 +3802,7 @@ if ('development' !== "production") {
     module.exports = react;
   })();
 }
-},{"object-assign":11,"fbjs/lib/invariant":14,"fbjs/lib/emptyObject":12,"fbjs/lib/warning":13,"fbjs/lib/emptyFunction":15,"prop-types/checkPropTypes":16}],9:[function(require,module,exports) {
+},{"object-assign":13,"fbjs/lib/invariant":14,"fbjs/lib/emptyObject":16,"fbjs/lib/warning":15,"fbjs/lib/emptyFunction":17,"prop-types/checkPropTypes":18}],9:[function(require,module,exports) {
 'use strict';
 
 if ('development' === 'production') {
@@ -3810,7 +3810,7 @@ if ('development' === 'production') {
 } else {
   module.exports = require('./cjs/react.development.js');
 }
-},{"./cjs/react.development.js":10}],8:[function(require,module,exports) {
+},{"./cjs/react.development.js":11}],5:[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /** @license React v16.4.1
@@ -21947,7 +21947,7 @@ if (window.localStorage.login) {
   // showAdmin.init();
   _reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('adminNav'));
 }
-},{"./components/PageEditor":3,"./lib/react":7,"./lib/react-dom":8}],14:[function(require,module,exports) {
+},{"./components/PageEditor":3,"./lib/react":4,"./lib/react-dom":5}],27:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -21976,7 +21976,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57575' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '63951' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -22117,5 +22117,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[14,1], null)
+},{}]},{},[27,1], null)
 //# sourceMappingURL=/admin.map
