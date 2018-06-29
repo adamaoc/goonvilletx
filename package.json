@@ -6,7 +6,8 @@
   "license": "ISC",
   "dependencies": {
     "gulp": "^3.8.0",
-    "gulp-concat": "^2.2.0"
+    "gulp-concat": "^2.2.0",
+    "react": "^16.4.1"
   },
   "devDependencies": {
     "gulp-sass": "^4.0.1"

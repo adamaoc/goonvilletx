@@ -1,0 +1,10 @@
+.admin-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: #333;
+  color: #fff;
+  height: 30px;
+  display: flex;
+  align-items: center; }

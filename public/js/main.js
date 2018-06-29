@@ -51,7 +51,6 @@ if (gameDateElm.length > 0) {
 
 
 // navigation control
-
 var navigation = {
   init: function() {
     this.mobileBtn = document.getElementsByClassName('site-header__mobile')[0];
@@ -78,3 +77,23 @@ var navigation = {
 }
 
 navigation.init();
+
+var login = {
+  init: function() {
+    this.app = document.getElementById('app');
+    window.localStorage.setItem('login', 'true');
+    this.showLogin();
+  },
+  loginBox: function() {
+    return `<div class="login">This is the login page</div>`;
+  },
+  showLogin: function() {
+    this.app.innerHTML = this.loginBox();
+  }
+}
+
+console.log(window.location.pathname);
+if (window.location.pathname === '/login') {
+  console.log('login page');
+  login.init();
+}

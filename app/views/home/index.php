@@ -1,11 +1,6 @@
 <?php getHeader($data['header_data']); ?>
 <div class="home-page">
-  <div class="large-banner">
-    <div class="large-banner__content">
-      <h1>Goonville, TX</h1>
-      <a href="/about" class="btn btn__banner">About Us</a>
-    </div>
-  </div>
+  <?php getComponent('LargeBanner', array('page' => 'home')); ?>
 
   <?php getComponent('GameData', $data['game_data']); ?>
 

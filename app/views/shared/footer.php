@@ -23,6 +23,9 @@
   </div>
 </footer>
 <script src="./public/js/main.js"></script>
+<?php if (true) : // logged in - output admin css?>
+  <script src="./dist/admin.js"></script>
+<?php endif; ?>
 
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>

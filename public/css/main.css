@@ -507,3 +507,11 @@ h2 {
   .footer-lower a {
     color: white;
     text-decoration: none; }
+
+.edit-page-pane {
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  padding: 1em; }
