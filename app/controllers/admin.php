@@ -25,14 +25,20 @@ class Admin extends Controller
 
     if ($path === 'login') {
       $this->loginPage();
-      $this->view('admin/login', array(
-        'header_data' => $header_data,
-        'footer_data' => $footer_data,
-        "errors" => $this->_errors));
+      if ($user->isLoggedIn()) {
+        Redirect::to(Config::get('http/admin'));
+      } else {
+        $this->view('admin/login', array(
+          'header_data' => $header_data,
+          'footer_data' => $footer_data,
+          "errors" => $this->_errors));
+      }
 
     } else if ($path === 'register') {
+      $user->setupData();
       $this->registerPage();
       $this->view('admin/register', array(
+        'isSuperSet' => $user->isSuperSet(),
         'header_data' => $header_data,
         'footer_data' => $footer_data,
         'user_data' => $user_data,

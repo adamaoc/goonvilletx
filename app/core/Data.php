@@ -96,26 +96,6 @@ class Data {
     return $this->_count;
   }
 
-  // public function addUser($user) {
-  //   $filePath = Config::get('data/path') . "Users.csv";
-  //   $count = count(file($filePath));
-  //   if ($count > 1) {
-  //     $count = ($count - 1) + 1;
-  //   }
-  //   //id,username,password,salt,name,date,group
-  //   $data = array(
-  //     "id" => $count,
-  //     "username" => $user['username'],
-  //     "password" => $user['password'],
-  //     "salt" => "HERESTHESALT",
-  //     "name" => $user['name'],
-  //     "data" => date('yyyy-mm-dd'),
-  //     "group" => 0
-  //   );
-  //
-  //   $this->_addData($filePath, $data);
-  // }
-
   public function updateUser($user)
   {
     $filePath = Config::get('data/path') . "Users.csv";

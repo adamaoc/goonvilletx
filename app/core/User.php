@@ -18,6 +18,7 @@ class User {
           $this->_isLoggedIn = true;
         } else {
           // prossess logout
+          $this->logout();
         }
       }
     } else {
@@ -33,6 +34,10 @@ class User {
       $count = ($count - 1) + 1;
     }
     $salt = Hash::salt(32);
+    $groupId = 0;
+    if ($newUser['username'] === Config::get('data/superuser')) {
+      $groupId = 1;
+    }
     //id,username,password,salt,name,date,group
     $data = array(
       "id" => $count,
@@ -41,7 +46,7 @@ class User {
       "salt" => $salt,
       "name" => $newUser['name'],
       "data" => date('Y-m-d H:i:s'),
-      "group" => 0
+      "group" => $groupId
     );
     $this->_data->addData($filePath, $data);
   }
@@ -90,5 +95,25 @@ class User {
   public function isLoggedIn()
   {
     return $this->_isLoggedIn;
+  }
+
+  public function isSuperSet()
+  {
+    $user = $this->find(Config::get('data/superuser'));
+    if ($this->_user) {
+      return true;
+    }
+    return false;
+  }
+
+  public function setupData()
+  {
+    $filePath = Config::get('data/path') . 'Users.csv';
+    if (!file_exists($filePath)) {
+      mkdir(Config::get('data/path'), 0755, true);
+      $baseData = array('id','username','password','salt','name','date','group');
+      $this->_data->addData($filePath, $baseData);
+    }
+    return true;
   }
 }
