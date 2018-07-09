@@ -100,6 +100,7 @@ class GamesModel
   {
     $list = $this->games['games'];
     $date_now = date("Y-m-d");
+    $buildarr = array();
 
     foreach ($list as $game) {
       if ($date_now > $game['date']) {
