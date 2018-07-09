@@ -4,6 +4,12 @@ class Home extends Controller
 {
 	public function index()
 	{
+    $user = new User;
+    $user_data = array(
+      "user" => $user->data(),
+      "loggedin" => $user->isLoggedIn()
+    );
+
     $schoolModel = $this->model('SchoolModel');
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
@@ -26,7 +32,8 @@ class Home extends Controller
       'header_data' => $header_data,
       'footer_data' => $footer_data,
       'games' => $curSchedule,
-      'game_data' => $game_data
+      'game_data' => $game_data,
+      'user_data' => $user_data
     ));
 	}
 }
