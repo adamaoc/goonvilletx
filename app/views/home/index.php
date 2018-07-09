@@ -31,4 +31,12 @@
   </div>
 </div>
 
+
+<?php
+$loggedin = $data['user_data']['loggedin'];
+$user = $data['user_data']['user'];
+if ($loggedin) : ?>
+  <p>Hello <a href="#"><?php echo escape($user['username']); ?></a>! - - <a href="/admin/logout/">logout</a></p>
+<?php endif; ?>
+
 <?php getFooter($data['footer_data']); ?>

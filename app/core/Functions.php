@@ -30,3 +30,7 @@ function getFooter($data = array()) {
 
 	return getShared("footer", $data);
 }
+
+function escape($string) {
+  return htmlentities($string, ENT_QUOTES, 'UTF-8');
+}
