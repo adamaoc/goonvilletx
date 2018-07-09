@@ -6,4 +6,5 @@
     </div>
   </div>
 </div>
+<?php echo Config::get('http/root'); ?>
 <?php getFooter($data['footer_data']); ?>

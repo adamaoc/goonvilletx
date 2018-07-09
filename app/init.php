@@ -3,6 +3,9 @@
 session_start();
 
 $GLOBALS['config'] = array(
+  'http' => array(
+    'root' =>  'http://' . $_SERVER['HTTP_HOST'] . '/'
+  ),
   'data' => array(
     'path' => $_SERVER['DOCUMENT_ROOT'] . '/app/data/'
   ),

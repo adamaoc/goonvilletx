@@ -73,7 +73,7 @@ class Admin extends Controller
       $login = $user->login(Input::get('username'), Input::get('password'));
       if ($login) {
         // echo "Success";
-        Redirect::to('http://localhost:8888/');
+        Redirect::to(Config::get('http/root'));
       } else {
         echo "Sorry, username or password was incorrect.";
       }
@@ -122,7 +122,7 @@ class Admin extends Controller
       $user = new User();
       $user->create($newUser);
       Session::flash('success', 'You successfully registered.');
-      Redirect::to('http://localhost:8888');
+      Redirect::to(Config::get('http/root'));
       // Redirect::to(404);
     } else {
       $this->_errors = $validation->errors();
@@ -133,7 +133,7 @@ class Admin extends Controller
   {
     $user = new User;
     $user->logout();
-    Redirect::to('http://localhost:8888/');
+    Redirect::to(Config::get('http/root'));
   }
 
   private function checkToken()
