@@ -23,7 +23,15 @@
   </div>
 </footer>
 <script src="./public/js/main.js"></script>
-
+<?php if ($data['user_data']['loggedin']) : ?>
+  <script>
+    var USER = {
+      username: "<?= $data['user_data']['user']['username'] ?>",
+      fullname: "<?= $data['user_data']['user']['name'] ?>"
+    };
+  </script>
+  <script src="./dist/admin.js"></script>
+<?php endif; ?>
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>
     window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;

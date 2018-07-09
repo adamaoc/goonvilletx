@@ -6,6 +6,12 @@ class Admin extends Controller
 
   public function index($path = null)
   {
+    $user = new User;
+    $user_data = array(
+      "user" => $user->data(),
+      "loggedin" => $user->isLoggedIn()
+    );
+
     $schoolModel = $this->model('SchoolModel');
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
@@ -15,12 +21,8 @@ class Admin extends Controller
     );
     $footer_data = array(
       'school' => $school,
-      'social_links' => $social_links
-    );
-    $user = new User;
-    $user_data = array(
-      "user" => $user->data(),
-      "loggedin" => $user->isLoggedIn()
+      'social_links' => $social_links,
+      'user_data' => $user_data
     );
 
     if ($path === 'login') {

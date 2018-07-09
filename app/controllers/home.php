@@ -25,15 +25,15 @@ class Home extends Controller
 
     $footer_data = array(
       'school' => $school,
-      'social_links' => $social_links
+      'social_links' => $social_links,
+      'user_data' => $user_data
     );
 
 		$this->view('home/index', array(
       'header_data' => $header_data,
       'footer_data' => $footer_data,
       'games' => $curSchedule,
-      'game_data' => $game_data,
-      'user_data' => $user_data
+      'game_data' => $game_data
     ));
 	}
 }

@@ -4,6 +4,12 @@ class About extends Controller
 {
 	public function index()
 	{
+    $user = new User;
+    $user_data = array(
+      "user" => $user->data(),
+      "loggedin" => $user->isLoggedIn()
+    );
+
     $schoolModel = $this->model('SchoolModel');
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
@@ -14,7 +20,8 @@ class About extends Controller
 
     $footer_data = array(
       'school' => $school,
-      'social_links' => $social_links
+      'social_links' => $social_links,
+      'user_data' => $user_data
     );
 
 		$this->view('about/index', array(

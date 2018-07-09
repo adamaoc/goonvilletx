@@ -4,6 +4,12 @@ class Schedule extends Controller
 {
 	public function index($slug = '')
 	{
+    $user = new User;
+    $user_data = array(
+      "user" => $user->data(),
+      "loggedin" => $user->isLoggedIn()
+    );
+
     $schoolModel = $this->model('SchoolModel');
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
@@ -13,7 +19,8 @@ class Schedule extends Controller
     );
     $footer_data = array(
       'school' => $school,
-      'social_links' => $social_links
+      'social_links' => $social_links,
+      'user_data' => $user_data
     );
     $baseData = array(
       'header_data' => $header_data,

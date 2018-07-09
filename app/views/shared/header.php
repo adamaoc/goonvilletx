@@ -13,4 +13,5 @@
     <link rel="stylesheet" href="/public/css/main.css">
   </head>
   <body>
+    <div id="adminNav"></div>
     <?php getComponent('navigation'); ?>

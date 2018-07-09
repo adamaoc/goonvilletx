@@ -1,14 +1,21 @@
 {
-  "name": "name",
-  "version": "0.0.1",
-  "description": "",
+  "name": "goonville",
+  "version": "1.0.0",
+  "description": "Goonville website",
   "author": "ampnetmedia",
   "license": "ISC",
+  "scripts": {
+    "start": "parcel public/js/admin.js"
+  },
   "dependencies": {
     "gulp": "^3.8.0",
-    "gulp-concat": "^2.2.0"
+    "gulp-concat": "^2.2.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   },
   "devDependencies": {
-    "gulp-sass": "^4.0.1"
+    "gulp-sass": "^4.0.1",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.0.1"
   }
 }
