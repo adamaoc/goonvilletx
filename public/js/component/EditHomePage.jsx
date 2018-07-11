@@ -63,8 +63,13 @@ class EditHomePage extends React.Component {
     }
   }
   componentDidMount() {
+    const { pathname, host } = window.location;
+    const pagePath = (pathname === '/') ? '/home' : pathname;
+    const apiUrl = (host === 'goonvilletx.com') ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+    const fetchUrl = apiUrl + '/page' + pagePath;
+    console.log(fetchUrl);
     const games = fetch(
-      'http://localhost:8888/api/page/home/',
+      fetchUrl,
       {
         headers: {
           Token: window.token
@@ -79,9 +84,12 @@ class EditHomePage extends React.Component {
 
   updatePage() {
     const { pageData } = this.state;
-    console.log(pageData);
+    const { pathname, host } = window.location;
+    const pagePath = (pathname === '/') ? '/home' : pathname;
+    const apiUrl = (host === 'goonvilletx.com') ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+    const fetchUrl = apiUrl + '/page' + pagePath;
     const games = fetch(
-      'http://localhost:8888/api/page/home/',
+      fetchUrl,
       {
         method: 'post',
         headers: {
@@ -101,12 +109,10 @@ class EditHomePage extends React.Component {
     let { pageData } = this.state;
     pageData[field] = value;
     this.setState({ pageData });
-    console.log(pageData);
   }
 
   render() {
     const { pageData } = this.state;
-    console.log(pageData);
     return (
       <div>
         <h4>Editing Home Page!</h4>
@@ -117,13 +123,18 @@ class EditHomePage extends React.Component {
               <label htmlFor="page-title">Page Title: </label>
               <Input type="text" defaultValue={pageData.page_title} autoComplete="off" onChange={(e) => { this.updateData('page_title', e.currentTarget.value)}} />
             </FormGroup>
-            <FormGroup>
-              <label>Action Button Text</label>
-              <Input type="text" defaultValue={pageData.action_btn_text} onChange={(e) => { this.updateData('action_btn_text', e.currentTarget.value)}} />
-              <br />
-              <label>Action Button Link</label>
-              <Input type="text" defaultValue={pageData.action_btn_link} onChange={(e) => { this.updateData('action_btn_link', e.currentTarget.value)}} />
-            </FormGroup>
+            {pageData.action_btn_link !== 'null'
+              ? (
+                <FormGroup>
+                  <label>Action Button Text</label>
+                  <Input type="text" defaultValue={pageData.action_btn_text} onChange={(e) => { this.updateData('action_btn_text', e.currentTarget.value)}} />
+                  <br />
+                  <label>Action Button Link</label>
+                  <Input type="text" defaultValue={pageData.action_btn_link} onChange={(e) => { this.updateData('action_btn_link', e.currentTarget.value)}} />
+                </FormGroup>
+              )
+              : null
+            }
           </section>
         </AdminSection>
 

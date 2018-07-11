@@ -44,7 +44,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      path: window.location.pathname,
       paneOpen: false,
       editingPage: 'home'
     }
@@ -59,26 +58,18 @@ class App extends React.Component {
     window.location = window.location.href + '/admin/logout/';
   }
   editPage() {
-    const { path, paneOpen, editingPage } = this.state;
-    if (paneOpen && editingPage === path) {
+    const { paneOpen, editingPage } = this.state;
+    if (paneOpen && editingPage === 'editPage') {
       document.body.style.overflow = 'auto';
       this.setState({ paneOpen: false });
       return;
     }
     document.body.style.overflow = 'hidden';
-    switch (path) {
-      case '/':
-        this.setState({editingPage: '/', paneOpen: true});
-        break;
-      case '/about':
-        this.setState({editingPage: 'about', paneOpen: true});
-      default:
-        this.setState({editingPage: 'admin', paneOpen: true});
-    }
+    this.setState({editingPage: 'editPage', paneOpen: true});
   }
   renderEditingPage(page) {
     switch (page) {
-      case '/':
+      case 'editPage':
         return <EditHomePage />
       case 'schedule':
         return <EditSchedule />

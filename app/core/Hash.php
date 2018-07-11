@@ -7,7 +7,7 @@ class Hash {
   }
   public static function salt($length)
   {
-    return "HDV82vhsiavkHF";;
+    return "HDV82vhsiavkHF";
   }
   public static function unique()
   {

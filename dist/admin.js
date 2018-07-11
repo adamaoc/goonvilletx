@@ -24731,7 +24731,7 @@ exports.StyleSheetManager = StyleSheetManager;
 exports.__DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS = __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS;
 exports.default = styled;
 //# sourceMappingURL=styled-components.browser.es.js.map
-},{"is-plain-object":34,"stylis":35,"stylis-rule-sheet":36,"react":4,"prop-types":31,"hoist-non-react-statics":37,"react-is":38,"process":33}],14:[function(require,module,exports) {
+},{"is-plain-object":34,"stylis":35,"stylis-rule-sheet":36,"react":4,"prop-types":31,"hoist-non-react-statics":37,"react-is":38,"process":33}],6:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24798,7 +24798,15 @@ var EditHomePage = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var games = fetch('http://localhost:8888/api/page/home/', {
+      var _window$location = window.location,
+          pathname = _window$location.pathname,
+          host = _window$location.host;
+
+      var pagePath = pathname === '/' ? '/home' : pathname;
+      var apiUrl = host === 'goonvilletx.com' ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+      var fetchUrl = apiUrl + '/page' + pagePath;
+      console.log(fetchUrl);
+      var games = fetch(fetchUrl, {
         headers: {
           Token: window.token
         }
@@ -24814,9 +24822,14 @@ var EditHomePage = function (_React$Component) {
       var _this3 = this;
 
       var pageData = this.state.pageData;
+      var _window$location2 = window.location,
+          pathname = _window$location2.pathname,
+          host = _window$location2.host;
 
-      console.log(pageData);
-      var games = fetch('http://localhost:8888/api/page/home/', {
+      var pagePath = pathname === '/' ? '/home' : pathname;
+      var apiUrl = host === 'goonvilletx.com' ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+      var fetchUrl = apiUrl + '/page' + pagePath;
+      var games = fetch(fetchUrl, {
         method: 'post',
         headers: {
           Token: window.token
@@ -24836,7 +24849,6 @@ var EditHomePage = function (_React$Component) {
 
       pageData[field] = value;
       this.setState({ pageData: pageData });
-      console.log(pageData);
     }
   }, {
     key: 'render',
@@ -24845,7 +24857,6 @@ var EditHomePage = function (_React$Component) {
 
       var pageData = this.state.pageData;
 
-      console.log(pageData);
       return _react2.default.createElement(
         'div',
         null,
@@ -24877,7 +24888,7 @@ var EditHomePage = function (_React$Component) {
                   _this4.updateData('page_title', e.currentTarget.value);
                 } })
             ),
-            _react2.default.createElement(
+            pageData.action_btn_link !== 'null' ? _react2.default.createElement(
               FormGroup,
               null,
               _react2.default.createElement(
@@ -24897,7 +24908,7 @@ var EditHomePage = function (_React$Component) {
               _react2.default.createElement(Input, { type: 'text', defaultValue: pageData.action_btn_link, onChange: function onChange(e) {
                   _this4.updateData('action_btn_link', e.currentTarget.value);
                 } })
-            )
+            ) : null
           )
         ),
         _react2.default.createElement(
@@ -24952,7 +24963,7 @@ var EditHomePage = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = EditHomePage;
-},{"react":4,"styled-components":21}],44:[function(require,module,exports) {
+},{"react":4,"styled-components":21}],7:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25016,11 +25027,9 @@ var EditSchedule = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var games = fetch('http://localhost:8888/api/schedule/', {
-        headers: {
-          Token: window.token
-        }
-      }).then(function (resp) {
+      var apiUrl = window.location.host === 'goonvilletx.com' ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+      var fetchUrl = apiUrl + '/schedule/';
+      var games = fetch(fetchUrl).then(function (resp) {
         return resp.json();
       }).then(function (resp) {
         _this2.setState({ games: resp.games });
@@ -25202,7 +25211,6 @@ var App = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
     _this.state = {
-      path: window.location.pathname,
       paneOpen: false,
       editingPage: 'home'
     };
@@ -25226,31 +25234,22 @@ var App = function (_React$Component) {
     key: 'editPage',
     value: function editPage() {
       var _state = this.state,
-          path = _state.path,
           paneOpen = _state.paneOpen,
           editingPage = _state.editingPage;
 
-      if (paneOpen && editingPage === path) {
+      if (paneOpen && editingPage === 'editPage') {
         document.body.style.overflow = 'auto';
         this.setState({ paneOpen: false });
         return;
       }
       document.body.style.overflow = 'hidden';
-      switch (path) {
-        case '/':
-          this.setState({ editingPage: '/', paneOpen: true });
-          break;
-        case '/about':
-          this.setState({ editingPage: 'about', paneOpen: true });
-        default:
-          this.setState({ editingPage: 'admin', paneOpen: true });
-      }
+      this.setState({ editingPage: 'editPage', paneOpen: true });
     }
   }, {
     key: 'renderEditingPage',
     value: function renderEditingPage(page) {
       switch (page) {
-        case '/':
+        case 'editPage':
           return _react2.default.createElement(_EditHomePage2.default, null);
         case 'schedule':
           return _react2.default.createElement(_EditSchedule2.default, null);
@@ -25323,7 +25322,7 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = App;
-},{"react":4,"styled-components":21,"./EditHomePage":14,"./EditSchedule":44}],1:[function(require,module,exports) {
+},{"react":4,"styled-components":21,"./EditHomePage":6,"./EditSchedule":7}],1:[function(require,module,exports) {
 'use strict';
 
 var _react = require('react');
@@ -25370,7 +25369,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56876' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '52759' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
