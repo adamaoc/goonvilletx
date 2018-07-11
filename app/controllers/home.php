@@ -10,6 +10,9 @@ class Home extends Controller
       "loggedin" => $user->isLoggedIn()
     );
 
+    $pageModel = $this->model('PageModel');
+    $pageData = $pageModel->getPageData('home');
+
     $schoolModel = $this->model('SchoolModel');
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
@@ -20,7 +23,8 @@ class Home extends Controller
     $game_data = $curSchedule[0];
 
     $header_data = array(
-      'title' => 'Goonville, TX'
+      'seo_title' => $pageData[0]['seo_title'],
+      'seo_desc' => $pageData[0]['seo_desc']
     );
 
     $footer_data = array(
@@ -33,7 +37,8 @@ class Home extends Controller
       'header_data' => $header_data,
       'footer_data' => $footer_data,
       'games' => $curSchedule,
-      'game_data' => $game_data
+      'game_data' => $game_data,
+      'page_data' => $pageData[0]
     ));
 	}
 }

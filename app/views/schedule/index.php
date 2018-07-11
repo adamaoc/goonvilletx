@@ -2,7 +2,7 @@
 
 <div class="large-banner">
   <div class="large-banner__content">
-    <h1>2018-2019 Schedule</h1>
+    <h1><?= $data['page_data']['page_title'] ?></h1>
   </div>
 </div>
 

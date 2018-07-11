@@ -10,13 +10,19 @@ class Radio extends Controller
       "loggedin" => $user->isLoggedIn()
     );
 
+    $pageModel = $this->model('PageModel');
+    $pageData = $pageModel->getPageData('radio');
+
     $schoolModel = $this->model('SchoolModel');
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
     $social_links = $socialModel->getSocialLinks();
+
     $header_data = array(
-      'title' => 'Schedule 2018-2019 Season | Goonville, TX'
+      'seo_title' => $pageData[0]['seo_title'],
+      'seo_desc' => $pageData[0]['seo_desc']
     );
+
     $footer_data = array(
       'school' => $school,
       'social_links' => $social_links,
@@ -25,7 +31,8 @@ class Radio extends Controller
 
 		$this->view('radio/index', array(
       'header_data' => $header_data,
-      'footer_data' => $footer_data
+      'footer_data' => $footer_data,
+      'page_data' => $pageData[0]
     ));
 	}
 }

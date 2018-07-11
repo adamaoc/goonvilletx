@@ -7,11 +7,12 @@ $GLOBALS['config'] = array(
   ),
   'data' => array(
     'path' => 'path to data',
-    'superuser' => 'super user name'
+    'superuser' => 'super user name',
+    'api_token' => 'token here'
   ),
   'remember' => array(
     'cookie_name' => 'cookie name',
-    'cookie_expiry' => 604800
+    'cookie_expiry' => 2880
   ),
   'session' => array(
     'session_name' => 'session name',

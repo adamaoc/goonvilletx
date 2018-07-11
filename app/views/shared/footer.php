@@ -25,6 +25,7 @@
 <script src="./public/js/main.js"></script>
 <?php if ($data['user_data']['loggedin']) : ?>
   <script>
+    window.token = "<?= Config::get('data/api_token'); ?>";
     var USER = {
       username: "<?= $data['user_data']['user']['username'] ?>",
       fullname: "<?= $data['user_data']['user']['name'] ?>"

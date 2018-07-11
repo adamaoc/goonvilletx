@@ -1,24 +1,43 @@
 import React from 'react';
+import styled from 'styled-components';
+import EditHomePage from './EditHomePage';
+import EditSchedule from './EditSchedule';
 
-const editPaneStyle = {
-  position: 'fixed',
-  top: '30px',
-  left: '0',
-  right: '0',
-  background: 'white',
-  padding: '1em',
-  zIndex: '100'
+const EditPane = styled.div`
+  position: fixed;
+  top: 30px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #eee;
+  padding: 1em;
+  z-index: 100;
+  overflow-x: auto;
+  .schedule-list__icon {
+    text-decoration: none;
+  }
+`;
+const AdminBar = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #333;
+  color: #fff;
+  height: 30px;
+  display: flex;
+  align-items: center;
+`;
+const adminBarUserStyles = {
+  marginLeft: 'auto'
 }
-const adminBarStyle = {
-  position: 'fixed',
-  left: '0',
-  right: '0',
-  top: '0',
-  background: '#333',
+const adminBarBtnStyles = {
+  background: '#444',
+  border: '1px solid #555',
   color: '#fff',
-  height: '30px',
-  display: 'flex',
-  alignItems: 'center'
+  cursor: 'pointer',
+  margin: '0 1em',
+  fontSize: '14px'
 }
 
 class App extends React.Component {
@@ -26,7 +45,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       path: window.location.pathname,
-      paneOpen: false
+      paneOpen: false,
+      editingPage: 'home'
     }
   }
   componentDidMount() {
@@ -34,15 +54,21 @@ class App extends React.Component {
     document.querySelector('.site-header').style.marginTop = "30px";
   }
   logout() {
-    window.localStorage.removeItem('login');
     document.body.style.marginTop = "0";
     document.querySelector('.site-header').style.marginTop = "0";
+    window.location = window.location.href + '/admin/logout/';
   }
   editPage() {
-    const { path } = this.state;
+    const { path, paneOpen, editingPage } = this.state;
+    if (paneOpen && editingPage === path) {
+      document.body.style.overflow = 'auto';
+      this.setState({ paneOpen: false });
+      return;
+    }
+    document.body.style.overflow = 'hidden';
     switch (path) {
       case '/':
-        this.setState({editingPage: 'home', paneOpen: true});
+        this.setState({editingPage: '/', paneOpen: true});
         break;
       case '/about':
         this.setState({editingPage: 'about', paneOpen: true});
@@ -50,19 +76,39 @@ class App extends React.Component {
         this.setState({editingPage: 'admin', paneOpen: true});
     }
   }
+  renderEditingPage(page) {
+    switch (page) {
+      case '/':
+        return <EditHomePage />
+      case 'schedule':
+        return <EditSchedule />
+      default:
+    }
+  }
+  editSchedule() {
+    const { path, paneOpen, editingPage } = this.state;
+    if (paneOpen && editingPage === 'schedule') {
+      document.body.style.overflow = 'auto';
+      this.setState({ paneOpen: false });
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    this.setState({editingPage: 'schedule', paneOpen: true});
+  }
   render() {
     return (
       <div className="admin-app">
-        <div style={adminBarStyle}>
-          <button onClick={() => this.editPage()}>Edit Page</button>
-          <button>Edit Schedule</button>
-          <button onClick={this.logout}>Logout</button>
-          <div className="admin-bar__user">
+        <AdminBar>
+          <button onClick={() => this.editPage()} style={adminBarBtnStyles}>Edit Page</button>
+          <button style={adminBarBtnStyles} onClick={() => this.editSchedule()}>Edit Schedule</button>
+
+          <div style={adminBarUserStyles}>
             Welcome, {this.props.user.fullname}
+            <button onClick={this.logout} style={adminBarBtnStyles}>Logout</button>
           </div>
-        </div>
+        </AdminBar>
         {this.state.paneOpen
-          ? <div style={editPaneStyle}>Hello</div>
+          ? <EditPane>{this.renderEditingPage(this.state.editingPage)}</EditPane>
           : null
         }
       </div>

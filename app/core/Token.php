@@ -14,4 +14,12 @@ class Token {
     }
     return false;
   }
+  public static function apiCheck($token)
+  {
+    $apiToken = Config::get('data/api_token');
+    if ($token === $apiToken) {
+      return true;
+    }
+    return false;
+  }
 }

@@ -9,13 +9,16 @@ class About extends Controller
       "user" => $user->data(),
       "loggedin" => $user->isLoggedIn()
     );
+    $pageModel = $this->model('PageModel');
+    $pageData = $pageModel->getPageData('about');
 
     $schoolModel = $this->model('SchoolModel');
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
     $social_links = $socialModel->getSocialLinks();
     $header_data = array(
-      'title' => 'About Goonville, TX | The North Forney Falcons'
+      'seo_title' => $pageData[0]['seo_title'],
+      'seo_desc' => $pageData[0]['seo_desc']
     );
 
     $footer_data = array(
@@ -26,7 +29,8 @@ class About extends Controller
 
 		$this->view('about/index', array(
       'header_data' => $header_data,
-      'footer_data' => $footer_data
+      'footer_data' => $footer_data,
+      'page_data' => $pageData[0]
     ));
 	}
 }

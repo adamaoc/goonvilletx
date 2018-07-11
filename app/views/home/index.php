@@ -2,8 +2,8 @@
 <div class="home-page">
   <div class="large-banner">
     <div class="large-banner__content">
-      <h1>Goonville, TX</h1>
-      <a href="/about" class="btn btn__banner">About Us</a>
+      <h1><?= $data['page_data']['page_title'] ?></h1>
+      <a href="/<?= $data['page_data']['action_btn_link'] ?>" class="btn btn__banner"><?= $data['page_data']['action_btn_text'] ?></a>
     </div>
   </div>
 

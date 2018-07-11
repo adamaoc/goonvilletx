@@ -10,12 +10,17 @@ class Schedule extends Controller
       "loggedin" => $user->isLoggedIn()
     );
 
+    $pageModel = $this->model('PageModel');
+    $pageData = $pageModel->getPageData('schedule');
+
     $schoolModel = $this->model('SchoolModel');
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
     $social_links = $socialModel->getSocialLinks();
+
     $header_data = array(
-      'title' => 'Schedule 2018-2019 Season | Goonville, TX'
+      'seo_title' => $pageData[0]['seo_title'],
+      'seo_desc' => $pageData[0]['seo_desc']
     );
     $footer_data = array(
       'school' => $school,
@@ -24,7 +29,8 @@ class Schedule extends Controller
     );
     $baseData = array(
       'header_data' => $header_data,
-      'footer_data' => $footer_data
+      'footer_data' => $footer_data,
+      'page_data' => $pageData[0]
     );
     $gamesModel = $this->model('GamesModel');
 
@@ -43,6 +49,7 @@ class Schedule extends Controller
     $this->view('schedule/index', array(
       'header_data' => $baseData['header_data'],
       'footer_data' => $baseData['footer_data'],
+      'page_data' => $baseData['page_data'],
       'games' => $curSchedule,
       'past_games' => $pastGames
     ));
