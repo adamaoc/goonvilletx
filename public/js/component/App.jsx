@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import EditHomePage from './EditHomePage';
 import EditSchedule from './EditSchedule';
+import EditSponsors from './EditSponsors';
 
 const EditPane = styled.div`
   position: fixed;
@@ -73,6 +74,8 @@ class App extends React.Component {
         return <EditHomePage />
       case 'schedule':
         return <EditSchedule />
+      case 'sponsors':
+        return <EditSponsors />
       default:
     }
   }
@@ -86,12 +89,23 @@ class App extends React.Component {
     document.body.style.overflow = 'hidden';
     this.setState({editingPage: 'schedule', paneOpen: true});
   }
+  editSponsors() {
+    const { path, paneOpen, editingPage } = this.state;
+    if (paneOpen && editingPage === 'sponsors') {
+      document.body.style.overflow = 'auto';
+      this.setState({ paneOpen: false });
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    this.setState({editingPage: 'sponsors', paneOpen: true});
+  }
   render() {
     return (
       <div className="admin-app">
         <AdminBar>
           <button onClick={() => this.editPage()} style={adminBarBtnStyles}>Edit Page</button>
           <button style={adminBarBtnStyles} onClick={() => this.editSchedule()}>Edit Schedule</button>
+          <button style={adminBarBtnStyles} onClick={() => this.editSponsors()}>Edit Sponsors</button>
 
           <div style={adminBarUserStyles}>
             Welcome, {this.props.user.fullname}

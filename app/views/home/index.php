@@ -27,7 +27,7 @@
   </div>
 
   <div class="innerpage-sponsors">
-    <?php getComponent('Sponsors'); ?>
+    <?php getComponent('Sponsors', $data['sponsors']); ?>
   </div>
 </div>
 

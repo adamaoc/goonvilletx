@@ -34,3 +34,13 @@ function getFooter($data = array()) {
 function escape($string) {
   return htmlentities($string, ENT_QUOTES, 'UTF-8');
 }
+
+function rawData($data, $dump = false) {
+  echo "<br><pre>";
+  if ($dump) {
+    var_dump($data);
+  } else {
+    print_r($data);
+  }
+  echo "</pre><br>";
+}

@@ -9,7 +9,7 @@ class Home extends Controller
       "user" => $user->data(),
       "loggedin" => $user->isLoggedIn()
     );
-
+    
     $pageModel = $this->model('PageModel');
     $pageData = $pageModel->getPageData('home');
 
@@ -19,6 +19,9 @@ class Home extends Controller
     $social_links = $socialModel->getSocialLinks();
     $gamesModel = $this->model('GamesModel');
     $curSchedule = $gamesModel->getCurrentSchedule(0, 5);
+
+    $sponsorsModel = $this->model('SponsorsModel');
+    $sponsors = $sponsorsModel->getSponsors();
 
     $game_data = $curSchedule[0];
 
@@ -38,7 +41,8 @@ class Home extends Controller
       'footer_data' => $footer_data,
       'games' => $curSchedule,
       'game_data' => $game_data,
-      'page_data' => $pageData[0]
+      'page_data' => $pageData[0],
+      'sponsors' => $sponsors
     ));
 	}
 }

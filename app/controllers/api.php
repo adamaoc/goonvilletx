@@ -9,6 +9,9 @@ class API extends Controller {
     if ($path === 'page') {
       $this->getPageData($sec);
     }
+    if ($path === 'sponsors') {
+      $this->getSponsorsData();
+    }
   }
 
   private function getScheduleData()
@@ -52,6 +55,31 @@ class API extends Controller {
     } else {
       $pageData = $pageModel->getPageData($page);
       $this->api($pageData, 'page');
+    }
+  }
+
+  private function getSponsorsData()
+  {
+    $json = @file_get_contents('php://input');
+    $sponsorsModel = $this->model('SponsorsModel');
+
+    if (!empty($json)) {
+      // update request //
+      $headers = getallheaders();
+      if (!Token::apiCheck($headers['Token'])) {
+        $this->api(array(
+          "error" => "You're not aloud to access this",
+          "token" => $_SESSION['api_token']
+        ), 'error', 500);
+      } else {
+        $array = json_decode($json, true);
+        $sponsors = $sponsorsModel->addNewSponsor($array);
+        $this->api($sponsors, 'sponsors');
+      }
+
+    } else {
+      $sponsors = $sponsorsModel->getSponsors();
+      $this->api($sponsors, 'sponsors');
     }
   }
 }

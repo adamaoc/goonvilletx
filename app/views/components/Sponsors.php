@@ -4,9 +4,9 @@
   </div>
   <div class="sponsors__logos">
     <ul>
-      <li><img src="/public/images/sponsors/New-Max-Logo-300.png" alt="Maximum Construction and Restoration - Goonville Sponsors" /></li>
-      <!-- <li><img src="/public/images/sponsors/lorem_o.png" alt="This Sponsoror" /></li>
-      <li><img src="/public/images/sponsors/lorem_o.png" alt="This Sponsoror" /></li> -->
+      <?php foreach ($data as $sponsor) : ?>
+        <li><img src="/public/images/sponsors/<?= $sponsor['image'] ?>" alt="<?= $sponsor['img_alt'] ?>" /></li>
+      <?php endforeach; ?>
     </ul>
   </div>
 </div>
