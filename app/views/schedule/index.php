@@ -1,7 +1,7 @@
 <?php getHeader($data['header_data']); ?>
 
-<div class="large-banner">
-  <div class="large-banner__content">
+<div class="mid-banner">
+  <div class="mid-banner__content">
     <h1><?= $data['page_data']['page_title'] ?></h1>
   </div>
 </div>

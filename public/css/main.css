@@ -47,6 +47,15 @@ h2 {
       background-repeat: no-repeat;
       background-position: right top; } }
 
+.about__wrap {
+  padding: 2em; }
+  .about__wrap .innerpage-about {
+    justify-content: flex-start;
+    padding: 2em 1em; }
+  .about__wrap .page-section {
+    margin-top: 2em;
+    background: #fff; }
+
 .game-page {
   padding: 3em 1em;
   max-width: 1080px;
@@ -68,6 +77,12 @@ h2 {
     @media (min-width: 915px) {
       .schedule-page__wrap .innerpage-schedule .schedule-list {
         max-width: 100%; } }
+
+.page-section {
+  padding: 2em; }
+  .page-section p {
+    max-width: 800px;
+    padding: 1em; }
 
 .btn {
   text-decoration: none;
@@ -192,6 +207,38 @@ h2 {
     margin-left: 0; }
     @media (min-width: 42rem) {
       .large-banner .btn {
+        margin-left: 1em; } }
+
+.mid-banner {
+  background-size: cover;
+  background-position: center center;
+  background-image: url("/public/images/banners/group-header.jpg");
+  padding: 1rem;
+  height: 40vh;
+  padding-top: 4em;
+  display: flex;
+  align-items: flex-end; }
+  @media (min-width: 42rem) {
+    .mid-banner {
+      height: 20em;
+      padding-top: 5em; } }
+  .mid-banner__content {
+    padding: 0; }
+    @media (min-width: 42rem) {
+      .mid-banner__content {
+        padding: 0 2em; } }
+  .mid-banner h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 0 1em;
+    text-shadow: 3px 3px 2px #111; }
+    @media (min-width: 42rem) {
+      .mid-banner h1 {
+        font-size: 4rem; } }
+  .mid-banner .btn {
+    margin-left: 0; }
+    @media (min-width: 42rem) {
+      .mid-banner .btn {
         margin-left: 1em; } }
 
 .game-data {
@@ -402,7 +449,7 @@ h2 {
   @media (min-width: 950px) {
     .sponsors {
       flex-direction: row;
-      height: 200px; } }
+      min-height: 200px; } }
   .sponsors__banner {
     background: #02255a;
     flex-basis: 150px;
@@ -416,25 +463,23 @@ h2 {
         flex-basis: 300px; } }
     .sponsors__banner h2 {
       color: white; }
-  .sponsors__logos {
+  .sponsors__logos ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
     display: flex;
-    align-items: center; }
-    .sponsors__logos ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      width: 100%; }
-    .sponsors__logos li {
-      margin: 0;
-      display: inline-block;
-      width: 100%;
-      text-align: center; }
-      @media (min-width: 800px) {
-        .sponsors__logos li {
-          width: auto;
-          margin: 1em; } }
-    .sponsors__logos img {
-      max-width: 200px; }
+    align-items: center;
+    flex-wrap: wrap; }
+  .sponsors__logos li {
+    margin: 0;
+    text-align: center; }
+    @media (min-width: 800px) {
+      .sponsors__logos li {
+        width: auto;
+        margin: 1em; } }
+  .sponsors__logos img {
+    max-width: 200px; }
 
 .site-footer {
   background: #02255a;

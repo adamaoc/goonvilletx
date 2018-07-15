@@ -33,3 +33,39 @@
     }
   }
 }
+
+.mid-banner {
+  background-size: cover;
+  background-position: center center;
+  background-image: url('/public/images/banners/group-header.jpg');
+  padding: 1rem;
+  height: 40vh;
+  padding-top: 4em;
+  display: flex;
+  align-items: flex-end;
+  @media (min-width: 42rem) {
+    height: 20em;
+    padding-top: 5em;
+  }
+  &__content {
+    padding: 0;
+    @media (min-width: 42rem) {
+      padding: 0 2em;
+    }
+  }
+  h1 {
+    color: #fff;
+    font-size: 2rem;
+    margin: 0 0 1em;
+    text-shadow: 3px 3px 2px #111;
+    @media (min-width: 42rem) {
+      font-size: 4rem;
+    }
+  }
+  .btn {
+    margin-left: 0;
+    @media (min-width: 42rem) {
+      margin-left: 1em;
+    }
+  }
+}

@@ -16,9 +16,12 @@ class Admin extends Controller
     $school = $schoolModel->getSchoolData();
     $socialModel = $this->model('SocialModel');
     $social_links = $socialModel->getSocialLinks();
+
     $header_data = array(
-      'title' => 'Goonville, TX'
+      'seo_title' => "Goonville - Admin",
+      'seo_desc' => "This is the Goonville Backend"
     );
+
     $footer_data = array(
       'school' => $school,
       'social_links' => $social_links,
@@ -51,10 +54,14 @@ class Admin extends Controller
       $this->view('admin/logout');
 
     } else {
-  		$this->view('admin/index', array(
-        'header_data' => $header_data,
-        'footer_data' => $footer_data,
-        'user_data' => $user_data));
+      if ($user_data['loggedin']) {
+    		$this->view('admin/index', array(
+          'header_data' => $header_data,
+          'footer_data' => $footer_data,
+          'user_data' => $user_data));
+      } else {
+        Redirect::to(Config::get('http/root'));
+      }
     }
   }
 
