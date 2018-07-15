@@ -402,7 +402,7 @@ h2 {
   @media (min-width: 950px) {
     .sponsors {
       flex-direction: row;
-      height: 200px; } }
+      min-height: 200px; } }
   .sponsors__banner {
     background: #02255a;
     flex-basis: 150px;
@@ -416,25 +416,23 @@ h2 {
         flex-basis: 300px; } }
     .sponsors__banner h2 {
       color: white; }
-  .sponsors__logos {
+  .sponsors__logos ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
     display: flex;
-    align-items: center; }
-    .sponsors__logos ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      width: 100%; }
-    .sponsors__logos li {
-      margin: 0;
-      display: inline-block;
-      width: 100%;
-      text-align: center; }
-      @media (min-width: 800px) {
-        .sponsors__logos li {
-          width: auto;
-          margin: 1em; } }
-    .sponsors__logos img {
-      max-width: 200px; }
+    align-items: center;
+    flex-wrap: wrap; }
+  .sponsors__logos li {
+    margin: 0;
+    text-align: center; }
+    @media (min-width: 800px) {
+      .sponsors__logos li {
+        width: auto;
+        margin: 1em; } }
+  .sponsors__logos img {
+    max-width: 200px; }
 
 .site-footer {
   background: #02255a;
