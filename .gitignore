@@ -2,3 +2,4 @@ node_modules
 app/admin-data
 app/config.php
 .cache
+data/*

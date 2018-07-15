@@ -2,7 +2,12 @@
 
 class SocialModel
 {
-
+  public function __construct()
+  {
+    $data = new Data;
+    $filepath = Config::get('data/webdata') . "school_info.csv";
+    $this->_school = $data->getWebData($filepath);
+  }
   public function setupSocialLinks()
   {
     return array(
@@ -11,14 +16,14 @@ class SocialModel
         'name' => 'Twitter',
         'slug' => 'twitter',
         'user' => 'goonville',
-        'link' => 'https://twitter.com/NForneyFalcons'
+        'link' => $this->_school[0]['twitter']
       ),
       'facebook' => array(
         'id' => 2,
         'name' => 'Facebook',
         'slug' => 'facebook',
         'user' => 'goonville',
-        'link' => 'https://www.facebook.com/groups/1471729716254806/'
+        'link' => $this->_school[0]['facebook']
       )
     );
   }

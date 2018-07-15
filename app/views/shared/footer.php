@@ -22,6 +22,7 @@
     <a href="http://ampnetmedia.com">ampnetmedia</a> | Goonville, TX &copy; 2018. All Rights Reserved.
   </div>
 </footer>
+
 <script src="<?= Config::get('http/root') ?>public/js/main.js"></script>
 <?php if ($data['user_data']['loggedin']) : ?>
   <script>
@@ -39,5 +40,6 @@
     ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
 </script>
 <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
 </body>
 </html>

@@ -1,0 +1,2 @@
+school_name,mascot,school_aka,email,phone,street,city,state,zip,twitter,facebook,footer_logo,header_logo
+"North Forney",Falcons,"Goonville",testing@goonvilletx.com,"(469) 762-4159","6170 Falcon Way",Forney,TX,75126,"https://twitter.com/NForneyFalcons","https://www.facebook.com/groups/1471729716254806/","http://localhost:8888/public/images/logos/NF-logo.png","http://localhost:8888/public/images/logos/goonville-logo.png"
