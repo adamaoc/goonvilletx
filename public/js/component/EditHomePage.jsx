@@ -46,26 +46,20 @@ const FormGroup = styled.div`
 class EditHomePage extends React.Component {
   constructor(props) {
     super(props);
-
-    let seoDescription;
-    const metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].name === 'description') {
-        seoDescription = metas[i];
-      }
-    }
     this.state = {
-      pageData: {},
-      pageTitle: document.querySelector('.large-banner__content').querySelector('h1'),
-      actionLink: document.querySelector('.large-banner__content').querySelector('a'),
-      seoTitle: document.querySelector('title'),
-      seoDescription
+      pageData: {}
     }
   }
   componentDidMount() {
     const { pathname, host } = window.location;
-    const pagePath = (pathname === '/') ? '/home' : pathname;
-    const apiUrl = (host === 'goonvilletx.com') ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+    let pagePath = pathname;
+    if (pathname === '/') {
+      pagePath = '/home'
+    }
+    let apiUrl = 'http://goonvilletx.com/api';
+    if (host !== 'goonvilletx.com') {
+      apiUrl = 'http://localhost:8888/api';
+    }
     const fetchUrl = apiUrl + '/page' + pagePath;
     console.log(fetchUrl);
     const games = fetch(
@@ -86,7 +80,10 @@ class EditHomePage extends React.Component {
     const { pageData } = this.state;
     const { pathname, host } = window.location;
     const pagePath = (pathname === '/') ? '/home' : pathname;
-    const apiUrl = (host === 'goonvilletx.com') ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+    let apiUrl = 'http://goonvilletx.com/api';
+    if (host !== 'goonvilletx.com') {
+      apiUrl = 'http://localhost:8888/api';
+    }
     const fetchUrl = apiUrl + '/page' + pagePath;
     const games = fetch(
       fetchUrl,

@@ -17,7 +17,10 @@ class EditSponsors extends React.Component {
   }
   componentDidMount() {
     const { pathname, host } = window.location;
-    const apiUrl = (host === 'goonvilletx.com') ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+    let apiUrl = 'http://goonvilletx.com/api';
+    if (host !== 'goonvilletx.com') {
+      apiUrl = 'http://localhost:8888/api';
+    }
     const fetchUrl = apiUrl + '/sponsors/';
     const games = fetch(
       fetchUrl,
@@ -40,7 +43,10 @@ class EditSponsors extends React.Component {
   upload() {
     const { newSponsor } = this.state;
     const { host } = window.location;
-    const apiUrl = (host === 'goonvilletx.com') ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+    let apiUrl = 'http://goonvilletx.com/api';
+    if (host !== 'goonvilletx.com') {
+      apiUrl = 'http://localhost:8888/api';
+    }
     const fetchUrl = apiUrl + '/sponsors/';
     const games = fetch(
       fetchUrl,

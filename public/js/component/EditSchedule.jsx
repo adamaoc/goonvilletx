@@ -40,7 +40,10 @@ class EditSchedule extends React.Component {
     }
   }
   componentDidMount() {
-    const apiUrl = (window.location.host === 'goonvilletx.com') ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+    let apiUrl = 'http://goonvilletx.com/api';
+    if (window.location.host !== 'goonvilletx.com') {
+      apiUrl = 'http://localhost:8888/api';
+    }
     const fetchUrl = apiUrl + '/schedule/';
     const games = fetch(
       fetchUrl

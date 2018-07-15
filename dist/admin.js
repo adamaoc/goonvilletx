@@ -24776,19 +24776,8 @@ var EditHomePage = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (EditHomePage.__proto__ || Object.getPrototypeOf(EditHomePage)).call(this, props));
 
-    var seoDescription = void 0;
-    var metas = document.getElementsByTagName('meta');
-    for (var i = 0; i < metas.length; i++) {
-      if (metas[i].name === 'description') {
-        seoDescription = metas[i];
-      }
-    }
     _this.state = {
-      pageData: {},
-      pageTitle: document.querySelector('.large-banner__content').querySelector('h1'),
-      actionLink: document.querySelector('.large-banner__content').querySelector('a'),
-      seoTitle: document.querySelector('title'),
-      seoDescription: seoDescription
+      pageData: {}
     };
     return _this;
   }
@@ -24802,8 +24791,14 @@ var EditHomePage = function (_React$Component) {
           pathname = _window$location.pathname,
           host = _window$location.host;
 
-      var pagePath = pathname === '/' ? '/home' : pathname;
-      var apiUrl = host === 'goonvilletx.com' ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+      var pagePath = pathname;
+      if (pathname === '/') {
+        pagePath = '/home';
+      }
+      var apiUrl = 'http://goonvilletx.com/api';
+      if (host !== 'goonvilletx.com') {
+        apiUrl = 'http://localhost:8888/api';
+      }
       var fetchUrl = apiUrl + '/page' + pagePath;
       console.log(fetchUrl);
       var games = fetch(fetchUrl, {
@@ -24827,7 +24822,10 @@ var EditHomePage = function (_React$Component) {
           host = _window$location2.host;
 
       var pagePath = pathname === '/' ? '/home' : pathname;
-      var apiUrl = host === 'goonvilletx.com' ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+      var apiUrl = 'http://goonvilletx.com/api';
+      if (host !== 'goonvilletx.com') {
+        apiUrl = 'http://localhost:8888/api';
+      }
       var fetchUrl = apiUrl + '/page' + pagePath;
       var games = fetch(fetchUrl, {
         method: 'post',
@@ -25027,7 +25025,10 @@ var EditSchedule = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var apiUrl = window.location.host === 'goonvilletx.com' ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+      var apiUrl = 'http://goonvilletx.com/api';
+      if (window.location.host !== 'goonvilletx.com') {
+        apiUrl = 'http://localhost:8888/api';
+      }
       var fetchUrl = apiUrl + '/schedule/';
       var games = fetch(fetchUrl).then(function (resp) {
         return resp.json();
@@ -25202,7 +25203,10 @@ var EditSponsors = function (_React$Component) {
           pathname = _window$location.pathname,
           host = _window$location.host;
 
-      var apiUrl = host === 'goonvilletx.com' ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+      var apiUrl = 'http://goonvilletx.com/api';
+      if (host !== 'goonvilletx.com') {
+        apiUrl = 'http://localhost:8888/api';
+      }
       var fetchUrl = apiUrl + '/sponsors/';
       var games = fetch(fetchUrl, {
         headers: {
@@ -25228,7 +25232,10 @@ var EditSponsors = function (_React$Component) {
       var newSponsor = this.state.newSponsor;
       var host = window.location.host;
 
-      var apiUrl = host === 'goonvilletx.com' ? 'http://goonvilletx.com/api' : 'http://localhost:8888/api';
+      var apiUrl = 'http://goonvilletx.com/api';
+      if (host !== 'goonvilletx.com') {
+        apiUrl = 'http://localhost:8888/api';
+      }
       var fetchUrl = apiUrl + '/sponsors/';
       var games = fetch(fetchUrl, {
         method: 'post',
@@ -25388,7 +25395,7 @@ var App = function (_React$Component) {
     value: function logout() {
       document.body.style.marginTop = "0";
       document.querySelector('.site-header').style.marginTop = "0";
-      window.location = window.location.href + '/admin/logout/';
+      window.location = 'http://' + window.location.host + '/admin/logout/';
     }
   }, {
     key: 'editPage',
@@ -25486,7 +25493,11 @@ var App = function (_React$Component) {
             'div',
             { style: adminBarUserStyles },
             'Welcome, ',
-            this.props.user.fullname,
+            _react2.default.createElement(
+              'a',
+              { href: 'http://' + window.location.host + '/admin/', style: { color: '#eee' } },
+              this.props.user.fullname
+            ),
             _react2.default.createElement(
               'button',
               { onClick: this.logout, style: adminBarBtnStyles },
@@ -25525,7 +25536,7 @@ var _App2 = _interopRequireDefault(_App);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { user: USER }), document.getElementById('adminNav'));
-},{"react":7,"react-dom":4,"./component/App.jsx":3}],48:[function(require,module,exports) {
+},{"react":7,"react-dom":4,"./component/App.jsx":3}],41:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -25554,7 +25565,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53208' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '62918' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -25695,5 +25706,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[48,1], null)
+},{}]},{},[41,1], null)
 //# sourceMappingURL=/admin.map

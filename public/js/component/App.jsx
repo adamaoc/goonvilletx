@@ -56,7 +56,7 @@ class App extends React.Component {
   logout() {
     document.body.style.marginTop = "0";
     document.querySelector('.site-header').style.marginTop = "0";
-    window.location = window.location.href + '/admin/logout/';
+    window.location = 'http://' + window.location.host + '/admin/logout/';
   }
   editPage() {
     const { paneOpen, editingPage } = this.state;
@@ -108,7 +108,7 @@ class App extends React.Component {
           <button style={adminBarBtnStyles} onClick={() => this.editSponsors()}>Edit Sponsors</button>
 
           <div style={adminBarUserStyles}>
-            Welcome, {this.props.user.fullname}
+            Welcome, <a href={`http://${window.location.host}/admin/`} style={{color: '#eee'}}>{this.props.user.fullname}</a>
             <button onClick={this.logout} style={adminBarBtnStyles}>Logout</button>
           </div>
         </AdminBar>
