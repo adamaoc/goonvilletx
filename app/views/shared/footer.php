@@ -22,7 +22,7 @@
     <a href="http://ampnetmedia.com">ampnetmedia</a> | Goonville, TX &copy; 2018. All Rights Reserved.
   </div>
 </footer>
-<script src="./public/js/main.js"></script>
+<script src="<?= Config::get('http/root') ?>public/js/main.js"></script>
 <?php if ($data['user_data']['loggedin']) : ?>
   <script>
     window.token = "<?= Config::get('data/api_token'); ?>";
@@ -31,7 +31,7 @@
       fullname: "<?= $data['user_data']['user']['name'] ?>"
     };
   </script>
-  <script src="./dist/admin.js"></script>
+  <script src="<?= Config::get('http/root') ?>dist/admin.js"></script>
 <?php endif; ?>
 <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 <script>

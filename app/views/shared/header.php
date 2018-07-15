@@ -10,7 +10,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
-    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="<?= Config::get('http/root') ?>public/css/main.css">
   </head>
   <body>
 

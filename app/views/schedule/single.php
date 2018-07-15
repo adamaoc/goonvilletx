@@ -3,8 +3,8 @@
   $game = $data['gameData'];
 ?>
 
-<div class="large-banner">
-  <div class="large-banner__content">
+<div class="mid-banner">
+  <div class="mid-banner__content">
     <h1>The Game</h1>
     <p><?= $game['date']; ?></p>
   </div>
