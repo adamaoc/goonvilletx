@@ -1,24 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Table } from './lib/Tables';
 
-const Table = styled.table`
-  border-collapse: collapse;
-  border: 1px solid #aaa;
-  width: 100%;
-  thead tr {
-    border-bottom: 1px solid #888;
-    font-weight: bold;
-  }
-  tbody tr:nth-child(odd) {
-    background: #fff;
-  }
-  td {
-    padding: 0.5rem;
-  }
-  .score {
-    text-align: center;
-  }
-`;
 
 const LinkSVG = () => {
   return (

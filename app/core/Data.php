@@ -15,7 +15,7 @@ class Data {
     );
     $row = 1;
     if (($handle = fopen($filepath, "r")) !== FALSE) {
-        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+        while (($data = fgetcsv($handle, 2000, ",")) !== FALSE) {
             if ($row === 1) {
                 foreach ($data as $value) {
                   array_push($dataArr['fields'], $value);
@@ -41,7 +41,7 @@ class Data {
     $dataArr = array();
     $row = 0;
     if (($handle = fopen($filePath, "r")) !== FALSE) {
-      while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+      while (($data = fgetcsv($handle, 2000, ",")) !== FALSE) {
         if ($data[0] === $id) {
           $dataArr[$row] = $updatedRow;
         } else {
@@ -57,6 +57,31 @@ class Data {
         fputcsv($fp, $fields);
     }
     fclose($fp);
+  }
+
+  public function deleteData($filePath, $id)
+  {
+    if ($id) {
+      $dataArr = array();
+      $row = 0;
+      if (($handle = fopen($filePath, "r")) !== FALSE) {
+        while (($data = fgetcsv($handle, 2000, ",")) !== FALSE) {
+          if ($data[0] !== $id) {
+            $dataArr[$row] = $data;
+          }
+          $row++;
+        }
+      }
+      fclose($handle);
+      // save back to file //
+      $fp = fopen($filePath, 'w');
+      foreach ($dataArr as $fields) {
+          fputcsv($fp, $fields);
+      }
+      fclose($fp);
+      return true;
+    }
+    return false;
   }
 
   public function addData($filePath, $data)
@@ -116,7 +141,7 @@ class Data {
     );
     $row = 1;
     if (($handle = fopen($filepath, "r")) !== FALSE) {
-        while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+        while (($data = fgetcsv($handle, 2000, ",")) !== FALSE) {
             if ($row === 1) {
                 foreach ($data as $value) {
                   array_push($dataArr['fields'], $value);
@@ -139,8 +164,8 @@ class Data {
 
   public function updateWebData($file, $data)
   {
-    $id = $data[0]['id'];
-    $updatedRow = $data[0];
+    $id = $data['id'];
+    $updatedRow = $data;
     $this->_updateData($file, $id, $updatedRow);
     return $this->getWebData($file);
   }
