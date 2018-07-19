@@ -34,12 +34,17 @@
   </script>
   <script src="<?= Config::get('http/root') ?>dist/admin.js"></script>
 <?php endif; ?>
-<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122648229-1"></script>
 <script>
-    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-    ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-122648229-1');
 </script>
-<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
 
 </body>
 </html>
