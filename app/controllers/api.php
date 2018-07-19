@@ -1,123 +1,125 @@
 <?php
 
 class API extends Controller {
+  private $_authError = array('data' => "You're not aloud to access this", 'name' => 'error');
+
   public function index($path = '', $sec = '')
   {
-    if ($path === 'schedule') {
-      $this->getScheduleData();
-    }
-    if ($path === 'page') {
-      $this->getPageData($sec);
-    }
-    if ($path === 'sponsors') {
-      if ($sec === 'delete') {
-        $id = $_GET['id'];
-        $deletedSponsor = $this->deleteSponsor($id);
-        exit;
-      }
-      if ($sec === 'upload') {
-        $uploadedImage = $this->uploadSponsorImage($_FILES['file']);
-        if (isset($uploadedImage['errors'])) {
-          $this->api($uploadedImage[0], 'errors');
-        } else {
-          $this->api($uploadedImage, 'image');
-        }
-      } elseif($sec === 'sponsor') {
-        $this->getSponsor();
-      } else {
-        $this->getSponsorsData();
-      }
+    switch ($path) {
+      case 'page':
+        $returnData = $this->handlePageRoute($sec);
+        $this->api($returnData['data'], $returnData['name']);
+        break;
+      case 'schedule':
+        $returnData = $this->handleScheduleRoute($sec);
+        $this->api($returnData['data'], $returnData['name']);
+        break;
+      case 'sponsors':
+        $returnData = $this->handleSponsorsRoute($sec);
+        $this->api($returnData['data'], $returnData['name']);
+        break;
+      default:
+        $this->api(array('error' => 'You must hit a valid endpoint.'), 'errors');
+        break;
     }
   }
 
-  private function getScheduleData()
+  private function _authCheck($json)
   {
-    $json = @file_get_contents('php://input');
-    $schedule = $this->model('GamesModel');
-    if (!empty($json)) {
-      $headers = getallheaders();
-      if (!Token::apiCheck($headers['Token'])) {
-        $this->api(array(
-          "error" => "You're not aloud to access this",
-          "token" => $_SESSION['api_token']
-        ), 'error', 500);
-      } else {
-        // update schedule data
+    $headers = getallheaders();
+    if (!empty($headers['Token']) && !empty($json)) {
+      if (Token::apiCheck($headers['Token'])) {
+        return true;
       }
-    } else {
-      $games = $schedule->getAllGames();
-      $this->api($games, 'games');
     }
+    return false;
   }
 
-  private function getPageData($page)
+  private function handlePageRoute($secPath)
   {
     $json = @file_get_contents('php://input');
     $pageModel = $this->model('PageModel');
-    if (!empty($json)) {
-      // update request //
-      $headers = getallheaders();
-      if (!Token::apiCheck($headers['Token'])) {
-        $this->api(array(
-          "error" => "You're not aloud to access this",
-          "token" => $_SESSION['api_token']
-        ), 'error', 500);
-      } else {
-        $array = json_decode($json, true);
-        $pageData = $pageModel->updatePageData($page, $array);
-        $this->api($pageData, 'page');
-      }
-
-    } else {
-      $pageData = $pageModel->getPageData($page);
-      $this->api($pageData, 'page');
+    switch ($secPath) {
+      case 'update':
+        $page = $_GET['page'];
+        if ($this->_authCheck($json)) {
+          $array = json_decode($json, true);
+          $pageData = $pageModel->updatePageData($page, $array);
+          return array('data' => $pageData, 'name' => 'page');
+        } else {
+          return $this->_authError;
+        }
+        break;
+      default:
+        $pageData = $pageModel->getPageData($secPath);
+        return array('data' => $pageData, 'name' => 'page');
+        break;
     }
   }
 
-  private function getSponsorsData()
+  private function handleSponsorsRoute($secPath)
   {
     $json = @file_get_contents('php://input');
     $sponsorsModel = $this->model('SponsorsModel');
-
-    if (!empty($json)) {
-      // update request //
-      $headers = getallheaders();
-      if (!Token::apiCheck($headers['Token'])) {
-        $this->api(array(
-          "error" => "You're not aloud to access this",
-          "token" => $_SESSION['api_token']
-        ), 'error', 500);
-      } else {
-        $array = json_decode($json, true);
-        $sponsors = $sponsorsModel->addNewSponsor($array);
-        $this->api($sponsors, 'sponsors');
-      }
-
-    } else {
-      $sponsors = $sponsorsModel->getSponsors();
-      $this->api($sponsors, 'sponsors');
+    switch ($secPath) {
+      case 'update':
+        if ($this->_authCheck($json)) {
+          $array = json_decode($json, true);
+          $sponsor = $sponsorsModel->updateSponsor($array[0]);
+          return array('data' => $sponsor, 'name' => 'sponsor');
+        } else {
+          return $this->_authError;
+        }
+        break;
+      case 'delete':
+        $id = $_GET['id'];
+        return $this->deleteSponsor($id);
+        break;
+      case 'add':
+        if ($this->_authCheck($json)) {
+          $array = json_decode($json, true);
+          $sponsors = $sponsorsModel->addNewSponsor($array);
+          return array('data' => $sponsors, 'name' => 'sponsors');
+        } else {
+          return $this->_authError;
+        }
+        break;
+      case 'upload':
+        $uploadedImage = $this->uploadSponsorImage($_FILES['file']);
+        if (isset($uploadedImage['errors'])) {
+          return array('data' => $uploadedImage[0], 'name' => 'error');
+        } else {
+          return array('data' => $uploadedImage, 'name' => 'image');
+        }
+        break;
+      case 'sponsor':
+        // code...
+        break;
+      default:
+        $sponsors = $sponsorsModel->getSponsors();
+        return array('data' => $sponsors, 'name' => 'sponsors');
+        break;
     }
   }
 
-  private function getSponsor()
+  private function handleScheduleRoute($secPath)
   {
     $json = @file_get_contents('php://input');
-    $sponsorsModel = $this->model('SponsorsModel');
-    if (!empty($json)) {
-      $headers = getallheaders();
-      if (!Token::apiCheck($headers['Token'])) {
-        $this->api(array(
-          "error" => "You're not aloud to access this",
-          "token" => $_SESSION['api_token']
-        ), 'error', 500);
-      } else {
-        $array = json_decode($json, true);
-        $sponsor = $sponsorsModel->updateSponsor($array[0]);
-        $this->api($sponsor, 'sponsor');
-      }
-    } else {
-      $sponsor = $sponsorsModel->getSponsor();
-      $this->api($sponsor, 'sponsor');
+    $gamesModel = $this->model('GamesModel');
+    switch ($secPath) {
+      case 'update':
+        if ($this->_authCheck($json)) {
+          $array = json_decode($json, true);
+          $game = $gamesModel->updateGame($array);
+          return array('data' => $game, 'name' => 'game');
+        } else {
+          return $this->_authError;
+        }
+        break;
+      default:
+        $games = $gamesModel->getAllGames();
+        return array('data' => $games, 'name' => 'games');
+        break;
     }
   }
 
@@ -131,7 +133,7 @@ class API extends Controller {
     $file_ext = explode('.', $file_name);
     $file_ext = strtolower(end($file_ext));
 
-    $allowed = array('jpg', 'png');
+    $allowed = array('jpg', 'jpeg', 'png');
 
     if (in_array($file_ext, $allowed)) {
       if ($file_error === 0) {
@@ -157,7 +159,8 @@ class API extends Controller {
     return array( 'errors' => $file_error );
   }
 
-  public function deleteSponsor($id) {
+  public function deleteSponsor($id)
+  {
     $headers = getallheaders();
     if (!Token::apiCheck($headers['Token'])) {
       $this->api(array(
@@ -168,14 +171,9 @@ class API extends Controller {
       $sponsorsModel = $this->model('SponsorsModel');
       $deleteSuccess = $sponsorsModel->deleteSponsor($id);
       if ($deleteSuccess) {
-          $this->api(array(
-            "success" => true
-          ), 'success');
+        return array('data' => array('success' => true), 'name' => 'success');
       } else {
-        $this->api(array(
-          "error" => true,
-          "error_message" => "Delete unsuccessful"
-        ), 'error', 500);
+        return array('data' => array("error_message" => "Delete unsuccessful"), 'name' => 'error');
       }
     }
   }

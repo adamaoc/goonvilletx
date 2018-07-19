@@ -2,11 +2,15 @@
 
 class GamesModel
 {
-	public $name;
-  public $games = array();
+	public $name,
+         $games = array();
+  private $_db,
+          $_file;
 
   function __construct()
   {
+    $this->_file = Config::get('data/webdata') . 'games.csv';
+    $this->_db = new Data;
     $this->getGamesData();
   }
 
@@ -17,7 +21,7 @@ class GamesModel
       'games' => array()
     );
     $row = 1;
-    if (($handle = fopen("./data/games.csv", "r")) !== FALSE) {
+    if (($handle = fopen($this->_file, "r")) !== FALSE) {
         while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
             if ($row === 1) {
                 foreach ($data as $value) {
@@ -35,6 +39,22 @@ class GamesModel
         fclose($handle);
     }
     $this->games = $gamesArr;
+  }
+
+  public function updateGame($data)
+  {
+    // id,date,home_team,visiting_team,location,home_score,visiting_score
+    $updateData = array(
+      "id"              => $data['id'],
+      "date"            => $data['date'],
+      "home_team"       => $data['home_team'],
+      "visiting_team"   => $data['visiting_team'],
+      "location"        => $data['location'],
+      "home_score"      => $data['home_score'],
+      "visiting_score"  => $data['visiting_score']
+    );
+    $this->_db->updateWebData($this->_file, $updateData);
+    return $updateData;
   }
 
   public function getAllGames()

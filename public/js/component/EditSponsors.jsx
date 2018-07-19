@@ -123,9 +123,9 @@ class EditSponsors extends React.Component {
     });
     this.setState({ sponsors });
   }
-  upload() {
+  addSponsor() {
     let { newSponsor } = this.state;
-    const fetchUrl = apiUrl + '/sponsors/';
+    const fetchUrl = apiUrl + '/sponsors/add/';
     const sponsors = fetch(
       fetchUrl,
       {
@@ -183,7 +183,7 @@ class EditSponsors extends React.Component {
   updateRow(id) {
     const {sponsors} = this.state;
     let sponsor = sponsors.filter((s) => s.id === id);
-    const fetchUrl = apiUrl + '/sponsors/sponsor';
+    const fetchUrl = apiUrl + '/sponsors/update';
     this.setState({loading: true});
     const newSpon = fetch(
       fetchUrl,
@@ -323,7 +323,7 @@ class EditSponsors extends React.Component {
                   />
                 </td>
                 <td className="center">
-                  <Button disabled={!enableAdd} primary onClick={() => this.upload()}>+ Add Sponsor</Button>
+                  <Button disabled={!enableAdd} primary onClick={() => this.addSponsor()}>+ Add Sponsor</Button>
                 </td>
               </tr>
             </tbody>

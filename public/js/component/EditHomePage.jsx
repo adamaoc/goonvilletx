@@ -46,12 +46,12 @@ class EditHomePage extends React.Component {
   updatePage() {
     const { pageData } = this.state;
     const { pathname, host } = window.location;
-    const pagePath = (pathname === '/') ? '/home' : pathname;
-    let apiUrl = 'http://goonvilletx.com/api';
+    let pagePath = (pathname === '/') ? 'home' : pathname.split('/')[1];
+    let apiUrl = 'http://goonvilletx.com/api/page/update/';
     if (host !== 'goonvilletx.com') {
-      apiUrl = 'http://localhost:8888/api';
+      apiUrl = 'http://localhost:8888/api/page/update/';
     }
-    const fetchUrl = apiUrl + '/page' + pagePath;
+    const fetchUrl = apiUrl + '?page=' + pagePath;
     const games = fetch(
       fetchUrl,
       {
@@ -59,7 +59,7 @@ class EditHomePage extends React.Component {
         headers: {
           Token: window.token
         },
-        body: JSON.stringify([pageData])
+        body: JSON.stringify(pageData)
       }
     ).then((resp) => {
       return resp.json();

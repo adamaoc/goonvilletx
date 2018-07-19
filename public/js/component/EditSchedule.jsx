@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Table } from './lib/Tables';
+import { Button } from './lib/Buttons';
 
+let APIURL = 'http://goonvilletx.com/api';
+if (window.location.host !== 'goonvilletx.com') {
+  APIURL = 'http://localhost:8888/api';
+}
 
 const LinkSVG = () => {
   return (
@@ -23,17 +28,51 @@ class EditSchedule extends React.Component {
     }
   }
   componentDidMount() {
-    let apiUrl = 'http://goonvilletx.com/api';
-    if (window.location.host !== 'goonvilletx.com') {
-      apiUrl = 'http://localhost:8888/api';
-    }
-    const fetchUrl = apiUrl + '/schedule/';
+    const fetchUrl = APIURL + '/schedule/';
     const games = fetch(
       fetchUrl
     ).then((resp) => {
       return resp.json();
     }).then((resp) => {
       this.setState({ games: resp.games });
+    });
+  }
+  updateData(id, field, value) {
+    const { games } = this.state;
+    games.forEach((game) => {
+      if (game.id === id) {
+        game[field] = value;
+      }
+    });
+    this.setState({ games });
+  }
+  updateRow(id) {
+    const {games} = this.state;
+    console.log(games);
+    let game = games.filter((s) => s.id === id);
+    const fetchUrl = APIURL + '/schedule/update/';
+    this.setState({loading: true});
+    const newSpon = fetch(
+      fetchUrl,
+      {
+        method: 'post',
+        headers: {
+          Token: window.token
+        },
+        body: JSON.stringify(game[0])
+      }
+    ).then((resp) => { return resp.json()}).then((resp) => {
+      games.forEach((game) => {
+        if (game.id === resp.game.id) {
+          game = resp.game;
+        }
+      })
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+          games
+        });
+      }, 300);
     });
   }
   render() {
@@ -52,6 +91,7 @@ class EditSchedule extends React.Component {
               <td>Visiting Team</td>
               <td className="score">Visiting Score</td>
               <td>Location</td>
+              <td className="center">---</td>
             </tr>
           </thead>
           <tbody>
@@ -59,12 +99,27 @@ class EditSchedule extends React.Component {
               return (
                 <tr key={game.id}>
                   <td className="score">{game.id}</td>
-                  <td>{game.date}</td>
-                  <td>{game.home_team}</td>
-                  <td className="score">{game.home_score}</td>
-                  <td>{game.visiting_team}</td>
-                  <td className="score">{game.visiting_score}</td>
-                  <td>{game.location}</td>
+                  <td className="editable">
+                    <input type="text" defaultValue={game.date} onChange={(e) => this.updateData(game.id, 'date', e.target.value)} />
+                  </td>
+                  <td className="editable">
+                    <input type="text" defaultValue={game.home_team} onChange={(e) => this.updateData(game.id, 'home_team', e.target.value)} />
+                  </td>
+                  <td className="score editable">
+                    <input type="text" defaultValue={game.home_score} onChange={(e) => this.updateData(game.id, 'home_score', e.target.value)} />
+                  </td>
+                  <td className="editable">
+                    <input type="text" defaultValue={game.visiting_team} onChange={(e) => this.updateData(game.id, 'visiting_team', e.target.value)} />
+                  </td>
+                  <td className="score editable">
+                    <input type="text" defaultValue={game.visiting_score} onChange={(e) => this.updateData(game.id, 'visiting_score', e.target.value)} />
+                  </td>
+                  <td className="editable">
+                    <input type="text" defaultValue={game.location} onChange={(e) => this.updateData(game.id, 'location', e.target.value)} />
+                  </td>
+                  <td>
+                    <Button onClick={() => this.updateRow(game.id)}>Update</Button>
+                  </td>
                 </tr>
               )
             })}

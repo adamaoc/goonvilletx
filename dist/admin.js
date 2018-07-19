@@ -248,7 +248,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
-},{}],22:[function(require,module,exports) {
+},{}],27:[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -266,7 +266,7 @@ if ('development' !== 'production') {
 }
 
 module.exports = emptyObject;
-},{}],25:[function(require,module,exports) {
+},{}],22:[function(require,module,exports) {
 "use strict";
 
 /**
@@ -366,7 +366,7 @@ if ('development' !== 'production') {
 }
 
 module.exports = warning;
-},{"./emptyFunction":25}],56:[function(require,module,exports) {
+},{"./emptyFunction":22}],60:[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -459,7 +459,7 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 }
 
 module.exports = checkPropTypes;
-},{"./lib/ReactPropTypesSecret":56}],9:[function(require,module,exports) {
+},{"./lib/ReactPropTypesSecret":60}],9:[function(require,module,exports) {
 /** @license React v16.4.1
  * react.development.js
  *
@@ -1940,7 +1940,7 @@ if ('development' !== "production") {
     module.exports = react;
   })();
 }
-},{"object-assign":21,"fbjs/lib/invariant":23,"fbjs/lib/emptyObject":22,"fbjs/lib/warning":24,"fbjs/lib/emptyFunction":25,"prop-types/checkPropTypes":32}],5:[function(require,module,exports) {
+},{"object-assign":21,"fbjs/lib/invariant":23,"fbjs/lib/emptyObject":27,"fbjs/lib/warning":24,"fbjs/lib/emptyFunction":22,"prop-types/checkPropTypes":32}],5:[function(require,module,exports) {
 'use strict';
 
 if ('development' === 'production') {
@@ -1948,7 +1948,7 @@ if ('development' === 'production') {
 } else {
   module.exports = require('./cjs/react.development.js');
 }
-},{"./cjs/react.development.js":9}],26:[function(require,module,exports) {
+},{"./cjs/react.development.js":9}],25:[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -1982,7 +1982,7 @@ var ExecutionEnvironment = {
 };
 
 module.exports = ExecutionEnvironment;
-},{}],27:[function(require,module,exports) {
+},{}],26:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2085,7 +2085,7 @@ function shallowEqual(objA, objB) {
 }
 
 module.exports = shallowEqual;
-},{}],63:[function(require,module,exports) {
+},{}],67:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2108,7 +2108,7 @@ function isNode(object) {
 }
 
 module.exports = isNode;
-},{}],57:[function(require,module,exports) {
+},{}],61:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2131,7 +2131,7 @@ function isTextNode(object) {
 }
 
 module.exports = isTextNode;
-},{"./isNode":63}],29:[function(require,module,exports) {
+},{"./isNode":67}],29:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2169,7 +2169,7 @@ function containsNode(outerNode, innerNode) {
 }
 
 module.exports = containsNode;
-},{"./isTextNode":57}],58:[function(require,module,exports) {
+},{"./isTextNode":61}],62:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -2237,7 +2237,7 @@ function hyphenateStyleName(string) {
 }
 
 module.exports = hyphenateStyleName;
-},{"./hyphenate":58}],59:[function(require,module,exports) {
+},{"./hyphenate":62}],63:[function(require,module,exports) {
 "use strict";
 
 /**
@@ -2305,7 +2305,7 @@ function camelizeStyleName(string) {
 }
 
 module.exports = camelizeStyleName;
-},{"./camelize":59}],10:[function(require,module,exports) {
+},{"./camelize":63}],10:[function(require,module,exports) {
 /** @license React v16.4.1
  * react-dom.development.js
  *
@@ -19711,7 +19711,7 @@ if ('development' !== "production") {
     module.exports = reactDom;
   })();
 }
-},{"fbjs/lib/invariant":23,"react":5,"fbjs/lib/warning":24,"fbjs/lib/ExecutionEnvironment":26,"object-assign":21,"fbjs/lib/emptyFunction":25,"prop-types/checkPropTypes":32,"fbjs/lib/getActiveElement":27,"fbjs/lib/shallowEqual":28,"fbjs/lib/containsNode":29,"fbjs/lib/emptyObject":22,"fbjs/lib/hyphenateStyleName":30,"fbjs/lib/camelizeStyleName":31}],6:[function(require,module,exports) {
+},{"fbjs/lib/invariant":23,"react":5,"fbjs/lib/warning":24,"fbjs/lib/ExecutionEnvironment":25,"object-assign":21,"fbjs/lib/emptyFunction":22,"prop-types/checkPropTypes":32,"fbjs/lib/getActiveElement":26,"fbjs/lib/shallowEqual":28,"fbjs/lib/containsNode":29,"fbjs/lib/emptyObject":27,"fbjs/lib/hyphenateStyleName":30,"fbjs/lib/camelizeStyleName":31}],6:[function(require,module,exports) {
 'use strict';
 
 function checkDCE() {
@@ -19747,7 +19747,7 @@ if ('development' === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":10}],61:[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":10}],65:[function(require,module,exports) {
 /*!
  * isobject <https://github.com/jonschlinkert/isobject>
  *
@@ -19760,7 +19760,7 @@ if ('development' === 'production') {
 module.exports = function isObject(val) {
   return val != null && typeof val === 'object' && Array.isArray(val) === false;
 };
-},{}],49:[function(require,module,exports) {
+},{}],55:[function(require,module,exports) {
 /*!
  * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
  *
@@ -19797,7 +19797,7 @@ module.exports = function isPlainObject(o) {
   // Most likely a plain Object
   return true;
 };
-},{"isobject":61}],50:[function(require,module,exports) {
+},{"isobject":65}],57:[function(require,module,exports) {
 var define;
 /*
  *          __        ___
@@ -21440,7 +21440,7 @@ var define;
 	return stylis
 }));
 
-},{}],55:[function(require,module,exports) {
+},{}],56:[function(require,module,exports) {
 var define;
 (function (factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? (module['exports'] = factory()) :
@@ -21491,7 +21491,7 @@ var define;
 	}
 }))
 
-},{}],60:[function(require,module,exports) {
+},{}],64:[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -22028,7 +22028,7 @@ module.exports = function (isValidElement, throwOnDirectAccess) {
 
   return ReactPropTypes;
 };
-},{"object-assign":21,"./lib/ReactPropTypesSecret":56,"./checkPropTypes":32}],45:[function(require,module,exports) {
+},{"object-assign":21,"./lib/ReactPropTypesSecret":60,"./checkPropTypes":32}],53:[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -22052,7 +22052,7 @@ if ('development' !== 'production') {
   // http://fb.me/prop-types-in-prod
   module.exports = require('./factoryWithThrowingShims')();
 }
-},{"./factoryWithTypeCheckers":60}],51:[function(require,module,exports) {
+},{"./factoryWithTypeCheckers":64}],59:[function(require,module,exports) {
 'use strict';
 
 /**
@@ -22122,7 +22122,7 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 
 module.exports = hoistNonReactStatics;
 
-},{}],62:[function(require,module,exports) {
+},{}],66:[function(require,module,exports) {
 /** @license React v16.4.1
  * react-is.development.js
  *
@@ -22255,7 +22255,7 @@ if ('development' !== "production") {
     exports.isStrictMode = isStrictMode;
   })();
 }
-},{}],52:[function(require,module,exports) {
+},{}],58:[function(require,module,exports) {
 'use strict';
 
 if ('development' === 'production') {
@@ -22263,7 +22263,7 @@ if ('development' === 'production') {
 } else {
   module.exports = require('./cjs/react-is.development.js');
 }
-},{"./cjs/react-is.development.js":62}],46:[function(require,module,exports) {
+},{"./cjs/react-is.development.js":66}],54:[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {};
@@ -24731,7 +24731,7 @@ exports.StyleSheetManager = StyleSheetManager;
 exports.__DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS = __DO_NOT_USE_OR_YOU_WILL_BE_HAUNTED_BY_SPOOKY_GHOSTS;
 exports.default = styled;
 //# sourceMappingURL=styled-components.browser.es.js.map
-},{"is-plain-object":49,"stylis":50,"stylis-rule-sheet":55,"react":5,"prop-types":45,"hoist-non-react-statics":51,"react-is":52,"process":46}],48:[function(require,module,exports) {
+},{"is-plain-object":55,"stylis":57,"stylis-rule-sheet":56,"react":5,"prop-types":53,"hoist-non-react-statics":59,"react-is":58,"process":54}],46:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24765,7 +24765,7 @@ var Button = exports.Button = _styledComponents2.default.button(_templateObject,
 var UploadImgBtn = exports.UploadImgBtn = _styledComponents2.default.button(_templateObject2);
 
 var SVGButton = exports.SVGButton = _styledComponents2.default.button(_templateObject3);
-},{"styled-components":19}],53:[function(require,module,exports) {
+},{"styled-components":19}],49:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24784,7 +24784,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 var Input = exports.Input = _styledComponents2.default.input(_templateObject);
-},{"styled-components":19}],54:[function(require,module,exports) {
+},{"styled-components":19}],50:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24893,18 +24893,18 @@ var EditHomePage = function (_React$Component) {
           pathname = _window$location2.pathname,
           host = _window$location2.host;
 
-      var pagePath = pathname === '/' ? '/home' : pathname;
-      var apiUrl = 'http://goonvilletx.com/api';
+      var pagePath = pathname === '/' ? 'home' : pathname.split('/')[1];
+      var apiUrl = 'http://goonvilletx.com/api/page/update/';
       if (host !== 'goonvilletx.com') {
-        apiUrl = 'http://localhost:8888/api';
+        apiUrl = 'http://localhost:8888/api/page/update/';
       }
-      var fetchUrl = apiUrl + '/page' + pagePath;
+      var fetchUrl = apiUrl + '?page=' + pagePath;
       var games = fetch(fetchUrl, {
         method: 'post',
         headers: {
           Token: window.token
         },
-        body: JSON.stringify([pageData])
+        body: JSON.stringify(pageData)
       }).then(function (resp) {
         return resp.json();
       }).then(function (resp) {
@@ -25037,7 +25037,7 @@ var EditHomePage = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = EditHomePage;
-},{"react":5,"styled-components":19,"./lib/Buttons":48,"./lib/Forms":53,"./lib/Layouts":54}],47:[function(require,module,exports) {
+},{"react":5,"styled-components":19,"./lib/Buttons":46,"./lib/Forms":49,"./lib/Layouts":50}],45:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25075,6 +25075,8 @@ var _styledComponents2 = _interopRequireDefault(_styledComponents);
 
 var _Tables = require('./lib/Tables');
 
+var _Buttons = require('./lib/Buttons');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25082,6 +25084,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var APIURL = 'http://goonvilletx.com/api';
+if (window.location.host !== 'goonvilletx.com') {
+  APIURL = 'http://localhost:8888/api';
+}
 
 var LinkSVG = function LinkSVG() {
   return _react2.default.createElement(
@@ -25116,11 +25123,7 @@ var EditSchedule = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var apiUrl = 'http://goonvilletx.com/api';
-      if (window.location.host !== 'goonvilletx.com') {
-        apiUrl = 'http://localhost:8888/api';
-      }
-      var fetchUrl = apiUrl + '/schedule/';
+      var fetchUrl = APIURL + '/schedule/';
       var games = fetch(fetchUrl).then(function (resp) {
         return resp.json();
       }).then(function (resp) {
@@ -25128,8 +25131,57 @@ var EditSchedule = function (_React$Component) {
       });
     }
   }, {
+    key: 'updateData',
+    value: function updateData(id, field, value) {
+      var games = this.state.games;
+
+      games.forEach(function (game) {
+        if (game.id === id) {
+          game[field] = value;
+        }
+      });
+      this.setState({ games: games });
+    }
+  }, {
+    key: 'updateRow',
+    value: function updateRow(id) {
+      var _this3 = this;
+
+      var games = this.state.games;
+
+      console.log(games);
+      var game = games.filter(function (s) {
+        return s.id === id;
+      });
+      var fetchUrl = APIURL + '/schedule/update/';
+      this.setState({ loading: true });
+      var newSpon = fetch(fetchUrl, {
+        method: 'post',
+        headers: {
+          Token: window.token
+        },
+        body: JSON.stringify(game[0])
+      }).then(function (resp) {
+        return resp.json();
+      }).then(function (resp) {
+        games.forEach(function (game) {
+          if (game.id === resp.game.id) {
+            game = resp.game;
+          }
+        });
+        setTimeout(function () {
+          _this3.setState({
+            loading: false,
+            games: games
+          });
+        }, 300);
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this4 = this;
+
       if (!this.state.games) {
         return _react2.default.createElement(
           'div',
@@ -25183,6 +25235,11 @@ var EditSchedule = function (_React$Component) {
                 'td',
                 null,
                 'Location'
+              ),
+              _react2.default.createElement(
+                'td',
+                { className: 'center' },
+                '---'
               )
             )
           ),
@@ -25200,33 +25257,56 @@ var EditSchedule = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                   'td',
-                  null,
-                  game.date
+                  { className: 'editable' },
+                  _react2.default.createElement('input', { type: 'text', defaultValue: game.date, onChange: function onChange(e) {
+                      return _this4.updateData(game.id, 'date', e.target.value);
+                    } })
+                ),
+                _react2.default.createElement(
+                  'td',
+                  { className: 'editable' },
+                  _react2.default.createElement('input', { type: 'text', defaultValue: game.home_team, onChange: function onChange(e) {
+                      return _this4.updateData(game.id, 'home_team', e.target.value);
+                    } })
+                ),
+                _react2.default.createElement(
+                  'td',
+                  { className: 'score editable' },
+                  _react2.default.createElement('input', { type: 'text', defaultValue: game.home_score, onChange: function onChange(e) {
+                      return _this4.updateData(game.id, 'home_score', e.target.value);
+                    } })
+                ),
+                _react2.default.createElement(
+                  'td',
+                  { className: 'editable' },
+                  _react2.default.createElement('input', { type: 'text', defaultValue: game.visiting_team, onChange: function onChange(e) {
+                      return _this4.updateData(game.id, 'visiting_team', e.target.value);
+                    } })
+                ),
+                _react2.default.createElement(
+                  'td',
+                  { className: 'score editable' },
+                  _react2.default.createElement('input', { type: 'text', defaultValue: game.visiting_score, onChange: function onChange(e) {
+                      return _this4.updateData(game.id, 'visiting_score', e.target.value);
+                    } })
+                ),
+                _react2.default.createElement(
+                  'td',
+                  { className: 'editable' },
+                  _react2.default.createElement('input', { type: 'text', defaultValue: game.location, onChange: function onChange(e) {
+                      return _this4.updateData(game.id, 'location', e.target.value);
+                    } })
                 ),
                 _react2.default.createElement(
                   'td',
                   null,
-                  game.home_team
-                ),
-                _react2.default.createElement(
-                  'td',
-                  { className: 'score' },
-                  game.home_score
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  game.visiting_team
-                ),
-                _react2.default.createElement(
-                  'td',
-                  { className: 'score' },
-                  game.visiting_score
-                ),
-                _react2.default.createElement(
-                  'td',
-                  null,
-                  game.location
+                  _react2.default.createElement(
+                    _Buttons.Button,
+                    { onClick: function onClick() {
+                        return _this4.updateRow(game.id);
+                      } },
+                    'Update'
+                  )
                 )
               );
             })
@@ -25242,7 +25322,7 @@ var EditSchedule = function (_React$Component) {
 ;
 
 exports.default = EditSchedule;
-},{"react":5,"styled-components":19,"./lib/Tables":47}],15:[function(require,module,exports) {
+},{"react":5,"styled-components":19,"./lib/Tables":45,"./lib/Buttons":46}],15:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25429,13 +25509,13 @@ var EditSponsors = function (_React$Component) {
       this.setState({ sponsors: sponsors });
     }
   }, {
-    key: 'upload',
-    value: function upload() {
+    key: 'addSponsor',
+    value: function addSponsor() {
       var _this3 = this;
 
       var newSponsor = this.state.newSponsor;
 
-      var fetchUrl = apiUrl + '/sponsors/';
+      var fetchUrl = apiUrl + '/sponsors/add/';
       var sponsors = fetch(fetchUrl, {
         method: 'post',
         headers: {
@@ -25498,7 +25578,7 @@ var EditSponsors = function (_React$Component) {
       var sponsor = sponsors.filter(function (s) {
         return s.id === id;
       });
-      var fetchUrl = apiUrl + '/sponsors/sponsor';
+      var fetchUrl = apiUrl + '/sponsors/update';
       this.setState({ loading: true });
       var newSpon = fetch(fetchUrl, {
         method: 'post',
@@ -25728,7 +25808,7 @@ var EditSponsors = function (_React$Component) {
                   _react2.default.createElement(
                     _Buttons.Button,
                     { disabled: !enableAdd, primary: true, onClick: function onClick() {
-                        return _this7.upload();
+                        return _this7.addSponsor();
                       } },
                     '+ Add Sponsor'
                   )
@@ -25750,7 +25830,7 @@ var EditSponsors = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = EditSponsors;
-},{"react":5,"styled-components":19,"./lib/Tables":47,"./lib/Buttons":48}],3:[function(require,module,exports) {
+},{"react":5,"styled-components":19,"./lib/Tables":45,"./lib/Buttons":46}],3:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25973,7 +26053,7 @@ var _App2 = _interopRequireDefault(_App);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(_App2.default, { user: USER }), document.getElementById('adminNav'));
-},{"react":5,"react-dom":6,"./component/App.jsx":3}],64:[function(require,module,exports) {
+},{"react":5,"react-dom":6,"./component/App.jsx":3}],68:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -26002,7 +26082,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56990' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '53198' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -26143,5 +26223,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[64,1], null)
+},{}]},{},[68,1], null)
 //# sourceMappingURL=/admin.map
