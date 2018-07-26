@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Table } from './lib/Tables';
-import { Button } from './lib/Buttons';
+import { Button, ClearButton, SVGButton } from './lib/Buttons';
+import { Loading } from './lib/Loading';
+import GamePostEditor from './GamePostEditor';
 
 let APIURL = 'http://goonvilletx.com/api';
 if (window.location.host !== 'goonvilletx.com') {
@@ -24,6 +26,8 @@ class EditSchedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedGame: null,
+      loading: true,
       games: []
     }
   }
@@ -34,7 +38,10 @@ class EditSchedule extends React.Component {
     ).then((resp) => {
       return resp.json();
     }).then((resp) => {
-      this.setState({ games: resp.games });
+      this.setState({
+        games: resp.games,
+        loading: false
+      });
     });
   }
   updateData(id, field, value) {
@@ -48,7 +55,6 @@ class EditSchedule extends React.Component {
   }
   updateRow(id) {
     const {games} = this.state;
-    console.log(games);
     let game = games.filter((s) => s.id === id);
     const fetchUrl = APIURL + '/schedule/update/';
     this.setState({loading: true});
@@ -75,56 +81,101 @@ class EditSchedule extends React.Component {
       }, 300);
     });
   }
+
+  updatedSelected(id) {
+    if (this.state.selectedGame === id) {
+      this.setState({ selectedGame: null });
+    } else {
+      this.setState({ selectedGame: id });
+    }
+  }
+
   render() {
-    if (!this.state.games) {
+    const {
+      games,
+      loading,
+      selectedGame
+    } = this.state;
+
+    if (!games) {
       return <div>Loading</div>
     }
     return (
       <div className="schedule-table">
-        <Table>
-          <thead>
-            <tr>
-              <td className="score">ID</td>
-              <td>Date</td>
-              <td>Home Team</td>
-              <td className="score">Home Score</td>
-              <td>Visiting Team</td>
-              <td className="score">Visiting Score</td>
-              <td>Location</td>
-              <td className="center">---</td>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.games.map((game) => {
-              return (
-                <tr key={game.id}>
-                  <td className="score">{game.id}</td>
-                  <td className="editable">
-                    <input type="text" defaultValue={game.date} onChange={(e) => this.updateData(game.id, 'date', e.target.value)} />
-                  </td>
-                  <td className="editable">
-                    <input type="text" defaultValue={game.home_team} onChange={(e) => this.updateData(game.id, 'home_team', e.target.value)} />
-                  </td>
-                  <td className="score editable">
-                    <input type="text" defaultValue={game.home_score} onChange={(e) => this.updateData(game.id, 'home_score', e.target.value)} />
-                  </td>
-                  <td className="editable">
-                    <input type="text" defaultValue={game.visiting_team} onChange={(e) => this.updateData(game.id, 'visiting_team', e.target.value)} />
-                  </td>
-                  <td className="score editable">
-                    <input type="text" defaultValue={game.visiting_score} onChange={(e) => this.updateData(game.id, 'visiting_score', e.target.value)} />
-                  </td>
-                  <td className="editable">
-                    <input type="text" defaultValue={game.location} onChange={(e) => this.updateData(game.id, 'location', e.target.value)} />
-                  </td>
-                  <td>
-                    <Button onClick={() => this.updateRow(game.id)}>Update</Button>
-                  </td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </Table>
+        <h2>schedule</h2>
+        <div style={{position: 'relative'}}>
+          <Table>
+            <thead>
+              <tr>
+                <td className="score">ID</td>
+                <td>Date</td>
+                <td>Home Team</td>
+                <td className="score">Home Score</td>
+                <td>Visiting Team</td>
+                <td className="score">Visiting Score</td>
+                <td>Location</td>
+              <td className="center">--</td>
+              </tr>
+            </thead>
+            <tbody>
+              {games.map((game) => {
+                return (
+                  <React.Fragment key={game.id}>
+                    <tr>
+                      <td className="center">
+                        <ClearButton onClick={(e) => {
+                            e.preventDefault;
+                            this.updatedSelected(game.id);
+                          }}>{game.id}</ClearButton>
+                      </td>
+                      <td className="editable">
+                        <input type="text" defaultValue={game.date} onChange={(e) => this.updateData(game.id, 'date', e.target.value)} />
+                      </td>
+                      <td className="editable">
+                        <input type="text" defaultValue={game.home_team} onChange={(e) => this.updateData(game.id, 'home_team', e.target.value)} />
+                      </td>
+                      <td className="score editable">
+                        <input type="text" defaultValue={game.home_score} onChange={(e) => this.updateData(game.id, 'home_score', e.target.value)} />
+                      </td>
+                      <td className="editable">
+                        <input type="text" defaultValue={game.visiting_team} onChange={(e) => this.updateData(game.id, 'visiting_team', e.target.value)} />
+                      </td>
+                      <td className="score editable">
+                        <input type="text" defaultValue={game.visiting_score} onChange={(e) => this.updateData(game.id, 'visiting_score', e.target.value)} />
+                      </td>
+                      <td className="editable">
+                        <input type="text" defaultValue={game.location} onChange={(e) => this.updateData(game.id, 'location', e.target.value)} />
+                      </td>
+                      <td>
+                        <Button onClick={() => this.updateRow(game.id)}>Update</Button>
+                      </td>
+                    </tr>
+                    {selectedGame === game.id
+                      ? (
+                        <tr className="game-editor">
+                          <td colSpan={8}>
+                            <div className="game-editor">
+                              <h3>Edit Game ({game.id})</h3>
+                              <GamePostEditor
+                                id={game.id}
+                                close={() => this.updatedSelected(game.id)}
+                              />
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                      : null
+                    }
+                </React.Fragment>
+                )
+              })}
+            </tbody>
+          </Table>
+          {loading
+            ? <Loading>Loading...</Loading>
+            : null
+          }
+        </div>
       </div>
     );
   }

@@ -2,6 +2,8 @@
 
 class SchoolModel
 {
+  private $_data = null;
+  private $_filepath = null;
 	public $name = null;
   public $schoolAddressStreet = null;
   public $schoolAddressCity = null;
@@ -12,36 +14,46 @@ class SchoolModel
 
   public function __construct()
   {
-    $data = new Data;
-    $filepath = Config::get('data/webdata') . "school_info.csv";
-    $school_info = $data->getWebData($filepath);
-    $this->name = $school_info[0]['school_name'];
-    $this->schoolAddressStreet = $school_info[0]['street'];
-    $this->schoolAddressCity = $school_info[0]['city'];
-    $this->schoolAddressState = $school_info[0]['state'];
-    $this->schoolAddressZip = $school_info[0]['zip'];
-    $this->schoolPhone = $school_info[0]['phone'];
-    $this->schoolEmail = $school_info[0]['email'];
+    $this->_data = new Data;
+    $this->_filepath = Config::get('data/webdata') . "school_info.csv";
   }
 
-  public function getSchoolAddress()
+  public function getSchoolAddress($school_info)
   {
     return array(
-      'street' => $this->schoolAddressStreet,
-      'city' => $this->schoolAddressCity,
-      'state' => $this->schoolAddressState,
-      'zip' => $this->schoolAddressZip
+      'street' => $school_info[0]['street'],
+      'city' => $school_info[0]['city'],
+      'state' => $school_info[0]['state'],
+      'zip' => $school_info[0]['zip']
     );
   }
 
   public function getSchoolData()
   {
-    $address = $this->getSchoolAddress();
-    return array(
-      'name' => $this->name,
-      'phone' => $this->schoolPhone,
-      'email' => $this->schoolEmail,
-      'address' => $address
+    $school_info = $this->_data->getWebData($this->_filepath);
+    $address = $this->getSchoolAddress($school_info);
+    // $school_info[0]['address'] = $address;
+    return $school_info[0];
+  }
+
+  public function updateSchoolInfo($data)
+  {
+    $updatedInfo = array(
+      'school_name' => $data['school_name'],
+      'mascot' => $data['mascot'],
+      'school_aka' => $data['school_aka'],
+      'email' => $data['email'],
+      'phone' => $data['phone'],
+      'street' => $data['street'],
+      'city' => $data['city'],
+      'state' => $data['state'],
+      'zip' => $data['zip'],
+      'twitter' => $data['twitter'],
+      'facebook' => $data['facebook'],
+      'footer_logo' => $data['footer_logo'],
+      'header_logo' => $data['header_logo']
     );
+rawData($updatedInfo);
+    // $this->_data->updateWebData($this->_filepath, $updatedInfo);
   }
 }

@@ -18,6 +18,10 @@ class API extends Controller {
         $returnData = $this->handleSponsorsRoute($sec);
         $this->api($returnData['data'], $returnData['name']);
         break;
+      case 'school':
+        $returnData = $this->handleSchoolRoute($sec);
+        $this->api($returnData['data'], $returnData['name']);
+        break;
       default:
         $this->api(array('error' => 'You must hit a valid endpoint.'), 'errors');
         break;
@@ -39,6 +43,7 @@ class API extends Controller {
   {
     $json = @file_get_contents('php://input');
     $pageModel = $this->model('PageModel');
+    $schoolModel = $this->model('SchoolModel');
     switch ($secPath) {
       case 'update':
         $page = $_GET['page'];
@@ -51,7 +56,9 @@ class API extends Controller {
         }
         break;
       default:
+        $pageData = array('school' => '');
         $pageData = $pageModel->getPageData($secPath);
+        $pageData['school'] = $schoolModel->getSchoolData();
         return array('data' => $pageData, 'name' => 'page');
         break;
     }
@@ -116,6 +123,17 @@ class API extends Controller {
           return $this->_authError;
         }
         break;
+      case 'game_post':
+        $id = $_GET['id'];
+        if ($this->_authCheck($json)) {
+          $array = json_decode($json, true);
+          $gamePost = $gamesModel->updateGamePost($array, $id);
+          return array('data' => $gamePost, 'name' => 'game_post');
+        } else {
+          $gameData = $gamesModel->getPost($id);
+          return array('data' => $gameData, 'name' => 'game');
+        }
+        break;
       default:
         $games = $gamesModel->getAllGames();
         return array('data' => $games, 'name' => 'games');
@@ -175,6 +193,26 @@ class API extends Controller {
       } else {
         return array('data' => array("error_message" => "Delete unsuccessful"), 'name' => 'error');
       }
+    }
+  }
+
+  private function handleSchoolRoute($sec)
+  {
+    $json = @file_get_contents('php://input');
+    $schoolModel = $this->model('SchoolModel');
+    switch ($sec) {
+      case 'update':
+        if ($this->_authCheck($json)) {
+          $array = json_decode($json, true);
+          $schoolInfo = $schoolModel->updateSchoolInfo($array);
+          return array('data' => $schoolInfo, 'name' => 'school');
+        } else {
+          return $this->_authError;
+        }
+        break;
+      default:
+        // code...
+        break;
     }
   }
 }

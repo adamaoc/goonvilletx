@@ -53,3 +53,11 @@ export const SVGButton = styled.button`
     }
   }
 `;
+
+export const ClearButton = styled.button`
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+`;

@@ -7,28 +7,71 @@ import {
   AdminSection,
   FormGroup
 } from './lib/Layouts';
+import { APIURL } from '../constants/AppConstants';
 
 
+const FormGroupEdit = ({ field, value, handleChange }) => {
+  return (
+    <React.Fragment>
+      <label htmlFor="page-title">{field}</label>
+      <Input type="text"
+        defaultValue={value}
+        autoComplete="off"
+        onChange={(e) => handleChange(field, e.target.value)}
+      />
+    </React.Fragment>
+  )
+}
+const SchoolAddress = ({ address, handleAddressChange }) => {
+  const addressFields = ['street', 'city', 'state', 'zip'];
+  return (
+    <FormGroup>
+      {addressFields.map((field, i) => {
+        return <FormGroupEdit key={i} field={field}
+                              value={address[field]}
+                              handleChange={handleAddressChange} />
+      })}
+    </FormGroup>
+  )
+}
+const SchoolInfo = ({ info, handleInfoChange }) => {
+  const infoFields = ['school_name', 'phone', 'email', 'mascot'];
+  return (
+    <FormGroup>
+      {infoFields.map((field, i) => {
+        return <FormGroupEdit key={i} field={field}
+                              value={info[field]}
+                              handleChange={handleInfoChange} />
+      })}
+    </FormGroup>
+  )
+}
+const SocialInfo = ({ info, handleSocialChange }) => {
+  const infoFields = ['twitter', 'facebook'];
+  return (
+    <FormGroup>
+      {infoFields.map((field, i) => {
+        return <FormGroupEdit key={i} field={field}
+                              value={info[field]}
+                              handleChange={handleSocialChange} />
+      })}
+    </FormGroup>
+  )
+}
 
 class EditHomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageData: {}
+      pageData: {},
+      schoolInfo: {
+        address: null
+      },
+      pagePath: (window.location.pathname === '/') ? 'home' : window.location.pathname.split('/')[1]
     }
   }
   componentDidMount() {
-    const { pathname, host } = window.location;
-    let pagePath = pathname;
-    if (pathname === '/') {
-      pagePath = '/home'
-    }
-    let apiUrl = 'http://goonvilletx.com/api';
-    if (host !== 'goonvilletx.com') {
-      apiUrl = 'http://localhost:8888/api';
-    }
-    const fetchUrl = apiUrl + '/page' + pagePath;
-    console.log(fetchUrl);
+    const fetchUrl = APIURL + '/page/' + this.state.pagePath;
     const games = fetch(
       fetchUrl,
       {
@@ -39,19 +82,16 @@ class EditHomePage extends React.Component {
     ).then((resp) => {
       return resp.json();
     }).then((resp) => {
-      this.setState({ pageData: resp.page[0] });
+      this.setState({
+        pageData: resp.page[0],
+        schoolInfo: resp.page.school
+      });
     });
   }
 
   updatePage() {
     const { pageData } = this.state;
-    const { pathname, host } = window.location;
-    let pagePath = (pathname === '/') ? 'home' : pathname.split('/')[1];
-    let apiUrl = 'http://goonvilletx.com/api/page/update/';
-    if (host !== 'goonvilletx.com') {
-      apiUrl = 'http://localhost:8888/api/page/update/';
-    }
-    const fetchUrl = apiUrl + '?page=' + pagePath;
+    const fetchUrl = APIURL + '/page/update/?page=' + this.state.pagePath;
     const games = fetch(
       fetchUrl,
       {
@@ -75,11 +115,41 @@ class EditHomePage extends React.Component {
     this.setState({ pageData });
   }
 
+  updateSchoolInfo(field, value) {
+    let { schoolInfo } = this.state;
+    schoolInfo[field] = value;
+    this.setState({ schoolInfo });
+  }
+  updateSchoolAddress(field, value) {
+    let { schoolInfo } = this.state;
+    schoolInfo.address[field] = value;
+    this.setState({ schoolInfo });
+  }
+  postSchoolDetails() {
+    const { schoolInfo } = this.state;
+    const updatedData = fetch(
+      `${APIURL}/school/update/`,
+      {
+        method: 'post',
+        headers: {
+          Token: window.token
+        },
+        body: JSON.stringify(schoolInfo)
+      }
+    ).then((resp) => {
+      return resp.json();
+    }).then((resp) => {
+      this.setState({ schoolInfo: resp.school });
+      // window.location.reload();
+    });
+  }
+
   render() {
-    const { pageData } = this.state;
+    const { pageData, pagePath, schoolInfo } = this.state;
+    const addressFields = ['street', 'city', 'state', 'zip'];
     return (
       <div>
-        <h4>Editing Home Page!</h4>
+        <h2>Editing {pagePath} Page!</h2>
         <AdminSection>
           <h5>Edit Header Info.</h5>
           <section>
@@ -118,7 +188,29 @@ class EditHomePage extends React.Component {
         <PushRight>
           <Button primary onClick={() => {
               this.updatePage();
-            }}>Update</Button>
+            }}>Update {pagePath} Page</Button>
+        </PushRight>
+
+        <h2>Edit School Details</h2>
+        <AdminSection>
+          <section>
+            <SchoolInfo info={schoolInfo} handleInfoChange={this.updateSchoolInfo.bind(this)} />
+            <SchoolAddress address={schoolInfo} handleAddressChange={this.updateSchoolAddress.bind(this)} />
+          </section>
+          <section>
+            <SocialInfo info={schoolInfo} handleSocialChange={this.updateSchoolInfo.bind(this)} />
+            <FormGroup>
+              <label>Header Logo</label>
+              <img src={schoolInfo.header_logo} height="50px" /><br />
+              <label>Footer Logo</label>
+              <img src={schoolInfo.footer_logo} height="50px" />
+            </FormGroup>
+          </section>
+        </AdminSection>
+        <PushRight>
+          <Button primary onClick={() => {
+              this.postSchoolDetails();
+            }}>Update School Details</Button>
         </PushRight>
       </div>
     )

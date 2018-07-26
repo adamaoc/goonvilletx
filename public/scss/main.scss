@@ -52,3 +52,12 @@ h2 {
 @import "components/team-block";
 @import "components/sponsors";
 @import "components/footer";
+
+
+// admin draft editor //
+.DraftEditor-root {
+  border: 1px solid #b5b3b3;
+  padding: 1em;
+  border-radius: 5px;
+  margin: 1em auto;
+}

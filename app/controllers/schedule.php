@@ -58,10 +58,12 @@ class Schedule extends Controller
   public function getSingle($model, $slug, $baseData)
   {
     $gameData = $model->getGame($slug);
+    $postData = $model->getPost($slug);
     $data = array(
       'header_data' => $baseData['header_data'],
       'footer_data' => $baseData['footer_data'],
-      'gameData' => $gameData
+      'gameData' => $gameData,
+      'postData' => $postData
     );
 
     $this->view('schedule/single', $data);

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+const GoonBlue = '#02255a';
 
 export const Table = styled.table`
   border-collapse: collapse;
@@ -13,9 +14,14 @@ export const Table = styled.table`
   }
   td {
     padding: 0.5rem;
+    a {
+      color: ${GoonBlue};
+      text-decoration: none;
+    }
   }
   .score {
     text-align: center;
+    width: 110px;
   }
   .center {
     text-align: center;
@@ -27,5 +33,9 @@ export const Table = styled.table`
       font-size: 1em;
       padding-left: 0.75em;
     }
+  }
+
+  .game-editor {
+    padding: 1em;
   }
 `;

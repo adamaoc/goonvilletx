@@ -41,4 +41,9 @@ export const FormGroup = styled.div`
     margin-bottom: 1em;
     width: 100%;
   }
+  textarea {
+    width: 100%;
+    height: 300px;
+    font-size: 16px;
+  }
 `;

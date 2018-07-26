@@ -11,8 +11,8 @@
     </div>
     <div class="footer-top__grid-3">
       <h4>Address</h4>
-      <span><?= $school['address']['street'] ?></span>
-      <span><?= $school['address']['city'] ?>, <?= $school['address']['state'] ?> <?= $school['address']['zip'] ?></span>
+      <span><?= $school['street'] ?></span>
+      <span><?= $school['city'] ?>, <?= $school['state'] ?> <?= $school['zip'] ?></span>
     </div>
   </div>
   <div class="footer-social">

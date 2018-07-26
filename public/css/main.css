@@ -59,7 +59,11 @@ h2 {
 .game-page {
   padding: 3em 1em;
   max-width: 1080px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 0 8px #888;
+  margin-bottom: 2em;
+  min-height: 40vh; }
 
 .schedule-page__wrap {
   display: flex;
@@ -214,14 +218,14 @@ h2 {
   background-position: center center;
   background-image: url("/public/images/banners/group-header.jpg");
   padding: 1rem;
-  height: 40vh;
+  min-height: 40vh;
   padding-top: 4em;
   display: flex;
-  align-items: flex-end; }
+  align-items: center; }
   @media (min-width: 42rem) {
     .mid-banner {
-      height: 20em;
-      padding-top: 5em; } }
+      min-height: 20em;
+      padding-top: 6em; } }
   .mid-banner__content {
     padding: 0; }
     @media (min-width: 42rem) {
@@ -230,7 +234,7 @@ h2 {
   .mid-banner h1 {
     color: #fff;
     font-size: 2rem;
-    margin: 0 0 1em;
+    margin: 0;
     text-shadow: 3px 3px 2px #111; }
     @media (min-width: 42rem) {
       .mid-banner h1 {
@@ -240,6 +244,13 @@ h2 {
     @media (min-width: 42rem) {
       .mid-banner .btn {
         margin-left: 1em; } }
+  .mid-banner__meta {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1em 2em;
+    color: white;
+    display: inline-block; }
+    .mid-banner__meta span {
+      font-weight: bold; }
 
 .game-data {
   margin-top: -1em; }
@@ -552,3 +563,9 @@ h2 {
   .footer-lower a {
     color: white;
     text-decoration: none; }
+
+.DraftEditor-root {
+  border: 1px solid #b5b3b3;
+  padding: 1em;
+  border-radius: 5px;
+  margin: 1em auto; }
