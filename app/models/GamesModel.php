@@ -103,7 +103,7 @@ class GamesModel
 
   public function getPastGames($startnum, $endnum)
 	{
-    die;
+    // is this working???
 		$list = $this->games['games'];
     $date_now = date("Y-m-d");
 		array_multisort($list, SORT_ASC);
@@ -128,5 +128,75 @@ class GamesModel
       }
       return $buildarr;
     }
+  }
+
+  public function getPost($id)
+	{
+    $fname = Config::get('data/webdata') . '/games/game_' . $id . '.md';
+    if (file_exists($fname)) {
+      $post = file($fname);
+      $postarr = $this->buildPostData($post);
+      return $postarr;
+    } else {
+      return null;
+    }
+	}
+
+  private function buildPostData($post)
+  {
+    $blog_title = trim(str_replace(array("\n", '*'), '', $post[0]));
+    $blog_author = trim(str_replace(array("\n", '*'), '', $post[1]));
+    $blog_status = trim(str_replace(array("\n", '*'), '', $post[2]));
+
+    $excerpt = $post[4];
+    $max_words = 50;
+    $phrase_array = explode(' ',$excerpt);
+    if(count($phrase_array) > $max_words && $max_words > 0) {
+        $excerpt = implode(' ',array_slice($phrase_array, 0, $max_words)).'...';
+    }
+    $blog_intro = $excerpt;
+
+    $blog_content = join('', array_slice($post, 4));
+
+    $buildarr = array(
+      "title" 	=> $blog_title,
+      "author" => $blog_author,
+      "status"	=> $blog_status,
+      "excerpt" 	=> $blog_intro,
+      "content" 	=> $blog_content
+    );
+
+    return $buildarr;
+  }
+
+  public function updateGamePost($data, $id)
+  {
+    $fname = Config::get('data/webdata') . '/games/game_' . $id . '.md';
+    if (file_exists($fname)) {
+      $post = file($fname);
+      $mdFile = $this->buildFile($post, $data);
+    } else {
+      $mdFile = $this->buildFile(array(), $data);
+    }
+    $file = fopen($fname, "wa+");
+    $i = 0;
+    foreach ($mdFile as $line) {
+      if ($i < 5) {
+        fwrite($file, $line);
+      }
+      $i++;
+    }
+    fclose($file);
+    return $data;
+  }
+
+  private function buildFile($post, $data)
+  {
+    $post[0] = "* " . $data["title"] . "\n";
+    $post[1] = "* " . $data["author"] . "\n";
+    $post[2] = "* " . $data["status"] . "\n";
+    $post[3] = "\n";
+    $post[4] = $data["content"];
+    return $post;
   }
 }

@@ -1,32 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Table } from './lib/Tables';
+import { Loading } from './lib/Loading';
 import {
   UploadImgBtn,
   Button,
   DissabledBtn,
   SVGButton
 } from './lib/Buttons';
+import { APIURL } from '../constants/AppConstants';
 
-const Loading = styled.div`
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,0.3);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-`;
-
-const { host } = window.location;
-let apiUrl = 'http://goonvilletx.com/api';
-if (host !== 'goonvilletx.com') {
-  apiUrl = 'http://localhost:8888/api';
-}
 
 const ActionButtons = ({update, remove}) => {
   return (
@@ -85,7 +68,7 @@ class EditSponsors extends React.Component {
     }
   }
   componentDidMount() {
-    const fetchUrl = apiUrl + '/sponsors/';
+    const fetchUrl = APIURL + '/sponsors/';
     const sponsors = fetch(
       fetchUrl,
       {
@@ -125,7 +108,7 @@ class EditSponsors extends React.Component {
   }
   addSponsor() {
     let { newSponsor } = this.state;
-    const fetchUrl = apiUrl + '/sponsors/add/';
+    const fetchUrl = APIURL + '/sponsors/add/';
     const sponsors = fetch(
       fetchUrl,
       {
@@ -158,7 +141,7 @@ class EditSponsors extends React.Component {
     if (img) {
       let formData = new FormData();
       formData.append('file', img);
-      const fetchUrl = apiUrl + '/sponsors/upload/';
+      const fetchUrl = APIURL + '/sponsors/upload/';
       const file = fetch(
         fetchUrl,
         {
@@ -183,7 +166,7 @@ class EditSponsors extends React.Component {
   updateRow(id) {
     const {sponsors} = this.state;
     let sponsor = sponsors.filter((s) => s.id === id);
-    const fetchUrl = apiUrl + '/sponsors/update';
+    const fetchUrl = APIURL + '/sponsors/update';
     this.setState({loading: true});
     const newSpon = fetch(
       fetchUrl,
@@ -216,7 +199,7 @@ class EditSponsors extends React.Component {
   removeRow(id) {
     const {sponsors} = this.state;
     let newSponsors = sponsors.filter((s) => s.id !== id);
-    const fetchUrl = apiUrl + '/sponsors/delete?id=' + id;
+    const fetchUrl = APIURL + '/sponsors/delete?id=' + id;
     const newSpon = fetch(
       fetchUrl,
       {
@@ -246,8 +229,7 @@ class EditSponsors extends React.Component {
     return (
       <div>
         <h2>Sponsors</h2>
-      <div style={{position: 'relative'}}>
-          <h3>Current Sponsors</h3>
+        <div style={{position: 'relative'}}>
           <Table>
             <thead>
               <tr>
