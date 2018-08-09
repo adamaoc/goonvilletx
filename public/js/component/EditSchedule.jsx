@@ -4,11 +4,7 @@ import { Table } from './lib/Tables';
 import { Button, ClearButton, SVGButton } from './lib/Buttons';
 import { Loading } from './lib/Loading';
 import GamePostEditor from './GamePostEditor';
-
-let APIURL = 'http://goonvilletx.com/api';
-if (window.location.host !== 'goonvilletx.com') {
-  APIURL = 'http://localhost:8888/api';
-}
+import { APIURL } from '../constants/AppConstants';
 
 const LinkSVG = () => {
   return (

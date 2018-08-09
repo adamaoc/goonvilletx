@@ -22,6 +22,10 @@ class API extends Controller {
         $returnData = $this->handleSchoolRoute($sec);
         $this->api($returnData['data'], $returnData['name']);
         break;
+      case 'rosters':
+        $returnData = $this->handleRostersRoute($sec);
+        $this->api($returnData['data'], $returnData['name']);
+        break;
       default:
         $this->api(array('error' => 'You must hit a valid endpoint.'), 'errors');
         break;
@@ -92,7 +96,7 @@ class API extends Controller {
         }
         break;
       case 'upload':
-        $uploadedImage = $this->uploadSponsorImage($_FILES['file']);
+        $uploadedImage = $this->uploadImage($_FILES['file'], 'public/images/sponsors/');
         if (isset($uploadedImage['errors'])) {
           return array('data' => $uploadedImage[0], 'name' => 'error');
         } else {
@@ -141,7 +145,7 @@ class API extends Controller {
     }
   }
 
-  private function uploadSponsorImage($file)
+  private function uploadImage($file, $dest)
   {
     $file_name = $file['name'];
     $file_tmp = $file['tmp_name'];
@@ -157,7 +161,7 @@ class API extends Controller {
       if ($file_error === 0) {
         if ($file_size <= 2097152) {
           $file_name_new = uniqid('', true) . '.' . $file_ext;
-          $file_destination = 'public/images/sponsors/' . $file_name_new;
+          $file_destination = $dest . $file_name_new;
 
           if (move_uploaded_file($file_tmp, $file_destination)) {
             return array(
@@ -208,6 +212,76 @@ class API extends Controller {
           return array('data' => $schoolInfo, 'name' => 'school');
         } else {
           return $this->_authError;
+        }
+        break;
+      default:
+        // code...
+        break;
+    }
+  }
+
+  private function handleRostersRoute($sec)
+  {
+    $json = @file_get_contents('php://input');
+    $rosterModel = $this->model('RostersModel');
+    switch ($sec) {
+      case 'all':
+        $rosters = $rosterModel->getALlRosters();
+        return array('data' => $rosters, 'name' => 'rosters');
+      case 'add-player':
+        $array = json_decode($json, true);
+        $players = $rosterModel->addPlayer($array);
+        return array('data' => $players, 'name' => 'players');
+      case 'player-update':
+        if ($this->_authCheck($json)) {
+          $array = json_decode($json, true);
+          $player = $rosterModel->updatePlayer($array);
+          return array('data' => $player, 'name' => 'player');
+        } else {
+          return $this->_authError;
+        }
+        break;
+      case 'delete-player':
+        $id = $_GET['id'];
+        $deleteSuccess = $rosterModel->deletePlayer($id);
+        if ($deleteSuccess) {
+          return array('data' => array('success' => true), 'name' => 'success');
+        } else {
+          return array('data' => array("error_message" => "Delete unsuccessful"), 'name' => 'error');
+        }
+        break;
+      case 'add-coach':
+        $array = json_decode($json, true);
+        $coaches = $rosterModel->addCoach($array);
+        return array('data' => $coaches, 'name' => 'coaches');
+      case 'coach-update':
+        if ($this->_authCheck($json)) {
+          $array = json_decode($json, true);
+          $coach = $rosterModel->updateCoach($array);
+          return array('data' => $coach, 'name' => 'coach');
+        } else {
+          return $this->_authError;
+        }
+        break;
+      case 'delete-coach':
+        $id = $_GET['id'];
+        $deleteSuccess = $rosterModel->deleteCoach($id);
+        if ($deleteSuccess) {
+          return array('data' => array('success' => true), 'name' => 'success');
+        } else {
+          return array('data' => array("error_message" => "Delete unsuccessful"), 'name' => 'error');
+        }
+        break;
+      case 'upload':
+        $imgLoc = 'data/rosters/imgs/';
+        if (!file_exists($imgLoc)) {
+          mkdir($imgLoc);
+        }
+        $uploadedImage = $this->uploadImage($_FILES['file'], $imgLoc);
+        if (isset($uploadedImage['errors'])) {
+          return array('data' => $uploadedImage[0], 'name' => 'error');
+        } else {
+          return array('data' => $uploadedImage, 'name' => 'image');
         }
         break;
       default:

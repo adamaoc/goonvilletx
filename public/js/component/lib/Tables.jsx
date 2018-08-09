@@ -19,6 +19,9 @@ export const Table = styled.table`
       text-decoration: none;
     }
   }
+  .actions {
+    width: 150px;
+  }
   .score {
     text-align: center;
     width: 110px;
