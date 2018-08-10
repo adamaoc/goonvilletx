@@ -564,6 +564,62 @@ h2 {
     color: white;
     text-decoration: none; }
 
+.roster-page {
+  display: flex;
+  padding: 2rem;
+  flex-wrap: wrap; }
+
+.roster-card {
+  background: white;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 5px; }
+  .roster-card__img {
+    width: 200px; }
+    .roster-card__img img {
+      width: 100%; }
+  .roster-card__stats {
+    width: 200px;
+    padding-top: 1rem;
+    border-top: 1px dashed #eee; }
+    .roster-card__stats p {
+      font-size: 0.75rem; }
+  .roster-card__name {
+    font-weight: bold; }
+
+.coach-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%; }
+  .coach-list__item {
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 1em; }
+  .coach-list__wrap {
+    background: white;
+    display: flex;
+    align-items: stretch;
+    box-shadow: 1px 5px 8px #cecece; }
+  .coach-list__img {
+    flex-basis: 200px;
+    flex-grow: 0;
+    flex-shrink: 0; }
+    .coach-list__img img {
+      width: 100%; }
+  .coach-list__stats {
+    padding: 1em; }
+    .coach-list__stats label {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 0.75rem;
+      color: #888;
+      padding-right: 0.5rem; }
+    .coach-list__stats div {
+      margin-bottom: 1rem; }
+  .coach-list__bio {
+    text-align: justify; }
+
 .DraftEditor-root {
   border: 1px solid #b5b3b3;
   padding: 1em;

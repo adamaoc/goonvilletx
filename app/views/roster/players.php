@@ -14,13 +14,17 @@ getHeader($data['header_data']); ?>
     <?php foreach ($players as $player) : ?>
       <?php $imgAlt = "{$player['name']} #{$player['number']}, {$player['positions']} at North Forney"; ?>
       <div class="roster-card">
-        <img src="/data/rosters/imgs/<?= $player['photo'] ?>" alt="<?= $imgAlt ?>" />
-        <div>#<?= $player['number'] ?> <?= $player['name'] ?></div>
-        <div>Position(s): <?= $player['positions'] ?></div>
-        <div>Grade: <?= $player['grade'] ?></div>
-        <?php if (!empty($player['awards'])) : ?>
-          <p><?= $player['awards'] ?></p>
-        <?php endif; ?>
+        <div class="roster-card__img">
+          <img src="/data/rosters/imgs/<?= $player['photo'] ?>" alt="<?= $imgAlt ?>" />
+        </div>
+        <div class="roster-card__stats">
+          <div class="roster-card__name"><?= $player['name'] ?> #<?= $player['number'] ?></div>
+          <div class="roster-card__stats-data">Position(s): <?= $player['positions'] ?></div>
+          <div class="roster-card__stats-data">Grade: <?= $player['grade'] ?></div>
+          <?php if (!empty($player['awards'])) : ?>
+            <p><?= $player['awards'] ?></p>
+          <?php endif; ?>
+        </div>
       </div>
     <?php endforeach; ?>
   <?php endif; ?>

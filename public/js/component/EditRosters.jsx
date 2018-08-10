@@ -33,8 +33,8 @@ class EditRosters extends React.Component {
       newCoach: {
         image: '',
         name: '',
-        positions: '',
-        title: ''
+        title: '',
+        bio: ''
       }
     };
   }
@@ -225,8 +225,8 @@ class EditRosters extends React.Component {
         newCoach: {
           image: '',
           name: '',
-          positions: '',
-          title: ''
+          title: '',
+          bio: ''
         },
         tempImg: null
       });
@@ -399,16 +399,16 @@ class EditRosters extends React.Component {
                 </td>
                 <td className="editable">
                   <input type="text"
-                         placeholder="Coaching Positions"
-                         value={newCoach.positions}
-                         onChange={(e) => {this.updateNewCoachData('positions', e.target.value)}}
+                         placeholder="Title"
+                         value={newCoach.title}
+                         onChange={(e) => {this.updateNewCoachData('title', e.target.value)}}
                   />
                 </td>
                 <td className="editable">
                   <input type="text"
-                         placeholder="Title"
-                         value={newCoach.title}
-                         onChange={(e) => {this.updateNewCoachData('title', e.target.value)}}
+                         placeholder="Coaches Bio (Short)"
+                         value={newCoach.bio}
+                         onChange={(e) => {this.updateNewCoachData('bio', e.target.value)}}
                   />
                 </td>
                 <td className="center">
@@ -426,10 +426,10 @@ class EditRosters extends React.Component {
                               <input type="text" defaultValue={coach.name} onChange={(e) => this.updateCoachData(coach.id, 'name', e.target.value)} />
                             </td>
                             <td className="editable">
-                              <input type="text" defaultValue={coach.positions} onChange={(e) => this.updateCoachData(coach.id, 'positions', e.target.value)} />
+                              <input type="text" defaultValue={coach.title} onChange={(e) => this.updateCoachData(coach.id, 'title', e.target.value)} />
                             </td>
                             <td className="editable">
-                              <input type="text" defaultValue={coach.title} onChange={(e) => this.updateCoachData(coach.id, 'title', e.target.value)} />
+                              <input type="text" defaultValue={coach.bio} onChange={(e) => this.updateCoachData(coach.id, 'bio', e.target.value)} />
                             </td>
                             <td className="actions">
                               <ActionButtons update={() => this.updateCoachRow(coach.id)} remove={() => this.confirmRemove(this.removeCoachRow.bind(this, coach.id))} />

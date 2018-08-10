@@ -1,0 +1,75 @@
+.roster-page {
+  display: flex;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.roster-card {
+  background: white;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 5px;
+
+  &__img {
+    width: 200px;
+    img {
+      width: 100%;
+    }
+  }
+  &__stats {
+    width: 200px;
+    padding-top: 1rem;
+    border-top: 1px dashed #eee;
+
+    p {
+      font-size: 0.75rem;
+    }
+  }
+  &__name {
+    font-weight: bold;
+  }
+}
+
+.coach-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  &__item {
+    flex-basis: 50%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 1em;
+  }
+  &__wrap {
+    background: white;
+    display: flex;
+    align-items: stretch;
+    box-shadow: 1px 5px 8px #cecece;
+  }
+  &__img {
+    flex-basis: 200px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    img {
+      width: 100%;
+    }
+  }
+  &__stats {
+    padding: 1em;
+
+    label {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 0.75rem;
+      color: #888;
+      padding-right: 0.5rem;
+    }
+    div {
+      margin-bottom: 1rem;
+    }
+  }
+  &__bio {
+    text-align: justify;
+  }
+}

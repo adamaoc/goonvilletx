@@ -74,13 +74,13 @@ class RostersModel
 
   public function addCoach($data)
   {
-    // id,photo,name,positions,title
+    // id,photo,name,title,bio
     $postData = array(
       "id" => $this->_incrementId('coaches'),
       "photo" => $data['image'],
       "name" => $data['name'],
-      "positions" => $data['positions'],
-      "title" => $data['title']
+      "title" => $data['title'],
+      "bio" => $data['bio']
     );
     $this->_data->addData($this->_coachFilepath, $postData);
     $rostersData = $this->getALlRosters();
@@ -93,8 +93,8 @@ class RostersModel
       "id" => $data['id'],
       "photo" => $data['photo'],
       "name" => $data['name'],
-      "positions" => $data['positions'],
-      "title" => $data['title']
+      "title" => $data['title'],
+      "bio" => $data['bio']
     );
     $this->_data->updateWebData($this->_coachFilepath, $updateData);
     return $updateData;

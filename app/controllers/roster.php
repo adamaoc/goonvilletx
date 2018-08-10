@@ -13,7 +13,7 @@ class Roster extends Controller
     $rostersModel = $this->model('RostersModel');
 
     $showRoster = null;
-    $rosterPage = 'roster/players';
+    $rosterPage = 'roster/index';
 
     switch ($sec) {
       case 'players':
@@ -21,7 +21,7 @@ class Roster extends Controller
         $rosterPage = 'roster/players';
         break;
       case 'coaches':
-        $showRoster = $rosterModel->getCoaches();
+        $showRoster = $rostersModel->getCoaches();
         $rosterPage = 'roster/coaches';
         break;
     }
