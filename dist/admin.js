@@ -27032,12 +27032,12 @@ var EditRosters = function (_React$Component) {
                 _react2.default.createElement(
                   'td',
                   null,
-                  'Positions'
+                  'Title'
                 ),
                 _react2.default.createElement(
                   'td',
                   null,
-                  'Title'
+                  'Bio'
                 ),
                 _react2.default.createElement(
                   'td',

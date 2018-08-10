@@ -377,8 +377,8 @@ class EditRosters extends React.Component {
               <tr>
                 <td>Photo</td>
                 <td>Full Name</td>
-                <td>Positions</td>
                 <td>Title</td>
+                <td>Bio</td>
                 <td className="center">--</td>
               </tr>
             </thead>
