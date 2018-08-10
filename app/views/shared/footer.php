@@ -35,16 +35,16 @@
   <script src="<?= Config::get('http/root') ?>dist/admin.js"></script>
 <?php endif; ?>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-122648229-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<?php if (Config::get('http/root') === 'http://goonvilletx.com/') : ?>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122648229-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'UA-122648229-1');
-</script>
-
-
+    gtag('config', 'UA-122648229-1');
+  </script>
+<?php endif; ?>
 </body>
 </html>

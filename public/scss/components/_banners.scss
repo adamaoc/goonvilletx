@@ -13,8 +13,11 @@
   }
   &__content {
     padding: 0;
+    text-align: center;
+    width: 100%;
     @media (min-width: 42rem) {
       padding: 0 2em;
+      text-align: left;
     }
   }
   h1 {

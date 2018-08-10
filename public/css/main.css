@@ -88,6 +88,75 @@ h2 {
     max-width: 800px;
     padding: 1em; }
 
+.standalone {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 1em; }
+  @media (min-width: 850px) {
+    .standalone {
+      flex-direction: row; } }
+  .standalone > div {
+    padding: 2em; }
+  .standalone img {
+    max-width: 100%; }
+
+#app_download_dialog .iPhone_app #download_android_app {
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  text-indent: -999em;
+  direction: ltr;
+  background: url(/public/images/mixlr/Download_on_the_Play_Store_Button.png) no-repeat 0 0;
+  height: 40px;
+  width: 120px;
+  display: inline-block;
+  margin: 0 10px 0 0; }
+
+#app_download_dialog .iPhone_app #download_iphone_app {
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  text-indent: -999em;
+  direction: ltr;
+  background: url(/public/images/mixlr/Download_on_the_App_Store_Badge.png) no-repeat 0 0;
+  height: 40px;
+  width: 135px;
+  display: inline-block;
+  margin: 0; }
+
+#app_download_dialog .desktop_app #download_mac_app {
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  text-indent: -999em;
+  direction: ltr;
+  background: url(/public/images/mixlr/download_mac.png) no-repeat 0 0;
+  height: 40px;
+  width: 150px;
+  display: inline-block;
+  margin: 0; }
+
+#app_download_dialog .desktop_app #download_windows_app {
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  text-indent: -999em;
+  direction: ltr;
+  background: url(/public/images/mixlr/Download_windows_App.png) no-repeat 0 0;
+  height: 40px;
+  width: 140px;
+  display: inline-block;
+  margin: 0 10px 0 0; }
+
 .btn {
   text-decoration: none;
   display: inline-block;
@@ -123,6 +192,30 @@ h2 {
       background: #111;
       border-color: black;
       color: white; }
+  .btn__mixlr {
+    background: #ed1c24;
+    border-color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem; }
+    .btn__mixlr svg {
+      margin-right: 10px; }
+
+.btn-group {
+  display: flex;
+  align-items: center;
+  flex-direction: column; }
+  @media (min-width: 42rem) {
+    .btn-group {
+      flex-direction: row; } }
+  .btn-group > a {
+    margin-bottom: 1rem; }
+    @media (min-width: 42rem) {
+      .btn-group > a {
+        margin-bottom: 0; } }
 
 .site-header {
   position: fixed;
@@ -195,10 +288,13 @@ h2 {
       height: 50em;
       padding-top: 5em; } }
   .large-banner__content {
-    padding: 0; }
+    padding: 0;
+    text-align: center;
+    width: 100%; }
     @media (min-width: 42rem) {
       .large-banner__content {
-        padding: 0 2em; } }
+        padding: 0 2em;
+        text-align: left; } }
   .large-banner h1 {
     color: #fff;
     font-size: 2rem;
@@ -625,6 +721,29 @@ h2 {
       margin-bottom: 1rem; }
   .coach-list__bio {
     text-align: justify; }
+
+.player-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5); }
+  .player-modal__box {
+    background: white;
+    border: 4px solid #02255a;
+    padding: 1em;
+    position: relative; }
+  .player-modal #closeModal {
+    position: absolute;
+    top: -13px;
+    right: -13px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer; }
 
 .DraftEditor-root {
   border: 1px solid #b5b3b3;

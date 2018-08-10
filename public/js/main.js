@@ -78,3 +78,27 @@ var navigation = {
 }
 
 navigation.init();
+
+var listenModal = {
+  init: function() {
+    this.listenBtn = document.getElementById('listenBtn');
+    this.modal = document.querySelector('.player-modal');
+    this.closeModalBtn = document.getElementById('closeModal');
+    if (this.listenBtn) {
+      this.setListener();
+    }
+  },
+  setListener: function() {
+    this.listenBtn.addEventListener('click', this.openModal.bind(this));
+    this.closeModalBtn.addEventListener('click', this.closeModal.bind(this));
+  },
+  openModal: function() {
+    this.modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  },
+  closeModal: function() {
+    this.modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+listenModal.init();

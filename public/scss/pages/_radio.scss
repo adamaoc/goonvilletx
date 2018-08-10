@@ -1,0 +1,77 @@
+.standalone {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 1em;
+  @media (min-width: 850px) {
+    flex-direction: row;
+  }
+  > div {
+    padding: 2em;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+
+#app_download_dialog .iPhone_app #download_android_app {
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  text-indent: -999em;
+  direction: ltr;
+  background: url(/public/images/mixlr/Download_on_the_Play_Store_Button.png) no-repeat 0 0;
+  height: 40px;
+  width: 120px;
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+
+#app_download_dialog .iPhone_app #download_iphone_app {
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  text-indent: -999em;
+  direction: ltr;
+  background: url(/public/images/mixlr/Download_on_the_App_Store_Badge.png) no-repeat 0 0;
+  height: 40px;
+  width: 135px;
+  display: inline-block;
+  margin: 0;
+}
+
+#app_download_dialog .desktop_app #download_mac_app {
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  text-indent: -999em;
+  direction: ltr;
+  background: url(/public/images/mixlr/download_mac.png) no-repeat 0 0;
+  height: 40px;
+  width: 150px;
+  display: inline-block;
+  margin: 0;
+}
+
+#app_download_dialog .desktop_app #download_windows_app {
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  text-align: left;
+  text-indent: -999em;
+  direction: ltr;
+  background: url(/public/images/mixlr/Download_windows_App.png) no-repeat 0 0;
+  height: 40px;
+  width: 140px;
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
