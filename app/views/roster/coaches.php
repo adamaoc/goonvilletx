@@ -15,9 +15,7 @@ getHeader($data['header_data']); ?>
     <?php foreach ($coaches as $coach) : ?>
       <div class="coach-list__item">
         <div class="coach-list__wrap">
-          <div class="coach-list__img">
-            <img src="/data/rosters/imgs/<?= $coach['photo'] ?>" alt="Coach of the Falcons - <?= $coach['name']?>" />
-          </div>
+          <div class="coach-list__img" style="background-image: url(/data/rosters/imgs/<?= $coach['photo'] ?>)"></div>
           <div class="coach-list__stats">
             <div><label>Name: </label> <?= $coach['name'] ?></div>
             <div><label>Title: </label> <?= $coach['title'] ?></div>
@@ -30,6 +28,10 @@ getHeader($data['header_data']); ?>
     <?php endforeach; ?>
     </div>
   <?php endif; ?>
+</div>
+
+<div class="innerpage-team">
+  <?php getComponent('TeamsBlock'); ?>
 </div>
 
 <?php getFooter($data['footer_data']); ?>

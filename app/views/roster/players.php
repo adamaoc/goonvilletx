@@ -30,4 +30,8 @@ getHeader($data['header_data']); ?>
   <?php endif; ?>
 </div>
 
+<div class="innerpage-team">
+  <?php getComponent('TeamsBlock'); ?>
+</div>
+
 <?php getFooter($data['footer_data']); ?>

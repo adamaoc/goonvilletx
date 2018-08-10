@@ -592,10 +592,15 @@ h2 {
   flex-wrap: wrap;
   width: 100%; }
   .coach-list__item {
-    flex-basis: 50%;
+    flex-basis: 100%;
     flex-grow: 0;
     flex-shrink: 0;
     padding: 1em; }
+    @media (min-width: 1024px) {
+      .coach-list__item {
+        flex-basis: 50%;
+        flex-grow: 0;
+        flex-shrink: 0; } }
   .coach-list__wrap {
     background: white;
     display: flex;
@@ -604,9 +609,10 @@ h2 {
   .coach-list__img {
     flex-basis: 200px;
     flex-grow: 0;
-    flex-shrink: 0; }
-    .coach-list__img img {
-      width: 100%; }
+    flex-shrink: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; }
   .coach-list__stats {
     padding: 1em; }
     .coach-list__stats label {

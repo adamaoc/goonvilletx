@@ -112,11 +112,18 @@ class App extends React.Component {
     document.body.style.overflow = 'hidden';
     this.setState({editingPage: 'rosters', paneOpen: true});
   }
+  editablePage() {
+    const whitelisted = ['/', '/schedule', '/about', '/radio'];
+    return whitelisted.includes(window.location.pathname);
+  }
   render() {
     return (
       <div className="admin-app">
         <AdminBar>
-          <button onClick={() => this.editPage()} style={adminBarBtnStyles}>Edit Page</button>
+          {this.editablePage()
+            ? <button onClick={() => this.editPage()} style={adminBarBtnStyles}>Edit Page</button>
+            : null
+          }
           <button style={adminBarBtnStyles} onClick={() => this.editSchedule()}>Edit Schedule</button>
           <button style={adminBarBtnStyles} onClick={() => this.editSponsors()}>Edit Sponsors</button>
           <button style={adminBarBtnStyles} onClick={() => this.editRosters()}>Edit Rosters</button>
