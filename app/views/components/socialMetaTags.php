@@ -15,7 +15,7 @@
 
 <!-- Open Graph data -->
 <meta property="og:title" content="<?= $data['seo_title'] ?>" />
-<meta property="og:type" content="article" />
+<meta property="og:type" content="website" />
 <meta property="og:url" content="http://www.goonvilletx.com/" />
 <meta property="og:image" content="http://goonvilletx.com/public/images/banners/nf-slider-1.jpg" />
 <meta property="og:description" content="<?= $data['seo_desc'] ?>" />
