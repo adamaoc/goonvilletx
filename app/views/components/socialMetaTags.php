@@ -2,7 +2,7 @@
 <!-- Schema.org markup for Google+ -->
 <meta itemprop="name" content="<?= $data['seo_title'] ?>">
 <meta itemprop="description" content="<?= $data['seo_desc'] ?>">
-<meta itemprop="image" content="http://www.example.com/image.jpg">
+<meta itemprop="image" content="http://goonvilletx.com/public/images/banners/nf-slider-1.jpg">
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
