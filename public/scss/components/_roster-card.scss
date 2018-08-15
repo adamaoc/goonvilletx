@@ -51,6 +51,10 @@
     display: flex;
     align-items: stretch;
     box-shadow: 1px 5px 8px #cecece;
+    flex-direction: column;
+    @media (min-width: 730px) {
+      flex-direction: row;
+    }
   }
   &__img {
     flex-basis: 200px;

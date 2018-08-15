@@ -8,6 +8,10 @@
 
 <div class="about__wrap">
   <?php getComponent('AboutContent'); ?>
+
+  <section class="page-section center">
+    <img src="/public/images/banners/what-is-goon.jpg" alt="What is a GOON?" />
+  </section>
   <section class="page-section">
     <h2>More about North Forney</h2>
     <p>The mission statement for our campus is</p>

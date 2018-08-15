@@ -1,7 +1,14 @@
+img {
+  max-width: 100%;
+}
+
 .page-section {
   padding: 2em;
   p {
     max-width: 800px;
     padding: 1em;
+  }
+  &.center {
+    text-align: center;
   }
 }

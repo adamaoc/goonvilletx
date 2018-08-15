@@ -40,12 +40,11 @@
       margin: 0;
       text-align: center;
       @media (min-width: 800px) {
-        width: auto;
         margin: 1em;
+        flex-basis: 150px;
+        flex-grow: 0;
+        flex-shrink: 0;
       }
-    }
-    img {
-      max-width: 200px;
     }
   }
 }
