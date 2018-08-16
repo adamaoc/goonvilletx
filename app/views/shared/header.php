@@ -25,4 +25,4 @@
   <body>
 
     <div id="adminNav"></div>
-    <?php getComponent('navigation'); ?>
+    <?php getComponent('navigation', array('logo' => $data['logo'])); ?>

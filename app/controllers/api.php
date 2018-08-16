@@ -214,6 +214,26 @@ class API extends Controller {
           return $this->_authError;
         }
         break;
+      case 'logo-upload':
+        if ($this->_authCheck($_FILES['file'])) {
+          $location = $_GET['location'];
+          $array = json_decode($json, true);
+
+          $imgLoc = 'public/images/logos/';
+          if (!file_exists($imgLoc)) {
+            exit();
+          }
+          $uploadedImage = $this->uploadImage($_FILES['file'], $imgLoc);
+          if (isset($uploadedImage['errors'])) {
+            return array('data' => $uploadedImage[0], 'name' => 'error');
+          } else {
+            $schoolInfo = $schoolModel->updateLogo($uploadedImage, $location);
+            return array('data' => $schoolInfo, 'name' => 'school');
+          }
+        } else {
+          return $this->_authError;
+        }
+        break;
       default:
         // code...
         break;

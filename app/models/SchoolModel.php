@@ -39,6 +39,7 @@ class SchoolModel
   public function updateSchoolInfo($data)
   {
     $updatedInfo = array(
+      'id' => 'schoolinfo',
       'school_name' => $data['school_name'],
       'mascot' => $data['mascot'],
       'school_aka' => $data['school_aka'],
@@ -53,7 +54,20 @@ class SchoolModel
       'footer_logo' => $data['footer_logo'],
       'header_logo' => $data['header_logo']
     );
-rawData($updatedInfo);
-    // $this->_data->updateWebData($this->_filepath, $updatedInfo);
+
+    $this->_data->updateWebData($this->_filepath, $updatedInfo);
+    return $updatedInfo;
+  }
+
+  public function updateLogo($data, $location)
+  {
+    $schoolData = $this->getSchoolData();
+    foreach ($schoolData as $key => $value) {
+      if ($key === $location) {
+        $schoolData[$key] = $data['file_path'];
+      }
+    }
+    $this->_data->updateWebData($this->_filepath, $schoolData);
+    return $schoolData;
   }
 }

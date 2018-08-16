@@ -20,7 +20,8 @@ class Schedule extends Controller
 
     $header_data = array(
       'seo_title' => $pageData[0]['seo_title'],
-      'seo_desc' => $pageData[0]['seo_desc']
+      'seo_desc' => $pageData[0]['seo_desc'],
+      'logo' => $school['header_logo']
     );
     $footer_data = array(
       'school' => $school,

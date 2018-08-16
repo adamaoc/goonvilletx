@@ -19,7 +19,8 @@ class Admin extends Controller
 
     $header_data = array(
       'seo_title' => "Goonville - Admin",
-      'seo_desc' => "This is the Goonville Backend"
+      'seo_desc' => "This is the Goonville Backend",
+      'logo' => $school['header_logo']
     );
 
     $footer_data = array(

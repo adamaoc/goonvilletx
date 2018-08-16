@@ -1,7 +1,7 @@
 <header class="site-header">
   <div class="site-header__logo">
     <a href="/">
-      <img src="/public/images/logos/goonville-logo.png" alt="Goonville, TX" />
+      <img src="/<?= $data['logo'] ?>" alt="Goonville, TX" />
     </a>
   </div>
   <div class="site-header__mobile">

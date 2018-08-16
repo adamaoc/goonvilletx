@@ -5,7 +5,8 @@ import { Input } from './lib/Forms';
 import {
   PushRight,
   AdminSection,
-  FormGroup
+  FormGroup,
+  FlexGroup
 } from './lib/Layouts';
 import { APIURL } from '../constants/AppConstants';
 
@@ -64,6 +65,7 @@ class EditHomePage extends React.Component {
     super(props);
     this.state = {
       pageData: {},
+      replaceImg: null,
       schoolInfo: {
         address: null
       },
@@ -140,13 +142,41 @@ class EditHomePage extends React.Component {
       return resp.json();
     }).then((resp) => {
       this.setState({ schoolInfo: resp.school });
-      // window.location.reload();
+      window.location.reload();
     });
+  }
+
+  replaceLogoImg(e) {
+    const { replaceImg } = this.state;
+    const img = e.target.files[0];
+    if (img) {
+      let formData = new FormData();
+      formData.append('file', img);
+      const fetchUrl = `${APIURL}/school/logo-upload?location=${replaceImg}`;
+      const file = fetch(
+        fetchUrl,
+        {
+          method: 'post',
+          headers: {
+            Token: window.token
+          },
+          body: formData
+        }
+      ).then((resp) => {
+        return resp.json();
+      }).then((resp) => {
+        this.setState({
+          schoolInfo: resp.school
+        });
+      });
+    }
   }
 
   render() {
     const { pageData, pagePath, schoolInfo } = this.state;
     const addressFields = ['street', 'city', 'state', 'zip'];
+    let fileInput = null;
+
     return (
       <div>
         <h2>Editing {pagePath} Page!</h2>
@@ -200,10 +230,33 @@ class EditHomePage extends React.Component {
           <section>
             <SocialInfo info={schoolInfo} handleSocialChange={this.updateSchoolInfo.bind(this)} />
             <FormGroup>
-              <label>Header Logo</label>
-              <img src={schoolInfo.header_logo} height="50px" /><br />
-              <label>Footer Logo</label>
-              <img src={schoolInfo.footer_logo} height="50px" />
+              <div style={{display: 'none'}}>
+                <input
+                  type="file"
+                  onChange={this.replaceLogoImg.bind(this)}
+                  style={{display: 'none'}}
+                  ref={fi => fileInput = fi} />
+              </div>
+              <div>
+                <label>Header Logo</label>
+                <FlexGroup>
+                  <img src={schoolInfo.header_logo} height="50px" />
+                  <Button onClick={() => {
+                    this.setState({replaceImg: 'header_logo'});
+                    fileInput.click();
+                  }}>Replace</Button>
+                </FlexGroup>
+              </div>
+              <div>
+                <label>Footer Logo</label>
+                <FlexGroup>
+                  <img src={schoolInfo.footer_logo} height="50px" />
+                  <Button onClick={() => {
+                    this.setState({replaceImg: 'footer_logo'});
+                    fileInput.click();
+                  }}>Replace</Button>
+                </FlexGroup>
+              </div>
             </FormGroup>
           </section>
         </AdminSection>

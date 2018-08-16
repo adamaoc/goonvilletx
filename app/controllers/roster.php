@@ -33,7 +33,8 @@ class Roster extends Controller
 
     $header_data = array(
       'seo_title' => 'Goonville Player Roster for the 2018-2019 Season',
-      'seo_desc' => 'Goonville Player Roster for the 2018-2019 Season'
+      'seo_desc' => 'Goonville Player Roster for the 2018-2019 Season',
+      'logo' => $school['header_logo']
     );
 
     $footer_data = array(
