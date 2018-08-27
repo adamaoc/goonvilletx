@@ -43,7 +43,8 @@ class Home extends Controller
       'games' => $curSchedule,
       'game_data' => $game_data,
       'page_data' => $pageData[0],
-      'sponsors' => $sponsors
+      'sponsors' => $sponsors,
+      'announcement' => null
     ));
 	}
 }

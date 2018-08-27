@@ -22,7 +22,10 @@ $date = $data['date'];
   </div>
   <div class="game-countdown">
     <div class="game-countdown__date">
-      <?= $date ?>
+      <?php 
+        $new_date = date('M d Y', strtotime($date));  
+        echo $new_date;
+      ?>
     </div>
     <div class="game-countdown__counter" data-gamedate="<?= $date ?>">
       <?php getComponent('CountdownTimer'); ?>

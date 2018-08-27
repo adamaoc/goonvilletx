@@ -7,7 +7,10 @@
           <?php getComponent('LinkIcon'); ?>
         </a>
         <span class="schedule-list__date">
-          <?= $game['date'] ?>
+          <?php 
+            $new_date = date('M d Y', strtotime($game['date']));  
+            echo $new_date;
+          ?>
         </span>
         <span class="schedule-list__teams">
           <?= $game['home_team'] ?> vs <?= $game['visiting_team'] ?>

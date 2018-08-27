@@ -18,7 +18,14 @@
 
   <?php getComponent('GameData', $data['game_data']); ?>
 
+  <?php
+    if (!empty($data['announcement'])) {
+      getComponent('Announcements', $data['announcement']);
+    }
+  ?>
+
   <?php getComponent('AboutContent'); ?>
+
 
   <div class="innerpage-schedule">
     <div class="schedule-list">
@@ -35,22 +42,30 @@
     <?php getComponent('TeamsBlock'); ?>
   </div>
 
+  <section class="page-section center">
+    <a href="/page/polish-and-pray/">
+      <img src="/public/images/pages/pnp/banner.jpg" alt="Polish and Pray banner." />
+    </a>
+  </section>
+
   <div class="innerpage-sponsors">
     <?php getComponent('Sponsors', $data['sponsors']); ?>
   </div>
 </div>
 
-<div class="player-modal" style="display: none;">
-  <div class="player-modal__box">
-    <button id="closeModal">
-      <svg width="30px" height="30px" viewBox="0 0 50 50">
-        <circle id="Oval-3" fill="#313131" cx="25" cy="25" r="21.5"></circle>
-        <polygon id="x" fill="#FFFFFF" points="11.8408203 38.28125 20.9228516 24.8046875 12.2314453 11.71875 20.7519531 11.71875 25.1953125 19.4335938 29.5410156 11.71875 37.8173828 11.71875 29.0771484 24.6826172 38.1591797 38.28125 29.4921875 38.28125 24.9023438 30.2978516 20.2880859 38.28125"></polygon>
-      </svg>
-    </button>
-    <iframe src="https://mixlr.com/users/6764389/embed" width="100%" height="180px" scrolling="no" frameborder="no" marginheight="0" marginwidth="0"></iframe>
-    <small><a href="/radio" style="color:#1a1a1a;text-align:left; font-family:Helvetica, sans-serif; font-size:11px;">Learn more about Goonville Radio.</a></small>
+<?php if (Config::get('http/root') === 'http://goonvilletx.com/') : ?>
+  <div class="player-modal" style="display: none;">
+    <div class="player-modal__box">
+      <button id="closeModal">
+        <svg width="30px" height="30px" viewBox="0 0 50 50">
+          <circle id="Oval-3" fill="#313131" cx="25" cy="25" r="21.5"></circle>
+          <polygon id="x" fill="#FFFFFF" points="11.8408203 38.28125 20.9228516 24.8046875 12.2314453 11.71875 20.7519531 11.71875 25.1953125 19.4335938 29.5410156 11.71875 37.8173828 11.71875 29.0771484 24.6826172 38.1591797 38.28125 29.4921875 38.28125 24.9023438 30.2978516 20.2880859 38.28125"></polygon>
+        </svg>
+      </button>
+      <iframe src="https://mixlr.com/users/6764389/embed" width="100%" height="180px" scrolling="no" frameborder="no" marginheight="0" marginwidth="0"></iframe>
+      <small><a href="/radio" style="color:#1a1a1a;text-align:left; font-family:Helvetica, sans-serif; font-size:11px;">Learn more about Goonville Radio.</a></small>
+    </div>
   </div>
-</div>
+<?php endif; ?>
 
 <?php getFooter($data['footer_data']); ?>

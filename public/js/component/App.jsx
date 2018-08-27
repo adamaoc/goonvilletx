@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import EditHomePage from './EditHomePage';
+import EditPage from './EditPage';
 import EditSchedule from './EditSchedule';
 import EditSponsors from './EditSponsors';
 import EditRosters from './EditRosters';
@@ -72,7 +72,7 @@ class App extends React.Component {
   renderEditingPage(page) {
     switch (page) {
       case 'editPage':
-        return <EditHomePage />
+        return <EditPage />
       case 'schedule':
         return <EditSchedule />
       case 'sponsors':

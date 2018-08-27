@@ -18,8 +18,8 @@ $message = 'Please supply a valid HTTP status code.';
 }
 
 
-echo "<h1>Oops... Something went wrong. Try going to the homepage or refreshing your current page.</h1>"
-echo "<h2>If you continue to see this message, reach out to the site's admin.</h2>"
+echo "<h1>Oops... Something went wrong. Try going to the homepage or refreshing your current page.</h1>";
+echo "<h2>If you continue to see this message, reach out to the site's admin.</h2>";
 
 echo '<h4>Hold up! '.$title.' detected</h4>
 <p>'.$message.'</p>';

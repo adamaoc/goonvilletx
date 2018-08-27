@@ -84,7 +84,7 @@ var listenModal = {
     this.listenBtn = document.getElementById('listenBtn');
     this.modal = document.querySelector('.player-modal');
     this.closeModalBtn = document.getElementById('closeModal');
-    if (this.listenBtn) {
+    if (this.listenBtn && this.modal) {
       this.setListener();
     }
   },
