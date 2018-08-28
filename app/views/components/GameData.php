@@ -27,7 +27,7 @@ $date = $data['date'];
         echo $new_date;
       ?>
     </div>
-    <div class="game-countdown__counter" data-gamedate="<?= $date ?>">
+    <div class="game-countdown__counter" data-gamedate="<?= $new_date ?>">
       <?php getComponent('CountdownTimer'); ?>
     </div>
   </div>
