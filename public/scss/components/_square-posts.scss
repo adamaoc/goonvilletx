@@ -1,0 +1,16 @@
+.square-post__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+    
+    grid-template-areas: 
+      "post post post";
+}
+
+.square-post {
+    padding: 1em;
+    display: block;
+    background: white;
+    color: #333;
+    text-align: center;
+}

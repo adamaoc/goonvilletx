@@ -1,5 +1,9 @@
 <?php
 
+function dateSort($a, $b) {
+  return strtotime($a['date']) - strtotime($b['date']);
+}
+
 class GamesModel
 {
 	public $name,
@@ -76,10 +80,12 @@ class GamesModel
 	{
 		$list = $this->games['games'];
     $date_now = date("Y-m-d");
-		array_multisort($list, SORT_ASC);
+
+    usort($list, 'dateSort');
+
 		for($i = $startnum; $i < $endnum; ++$i) {
       $listDate = $list[$i]['date'];
-      if ($listDate > $date_now) {
+      if ($listDate >= $date_now) {
         $buildarr[] = $list[$i];
       }
 		}
@@ -90,10 +96,12 @@ class GamesModel
   {
     $list = $this->games['games'];
     $date_now = date("Y-m-d");
-    array_multisort($list, SORT_ASC);
+
+    usort($list, 'dateSort');
+
     foreach ($list as $game) {
       $listDate = $game['date'];
-      if($listDate > $date_now) {
+      if($listDate >= $date_now) {
         $buildarr[] = $game;
       }
     }
@@ -106,7 +114,9 @@ class GamesModel
     // is this working???
 		$list = $this->games['games'];
     $date_now = date("Y-m-d");
-		array_multisort($list, SORT_ASC);
+
+    usort($list, 'dateSort');
+
 		for($i = $startnum; $i < $endnum; ++$i) {
       $listDate = $list[$i]['date'];
       if ($date_now > $listDate) {
@@ -122,12 +132,14 @@ class GamesModel
     $date_now = date("Y-m-d");
     $buildarr = array();
 
+    usort($list, 'dateSort');
+
     foreach ($list as $game) {
       if ($date_now > $game['date']) {
         $buildarr[] = $game;
       }
-      return $buildarr;
     }
+    return $buildarr;
   }
 
   public function getPost($id)

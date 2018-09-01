@@ -12,6 +12,14 @@
 </div>
 
 <div class="page-section">
+  <div class="square-post__grid">
+    <?php foreach($data['post_list'] as $post) : ?>
+      <?php getComponent('squarePost', $post); ?>
+    <?php endforeach; ?>
+  </div>
+</div>
+
+<div class="page-section">
 
   <div class="standalone" id="app_download_dialog">
     <div class="desktop_app">

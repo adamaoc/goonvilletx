@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import SchoolEditor from './SchoolEditor/';
 import PageEditor from './PageEditor/';
-import { Button } from './lib/Buttons';
-import { Input } from './lib/Forms';
-import {
-  PushRight,
-  AdminSection,
-  FormGroup,
-  FlexGroup
-} from './lib/Layouts';
+import AnnouncementsEditor from './PageEditor/AnnouncementsEditor';
 import { APIURL } from '../constants/AppConstants';
 
 export const PageContext = React.createContext();
@@ -149,6 +142,7 @@ class EditPage extends Component {
       <PageProvider>
         <PageEditor />
         <SchoolEditor />
+        <AnnouncementsEditor />
       </PageProvider>
     );
   }

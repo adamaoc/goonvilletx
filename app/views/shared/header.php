@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="<?= Config::get('http/root') ?>public/css/main.css">
   </head>
+  
   <body>
 
     <div id="adminNav"></div>

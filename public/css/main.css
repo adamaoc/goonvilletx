@@ -93,6 +93,11 @@ img {
   .page-section.center {
     text-align: center; }
 
+.page-post {
+  background: white;
+  padding: 1em;
+  color: #333; }
+
 .standalone {
   display: flex;
   flex-direction: column;
@@ -506,10 +511,12 @@ img {
     .schedule-list__icon:hover {
       background: #033a8c; }
   .schedule-list__date {
-    padding: 0 2rem; }
+    padding: 0 2rem;
+    white-space: nowrap; }
   .schedule-list__teams {
     margin-left: auto;
-    padding-right: 2rem; }
+    padding-right: 2rem;
+    white-space: nowrap; }
   .schedule-list h3 {
     font-weight: 200;
     font-style: italic;
@@ -787,7 +794,8 @@ img {
     max-height: 80vh;
     max-width: 80vw;
     border: 10px solid #fff;
-    border-bottom: 20px solid #fff; }
+    border-bottom: 20px solid #fff;
+    background: #eee; }
   .gallery-overlay button {
     background: #fff;
     border-radius: 0;
@@ -798,6 +806,19 @@ img {
     cursor: pointer; }
     .gallery-overlay button:focus, .gallery-overlay button:active {
       outline: none; }
+
+.square-post__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1em;
+  grid-template-areas: "post post post"; }
+
+.square-post {
+  padding: 1em;
+  display: block;
+  background: white;
+  color: #333;
+  text-align: center; }
 
 .DraftEditor-root {
   border: 1px solid #b5b3b3;

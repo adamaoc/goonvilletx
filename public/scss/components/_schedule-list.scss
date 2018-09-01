@@ -51,10 +51,12 @@
   }
   &__date {
     padding: 0 2rem;
+    white-space: nowrap;
   }
   &__teams {
     margin-left: auto;
     padding-right: 2rem;
+    white-space: nowrap;
   }
   h3 {
     font-weight: 200;
