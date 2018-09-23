@@ -80,15 +80,21 @@ class GamesModel
 	{
 		$list = $this->games['games'];
     $date_now = date("Y-m-d");
+    $curArr = array();
+    $buildarr = array();
 
     usort($list, 'dateSort');
 
-		for($i = $startnum; $i < $endnum; ++$i) {
-      $listDate = $list[$i]['date'];
-      if ($listDate >= $date_now) {
-        $buildarr[] = $list[$i];
+    foreach ($list as $game) {
+      if ($game['date'] >= $date_now) {
+        $curArr[] = $game;
       }
-		}
+    }
+
+		for($i = $startnum; $i < $endnum; ++$i) {
+      $buildarr[] = $curArr[$i];
+    }
+
 		return $buildarr;
 	}
 
