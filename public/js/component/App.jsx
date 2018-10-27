@@ -4,6 +4,7 @@ import EditPage from './EditPage';
 import EditSchedule from './EditSchedule';
 import EditSponsors from './EditSponsors';
 import EditRosters from './EditRosters';
+import EditRadioPosts from './RadioEditor/EditRadioPosts';
 
 const EditPane = styled.div`
   position: fixed;
@@ -79,6 +80,8 @@ class App extends React.Component {
         return <EditSponsors />
       case 'rosters':
         return <EditRosters />
+      case 'radio':
+        return <EditRadioPosts />
       default:
     }
   }
@@ -112,6 +115,16 @@ class App extends React.Component {
     document.body.style.overflow = 'hidden';
     this.setState({editingPage: 'rosters', paneOpen: true});
   }
+  editRadioPosts() {
+    const { paneOpen, editingPage } = this.state;
+    if (paneOpen && editingPage === 'radio') {
+      document.body.style.overflow = 'auto';
+      this.setState({paneOpen: false});
+      return;
+    }
+    document.body.style.overflow = 'hidden';
+    this.setState({editingPage: 'radio', paneOpen: true});
+  }
   editablePage() {
     const whitelisted = ['/', '/schedule', '/about', '/radio'];
     return whitelisted.includes(window.location.pathname);
@@ -127,6 +140,7 @@ class App extends React.Component {
           <button style={adminBarBtnStyles} onClick={() => this.editSchedule()}>Edit Schedule</button>
           <button style={adminBarBtnStyles} onClick={() => this.editSponsors()}>Edit Sponsors</button>
           <button style={adminBarBtnStyles} onClick={() => this.editRosters()}>Edit Rosters</button>
+          <button style={adminBarBtnStyles} onClick={() => this.editRadioPosts()}>Radio Posts</button>
 
           <div style={adminBarUserStyles}>
             Welcome, <a href={`http://${window.location.host}/admin/`} style={{color: '#eee'}}>{this.props.user.fullname}</a>

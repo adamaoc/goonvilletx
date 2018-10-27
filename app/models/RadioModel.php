@@ -7,6 +7,13 @@ class RadioModel {
       $this->data = new Data;
     }
 
+    public function getPostListAll()
+    {
+        $file = Config::get('data/webdata') . 'radio-posts/post-list.csv';
+        $list = $this->data->getWebData($file);
+        return $list;
+    }
+
     public function getPostList()
     {
         $file = Config::get('data/webdata') . 'radio-posts/post-list.csv';
@@ -56,6 +63,22 @@ class RadioModel {
             return $blog_content;
         } else {
             return "Opps... There is no content here.";
+        }
+    }
+
+    public function getPostById($id)
+    {
+        $postSlug = null;
+        $allPosts = $this->getPostListAll();
+        foreach ($allPosts as $post) {
+            if ($post['id'] === $id) {
+                $postSlug = $post['slug'];
+            }
+        }
+        if (!empty($postSlug)) {
+            return $this->getPost($postSlug);
+        } else {
+            return null;
         }
     }
 }

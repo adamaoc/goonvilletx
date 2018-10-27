@@ -141,8 +141,14 @@ class EditPage extends Component {
     return (
       <PageProvider>
         <PageEditor />
-        <SchoolEditor />
-        <AnnouncementsEditor />
+        {window.location.pathname === '/'
+          ? <SchoolEditor />
+          : null
+        }
+        {window.location.pathname === '/'
+          ? <AnnouncementsEditor />
+          : null
+        }
       </PageProvider>
     );
   }

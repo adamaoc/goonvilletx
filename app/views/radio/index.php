@@ -6,10 +6,12 @@
   </div>
 </div>
 
-<div class="page-section">
-  <iframe src="https://mixlr.com/users/6764389/embed" width="100%" height="180px" scrolling="no" frameborder="no" marginheight="0" marginwidth="0"></iframe>
-  <small><a href="http://mixlr.com/goonvilletx" style="color:#1a1a1a;text-align:left; font-family:Helvetica, sans-serif; font-size:11px;">GoonvilleTX is on Mixlr</a></small>
-</div>
+<?php if (Config::get('http/root') === 'http://goonvilletx.com/') : ?>
+  <div class="page-section">
+    <iframe src="https://mixlr.com/users/6764389/embed" width="100%" height="180px" scrolling="no" frameborder="no" marginheight="0" marginwidth="0"></iframe>
+    <small><a href="http://mixlr.com/goonvilletx" style="color:#1a1a1a;text-align:left; font-family:Helvetica, sans-serif; font-size:11px;">GoonvilleTX is on Mixlr</a></small>
+  </div>
+<?php endif; ?>
 
 <div class="page-section">
   <div class="square-post__grid">

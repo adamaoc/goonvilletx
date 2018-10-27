@@ -26,6 +26,10 @@ class API extends Controller {
         $returnData = $this->handleRostersRoute($sec);
         $this->api($returnData['data'], $returnData['name']);
         break;
+      case 'radio-posts':
+        $returnData = $this->handleRadioPostsRoute($sec);
+        $this->api($returnData['data'], $returnData['name']);
+        break;
       default:
         $this->api(array('error' => 'You must hit a valid endpoint.'), 'errors');
         break;
@@ -306,6 +310,32 @@ class API extends Controller {
         break;
       default:
         // code...
+        break;
+    }
+  }
+
+  private function handleRadioPostsRoute($sec)
+  {
+    $json = @file_get_contents('php://input');
+    $radioModel = $this->model('RadioModel');
+    switch ($sec) {
+      case 'all':
+        # code...
+        break;
+      case 'post':
+        $id = $_GET['id'];
+        if ($this->_authCheck($json)) {
+          // $array = json_decode($json, true);
+          // $post = $radioModel->getPostById($id);
+          // return array('data' => $post, 'name' => 'post');
+        } else {
+          $data = $radioModel->getPostById($id);
+          return array('data' => $data, 'name' => 'post');
+        }
+        break;
+      default:
+        $postList = $radioModel->getPostListAll();
+        return array('data' => $postList, 'name' => 'posts');
         break;
     }
   }

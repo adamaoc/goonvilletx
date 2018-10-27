@@ -89,6 +89,10 @@ class GamesModel
       if ($game['date'] >= $date_now) {
         $curArr[] = $game;
       }
+    } 
+
+    if ($endnum > count($curArr)) {
+      $endnum = count($curArr);
     }
 
 		for($i = $startnum; $i < $endnum; ++$i) {
