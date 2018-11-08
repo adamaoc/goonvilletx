@@ -25,7 +25,7 @@
 
   <div class="standalone" id="app_download_dialog">
     <div class="desktop_app">
-      <img alt="Desktop App" src="/public/images/mixlr/DesktopApp_Slide_HW640_2016.png">
+      <img alt="Desktop App" src="https://ampnet.sfo2.digitaloceanspaces.com/Goonville/mixlr/DesktopApp_Slide_HW640_2016.png">
       <h2>Download for desktop</h2>
       <h3>Broadcast and share live audio</h3>
       <p>Use up to 3 channels and mix audio between them. Connect to any audio source. Add a built-in or external mic. Create a playlist and take it live.</p>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="iPhone_app">
-      <img alt="Desktop App" src="/public/images/mixlr/iPhone_App_SlidesAnimation_HW640.gif">
+      <img alt="iPhone App" src="https://ampnet.sfo2.digitaloceanspaces.com/Goonville/mixlr/iPhone_App_SlidesAnimation_HW640.gif">
       <h2>Download for mobile / tablet</h2>
       <h3>Broadcast, share, chat, listen and explore.</h3>
       <p>Broadcast and share live audio simply and quickly directly from your mobile device. Listen with friends, &amp; chat with them.</p>

@@ -7,7 +7,8 @@
       <span class="phone"><?= $school['phone'] ?></span>
     </div>
     <div class="footer-top__grid-2">
-      <img src="/<?= $school['footer_logo'] ?>" alt="NF Logo" />
+      <!-- <img src="/<?= $school['footer_logo'] ?>" alt="NF Logo" /> -->
+      <img src="https://ampnet.sfo2.cdn.digitaloceanspaces.com/Goonville/logos/5b74e538b8b5c1.64798301.png" alt="NF logo" />
     </div>
     <div class="footer-top__grid-3">
       <h4>Address</h4>
