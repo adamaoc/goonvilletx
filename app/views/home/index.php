@@ -16,7 +16,11 @@
     </div>
   </div>
 
-  <?php getComponent('GameData', $data['game_data']); ?>
+  <?php 
+    if (!empty($data['game_data'])) {
+      getComponent('GameData', $data['game_data']); 
+    }
+  ?>
 
   <?php
     if (!empty($data['announcement'])) {

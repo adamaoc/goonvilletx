@@ -104,6 +104,7 @@ class GamesModel
 
   public function getCurrentScheduleAll()
   {
+    $buildarr = array();
     $list = $this->games['games'];
     $date_now = date("Y-m-d");
 

@@ -23,8 +23,12 @@ class Home extends Controller
     $sponsorsModel = $this->model('SponsorsModel');
     $sponsors = $sponsorsModel->getSponsors();
 
-    $game_data = $curSchedule[0];
-
+    $game_data = null;
+    
+    if (!empty($curSchedule)) {
+      $game_data = $curSchedule[0];
+    }
+    
     $header_data = array(
       'seo_title' => $pageData[0]['seo_title'],
       'seo_desc' => $pageData[0]['seo_desc'],
