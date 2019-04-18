@@ -24,7 +24,10 @@ class EditSchedule extends React.Component {
     this.state = {
       selectedGame: null,
       loading: true,
-      games: []
+      games: [],
+      season: '',
+      addingRow: false,
+      newGame: {}
     }
   }
   componentDidMount() {
@@ -35,7 +38,8 @@ class EditSchedule extends React.Component {
       return resp.json();
     }).then((resp) => {
       this.setState({
-        games: resp.games,
+        games: resp.schedule.games,
+        season: resp.schedule.season,
         loading: false
       });
     });
@@ -86,11 +90,57 @@ class EditSchedule extends React.Component {
     }
   }
 
+  updateNewGameData(field, value) {
+    const { newGame } = this.state;
+    newGame[field] = value;
+    this.setState({ newGame });
+  }
+
+  postNewGame() {
+    let { newGame, games } = this.state;
+    let newGameId = '1001';
+    
+    if (games.length > 0) {
+      console.log(games);
+      newGameId = Number(games[(games.length - 1)].id) + 1;
+    }
+    newGame['id'] = newGameId;
+    newGame['home_score'] = "0";
+    newGame['visiting_score'] = "0";
+
+    console.log(newGame);
+
+    const fetchUrl = APIURL + '/schedule/addnew/';
+    this.setState({loading: true});
+
+    const postGame = fetch(
+      fetchUrl,
+      {
+        method: 'post',
+        headers: {
+          Token: window.token
+        },
+        body: JSON.stringify(newGame)
+      }
+    ).then((resp) => { return resp.json()}).then((resp) => {
+      games.push(resp.game);
+      setTimeout(() => {
+        this.setState({
+          loading: false,
+          games,
+          addingRow: false,
+          newGame: {}
+        });
+      }, 300);
+    });
+  }
+
   render() {
     const {
       games,
       loading,
-      selectedGame
+      selectedGame,
+      addingRow
     } = this.state;
 
     if (!games) {
@@ -98,7 +148,7 @@ class EditSchedule extends React.Component {
     }
     return (
       <div className="schedule-table">
-        <h2>schedule</h2>
+        <h2>{this.state.season} schedule</h2>
         <div style={{position: 'relative'}}>
           <Table>
             <thead>
@@ -110,10 +160,44 @@ class EditSchedule extends React.Component {
                 <td>Visiting Team</td>
                 <td className="score">Visiting Score</td>
                 <td>Location</td>
-              <td className="center">--</td>
+              <td className="center">
+                {addingRow 
+                  ? null
+                  : <Button onClick={() => this.setState({addingRow: true})}>+ Add Row</Button>
+                }
+              </td>
               </tr>
             </thead>
             <tbody>
+              {addingRow
+                ? (
+                  <tr>
+                    <td className="center"> -- </td>
+                    <td className="editable">
+                      <input type="date" onChange={(e) => this.updateNewGameData('date', e.target.value)} />
+                    </td>
+                    <td className="editable">
+                      <input type="text" placeholder="Home Team" onChange={(e) => this.updateNewGameData('home_team', e.target.value)} />
+                    </td>
+                    <td className="score">
+                      --
+                    </td>
+                    <td className="editable">
+                      <input type="text" placeholder="Visiting Team" onChange={(e) => this.updateNewGameData('visiting_team', e.target.value)} />
+                    </td>
+                    <td className="score">
+                      --
+                    </td>
+                    <td className="editable">
+                      <input type="text" placeholder="Game Location" onChange={(e) => this.updateNewGameData('location', e.target.value)} />
+                    </td>
+                    <td>
+                      <Button onClick={() => this.postNewGame()}>Post</Button>
+                    </td>
+                  </tr>
+                )
+                : null
+              }
               {games.map((game) => {
                 return (
                   <React.Fragment key={game.id}>
@@ -125,7 +209,7 @@ class EditSchedule extends React.Component {
                           }}>{game.id}</ClearButton>
                       </td>
                       <td className="editable">
-                        <input type="text" defaultValue={game.date} onChange={(e) => this.updateData(game.id, 'date', e.target.value)} />
+                        <input type="date" defaultValue={game.date} onChange={(e) => this.updateData(game.id, 'date', e.target.value)} />
                       </td>
                       <td className="editable">
                         <input type="text" defaultValue={game.home_team} onChange={(e) => this.updateData(game.id, 'home_team', e.target.value)} />

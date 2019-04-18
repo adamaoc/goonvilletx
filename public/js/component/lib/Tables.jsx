@@ -36,6 +36,9 @@ export const Table = styled.table`
       font-size: 1em;
       padding-left: 0.75em;
     }
+    input[type='date'] {
+      font-size: 1em;
+    }
   }
 
   .game-editor {

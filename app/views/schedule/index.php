@@ -2,14 +2,14 @@
 
 <div class="mid-banner">
   <div class="mid-banner__content">
-    <h1><?= $data['page_data']['page_title'] ?></h1>
+    <h1><?= $data['season'] ?> <?= $data['page_data']['page_title'] ?></h1>
   </div>
 </div>
 
 <section class="schedule-page__wrap">
   <div class="innerpage-schedule">
     <div class="schedule-list">
-      <h2>2018-2019 Schedule</h2>
+      <h2><?= $data['season'] ?> Schedule</h2>
       <?php getComponent('ScheduleList', $data['games']); ?>
     </div>
   </div>

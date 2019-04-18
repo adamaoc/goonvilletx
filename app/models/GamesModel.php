@@ -7,15 +7,58 @@ function dateSort($a, $b) {
 class GamesModel
 {
 	public $name,
-         $games = array();
+         $games = array(),
+         $seasonYears = '2018-2019',
+         $gamesFile = '',
+         $seasons = array();
   private $_db,
           $_file;
 
   function __construct()
   {
+    $this->_seasons = Config::get('data/webdata') . 'seasons/seasons.csv';
     $this->_file = Config::get('data/webdata') . 'games.csv';
     $this->_db = new Data;
+    $this->getSeason();
     $this->getGamesData();
+  }
+
+  public function getSeason()
+  {
+    $dir = "data/seasons";
+    if (!is_dir($dir)) {
+      return;
+    }
+    $seasonsArr = array(
+      'fields' => array(),
+      'seasons' => array()
+    );
+    $row = 1;
+    if (($handle = fopen($this->_seasons, "r")) !== FALSE) {
+      while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+        if ($row === 1) {
+          foreach ($data as $value) {
+            array_push($seasonsArr['fields'], $value);
+          }
+        } else {
+          foreach ($data as $key => $value) {
+            $field = $seasonsArr['fields'][$key];
+            $id = $row - 2;
+            $seasonsArr['seasons'][$id][$field] = $value;
+          }
+        }
+        $row++;
+      }
+      fclose($handle);
+    }
+    $seasons = $seasonsArr['seasons'];
+    foreach ($seasons as $season) {
+      if ($season['current'] === '1') {
+        $this->seasonYears = $season['years'];
+        $this->gamesFile = $season['gamesPath'];
+      }
+    }
+    $this->_file = Config::get('data/webdata') . $this->gamesFile;
   }
 
   public function getGamesData()
@@ -43,6 +86,8 @@ class GamesModel
         fclose($handle);
     }
     $this->games = $gamesArr;
+    // rawData($gamesArr);
+    // die;
   }
 
   public function updateGame($data)
@@ -61,9 +106,30 @@ class GamesModel
     return $updateData;
   }
 
+  public function addNewGame($data) 
+  {
+    // id,date,home_team,visiting_team,location,home_score,visiting_score
+    $gameData = array(
+      "id"              => $data['id'],
+      "date"            => $data['date'],
+      "home_team"       => $data['home_team'],
+      "visiting_team"   => $data['visiting_team'],
+      "location"        => $data['location'],
+      "home_score"      => $data['home_score'],
+      "visiting_score"  => $data['visiting_score']
+    );
+    $this->_db->addWebData($this->_file, $gameData);
+    return $gameData;
+  }
+
   public function getAllGames()
   {
     return $this->games['games'];
+  }
+
+  public function getCurrentSeason()
+  {
+    return $this->seasonYears;
   }
 
   public function getGame($id)
@@ -99,7 +165,7 @@ class GamesModel
       $buildarr[] = $curArr[$i];
     }
 
-		return $buildarr;
+    return $buildarr;
 	}
 
   public function getCurrentScheduleAll()

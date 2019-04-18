@@ -19,6 +19,7 @@ class Home extends Controller
     $social_links = $socialModel->getSocialLinks();
     $gamesModel = $this->model('GamesModel');
     $curSchedule = $gamesModel->getCurrentSchedule(0, 5);
+    $curSeason = $gamesModel->getCurrentSeason();
 
     $sponsorsModel = $this->model('SponsorsModel');
     $sponsors = $sponsorsModel->getSponsors();
@@ -46,6 +47,7 @@ class Home extends Controller
       'footer_data' => $footer_data,
       'games' => $curSchedule,
       'game_data' => $game_data,
+      'season' => $curSeason,
       'page_data' => $pageData[0],
       'sponsors' => $sponsors,
       'announcement' => null

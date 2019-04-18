@@ -162,6 +162,12 @@ class Data {
     return $dataArr['data'];
   }
 
+  public function addWebData($file, $data)
+  {
+    $this->addData($file, $data);
+    return $this->getWebData($file);
+  }
+
   public function updateWebData($file, $data)
   {
     $id = $data['id'];
