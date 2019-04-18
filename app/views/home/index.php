@@ -33,7 +33,7 @@
 
   <div class="innerpage-schedule">
     <div class="schedule-list">
-      <h2>2018-2019 Schedule</h2>
+      <h2><?= $data['season'] ?> Schedule</h2>
       <?php getComponent('ScheduleList', $data['games']) ?>
     </div>
     <div class="schedule-list__more">

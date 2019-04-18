@@ -18,6 +18,9 @@ class Schedule extends Controller
     $socialModel = $this->model('SocialModel');
     $social_links = $socialModel->getSocialLinks();
 
+    $gamesModel = $this->model('GamesModel');
+    $curSeason = $gamesModel->getCurrentSeason();
+
     $header_data = array(
       'seo_title' => $pageData[0]['seo_title'],
       'seo_desc' => $pageData[0]['seo_desc'],
@@ -31,9 +34,9 @@ class Schedule extends Controller
     $baseData = array(
       'header_data' => $header_data,
       'footer_data' => $footer_data,
-      'page_data' => $pageData[0]
+      'page_data' => $pageData[0],
+      'season' => $curSeason
     );
-    $gamesModel = $this->model('GamesModel');
 
     if(empty($slug)) {
       $this->getIndex($gamesModel, $baseData);
@@ -51,6 +54,7 @@ class Schedule extends Controller
       'header_data' => $baseData['header_data'],
       'footer_data' => $baseData['footer_data'],
       'page_data' => $baseData['page_data'],
+      'season' => $baseData['season'],
       'games' => $curSchedule,
       'past_games' => $pastGames
     ));

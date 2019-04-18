@@ -131,6 +131,13 @@ class API extends Controller {
           return $this->_authError;
         }
         break;
+      case 'addnew':
+        if ($this->_authCheck($json)) {
+          $array = json_decode($json, true);
+          $game = $gamesModel->addNewGame($array);
+          return array('data' => $game, 'name' => 'game');
+        }
+        break;
       case 'game_post':
         $id = $_GET['id'];
         if ($this->_authCheck($json)) {
@@ -144,7 +151,9 @@ class API extends Controller {
         break;
       default:
         $games = $gamesModel->getAllGames();
-        return array('data' => $games, 'name' => 'games');
+        $season = $gamesModel->getCurrentSeason();
+        $scheduleArr = array('games' => $games, 'season' => $season);
+        return array('data' => $scheduleArr, 'name' => 'schedule');
         break;
     }
   }
