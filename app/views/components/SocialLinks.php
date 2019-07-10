@@ -13,7 +13,7 @@ function getIcon($platform) {
 
 <div class="footer-social__icons">
   <?php foreach ($data as $link) : ?>
-    <a href="<?= $link['link'] ?>">
+    <a href="<?= $link['link'] ?>" target="_blank">
       <?php echo getIcon($link['slug']); ?>
     </a>
   <?php endforeach; ?>

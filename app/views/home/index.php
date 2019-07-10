@@ -28,9 +28,6 @@
     }
   ?>
 
-  <?php getComponent('AboutContent'); ?>
-
-
   <div class="innerpage-schedule">
     <div class="schedule-list">
       <h2><?= $data['season'] ?> Schedule</h2>
@@ -42,9 +39,7 @@
     </div>
   </div>
 
-  <div class="innerpage-team">
-    <?php getComponent('TeamsBlock'); ?>
-  </div>
+  <?php getComponent('AboutContent'); ?>
 
   <section class="page-section center">
     <a href="/page/polish-and-pray/">
