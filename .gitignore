@@ -3,3 +3,7 @@ app/admin-data
 app/config.php
 .cache
 data/*
+notes.txt
+app/views/.DS_Store
+public/js/.DS_Store
+yarn-error.log
