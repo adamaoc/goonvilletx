@@ -4,7 +4,7 @@
     <div class="large-banner__content">
       <h1><?= $data['page_data']['page_title'] ?></h1>
       <div class="btn-group">
-        <a href="/<?= $data['page_data']['action_btn_link'] ?>" class="btn btn__banner"><?= $data['page_data']['action_btn_text'] ?></a>
+        <!-- <a href="/<?= $data['page_data']['action_btn_link'] ?>" class="btn btn__banner"><?= $data['page_data']['action_btn_text'] ?></a> -->
         <button class="btn btn__banner btn__mixlr" id="listenBtn">
           <svg width="30px" height="30px" viewBox="0 0 300 300">
             <circle id="Oval-4" stroke="#ED1C24" stroke-width="8" cx="150" cy="150" r="137.769531"></circle>
@@ -28,18 +28,15 @@
     }
   ?>
 
-  <div class="innerpage-schedule">
-    <div class="schedule-list">
-      <h2><?= $data['season'] ?> Schedule</h2>
-      <?php getComponent('ScheduleList', $data['games']) ?>
-    </div>
-    <div class="schedule-list__more">
-      <p>Check out more of the schedule and past results by clicking the button</p>
-      <a href="/schedule" class="btn btn__primary">See More</a>
+  <div class="homepage-schedule">
+    <h2><?= $data['season'] ?> Schedule</h2>
+    <div class="homepage-schedule__more">
+      <p>Looking for the full schedule for the <?= $data['season']?> season? Click the button.</p>
+      <a href="/schedule" class="btn btn__primary">Full Schedule</a>
     </div>
   </div>
 
-  <?php getComponent('AboutContent'); ?>
+  <?php getComponent('AboutContent', array('btn' => true)); ?>
 
   <section class="page-section center">
     <a href="/page/polish-and-pray/">

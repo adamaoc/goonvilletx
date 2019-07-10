@@ -8,12 +8,27 @@
       background-position: left center;
       padding: 6em 1em; } }
 
-.home-page .innerpage-schedule {
-  padding: 0 1em;
-  background-color: #f4f3f8; }
+.home-page .homepage-schedule {
+  padding: 5em;
+  background-color: #f4f3f8;
+  text-align: center; }
   @media (min-width: 720px) {
-    .home-page .innerpage-schedule {
+    .home-page .homepage-schedule {
       background-image: url("/public/images/innerpage/schedule-number-one.jpg");
-      background-size: contain;
+      background-size: 50%;
       background-repeat: no-repeat;
-      background-position: right top; } }
+      background-position: right bottom; } }
+  .home-page .homepage-schedule h2 {
+    background: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    padding: 0.25em 1em; }
+  @media (min-width: 500px) {
+    .home-page .homepage-schedule__more {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1em 0 0 1em; } }
+  .home-page .homepage-schedule__more p {
+    color: #aaa;
+    padding-right: 1em;
+    max-width: 300px; }

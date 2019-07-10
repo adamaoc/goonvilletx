@@ -2,21 +2,53 @@
   .innerpage-about {
     padding: 0 1em;
     @media (min-width: 720px) {
-      background-image: url('/public/images/innerpage/champs.jpg');
+      background-image: url("/public/images/innerpage/champs.jpg");
       background-size: contain;
       background-repeat: no-repeat;
       background-position: left center;
       padding: 6em 1em;
     }
   }
-  .innerpage-schedule {
-    padding: 0 1em;
+  // .innerpage-schedule {
+  //   display: flex;
+  //   justify-content: flex-end;
+  //   padding: 1em;
+  //   background-color: #f4f3f8;
+  //   @media (min-width: 720px) {
+  //     background-image: url("/public/images/innerpage/schedule-number-one.jpg");
+  //     background-size: contain;
+  //     background-repeat: no-repeat;
+  //     background-position: right top;
+  //   }
+  // }
+  .homepage-schedule {
+    padding: 5em;
     background-color: #f4f3f8;
+    text-align: center;
     @media (min-width: 720px) {
-      background-image: url('/public/images/innerpage/schedule-number-one.jpg');
-      background-size: contain;
+      background-image: url("/public/images/innerpage/schedule-number-one.jpg");
+      background-size: 50%;
       background-repeat: no-repeat;
-      background-position: right top;
+      background-position: right bottom;
+    }
+    h2 {
+      background: rgba(255,255,255,0.5);
+      display: inline-block;
+      padding: 0.25em 1em;
+    }
+    &__more {
+
+      @media (min-width: 500px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1em 0 0 1em;
+      }
+      p {
+        color: #aaa;
+        padding-right: 1em;
+        max-width: 300px;
+      }
     }
   }
 }
