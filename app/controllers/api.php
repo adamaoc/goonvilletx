@@ -261,6 +261,11 @@ class API extends Controller {
       case 'all':
         $rosters = $rosterModel->getALlRosters();
         return array('data' => $rosters, 'name' => 'rosters');
+
+      case 'get-team':
+        $teamPlayers = $rosterModel->getTeam($_GET['team']);
+        return array('data' => $teamPlayers);
+
       case 'add-player':
         $array = json_decode($json, true);
         $players = $rosterModel->addPlayer($array);

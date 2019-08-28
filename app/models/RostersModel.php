@@ -20,6 +20,14 @@ class RostersModel
     return array('players' => $playerRoster, 'coaches' => $coachRoster);
   }
 
+  public function getTeam($team)
+  {
+    // look up team file // 
+    $teamFile = Config::get('data/webdata') . 'rosters/teams/team-' . $team . '.csv';
+    $teamRoster = $this->_data->getWebData($teamFile);
+    return array('players' => $teamRoster);
+  }
+
   private function _incrementId($type = '')
   {
     $rosters = $this->getALlRosters();
