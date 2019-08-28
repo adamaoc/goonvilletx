@@ -14,6 +14,13 @@ class RadioPostEditor extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      title: '',
+      author: '',
+      status: '',
+      slug: '',
+      pubDate: '',
+      embeded: '',
+      heroImg: '',
       post: RichTextEditor.createEmptyValue(),
       loading: true
     }
@@ -31,8 +38,17 @@ class RadioPostEditor extends Component {
     ).then((resp) => {
       return resp.json();
     }).then((resp) => {
+      console.log('responce: ', resp);
+      const { post_title, author, status, slug, date_published, hero_img, embeded } = resp.post.data;
       this.setState({
-        post: createValueFromString(resp.post, 'html'),
+        title: post_title,
+        author: author,
+        status: status,
+        slug: slug,
+        pubDate: date_published,
+        embeded: embeded,
+        heroImg: hero_img,
+        post: createValueFromString(resp.post.blog, 'html'),
         loading: false
       });
     });
@@ -41,10 +57,19 @@ class RadioPostEditor extends Component {
     this.setState({ post: editorState });
   }
   updatePost() {
-    let post = this.state;
-    debugger;
+    const { post, title, author, status, slug, pubDate, embeded, heroImg } = this.state;
+    const data = {
+      id: this.props.id,
+      post_title: title,
+      author: author,
+      status: status,
+      slug: slug,
+      date_published: pubDate,
+      embeded: embeded,
+      hero_img: heroImg,
+      blog: post.toString('html')
+    };
     const fetchUrl = `${APIURL}/radio-posts/update?id=${this.props.id}`;
-    post = post.toString('html');
     const fetchPost = fetch(
       fetchUrl,
       {
@@ -57,15 +82,15 @@ class RadioPostEditor extends Component {
     ).then((resp) => {
       return resp.json()
     }).then((resp) => {
+      // should update page and list page and maybe not close...
       setTimeout(() => {
-        this.props.close();
-      }, 300);
+          this.props.close();
+        }, 300);
     });
   }
   render() {
     if (!this.state.loading) {
-      console.log(this.props);
-      const { post_title, author, status, date_published, id, slug, embeded } = this.props;
+      const { title, author, status, pubDate, slug, embeded, heroImg } = this.state;
       return (
         <div style={{padding: '1em'}}>
           <h3>Edit</h3>
@@ -73,16 +98,16 @@ class RadioPostEditor extends Component {
             <AdminSection>
               <FormGroup>
                 <label>Post Title:</label>
-                <Input type="text" placeholder="Enter Post Title Here" defaultValue={post_title} onChange={(e) => this.updateData('title', e.target.value)} />
+                <Input type="text" placeholder="Enter Post Title Here" defaultValue={title} onChange={(e) => this.setState({title: e.target.value})} />
               </FormGroup>
               <section>
                 <FormGroup>
                   <label>Post Author:</label>
-                  <Input type="text" placeholder="Enter Author's Name" defaultValue={author} onChange={(e) => this.updateData('author', e.target.value)} />
+                  <Input type="text" placeholder="Enter Author's Name" defaultValue={author} onChange={(e) => this.setState({author: e.target.value})} />
                 </FormGroup>
                 <FormGroup>
                   <label>Post Status:</label>
-                  <select value={status} onChange={(e) => this.updateData('status', e.target.value)}>
+                  <select value={status} onChange={(e) => this.setState({status: e.target.value})}>
                     <option value="draft">Draft</option>
                     <option value="published">Published</option>
                   </select>
@@ -91,7 +116,7 @@ class RadioPostEditor extends Component {
               <section>
                 <FormGroup>
                   <label>Published Date</label>
-                  <input type="date" defaultValue={date_published} onChange={(e) => updateData(id, 'date_published', e.target.value)} />
+                  <input type="date" defaultValue={pubDate} onChange={(e) => this.setState({pubDate: e.target.value})} />
                 </FormGroup>
                 <FormGroup>
                   <label>Post Slug</label>
@@ -102,7 +127,19 @@ class RadioPostEditor extends Component {
             <AdminSection>
               <FormGroup>
                 <label>Embeded Content</label>
-                <Input type="text" defaultValue={embeded} onChange={(e) => updateData(id, 'embeded', e.target.value)} />
+                <Input type="text" defaultValue={embeded} onChange={(e) => this.setState({embeded: e.target.value})} />
+              </FormGroup>
+            </AdminSection>
+            <AdminSection>
+              <FormGroup>
+                <label>Hero Image</label>
+                <p><em>Image Name:</em> {heroImg}</p>
+                <div style={{border: '1px solid #888', padding: '1em', textAlign: 'center', marginBottom: '1em'}}>
+                  <img src={`data/radio-posts/${slug}/${heroImg}`} />
+                </div>
+                <PushRight>
+                  <Button>Upload Image</Button>
+                </PushRight>
               </FormGroup>
             </AdminSection>
             <AdminSection>

@@ -28452,6 +28452,13 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(RadioPostEditor).call(this, props));
     _this.state = {
+      title: '',
+      author: '',
+      status: '',
+      slug: '',
+      pubDate: '',
+      embeded: '',
+      heroImg: '',
       post: _reactRte.default.createEmptyValue(),
       loading: true
     };
@@ -28472,8 +28479,25 @@ function (_Component) {
       }).then(function (resp) {
         return resp.json();
       }).then(function (resp) {
+        console.log('responce: ', resp);
+        var _resp$post$data = resp.post.data,
+            post_title = _resp$post$data.post_title,
+            author = _resp$post$data.author,
+            status = _resp$post$data.status,
+            slug = _resp$post$data.slug,
+            date_published = _resp$post$data.date_published,
+            hero_img = _resp$post$data.hero_img,
+            embeded = _resp$post$data.embeded;
+
         _this2.setState({
-          post: (0, _reactRte.createValueFromString)(resp.post, 'html'),
+          title: post_title,
+          author: author,
+          status: status,
+          slug: slug,
+          pubDate: date_published,
+          embeded: embeded,
+          heroImg: hero_img,
+          post: (0, _reactRte.createValueFromString)(resp.post.blog, 'html'),
           loading: false
         });
       });
@@ -28490,10 +28514,27 @@ function (_Component) {
     value: function updatePost() {
       var _this3 = this;
 
-      var post = this.state;
-      debugger;
+      var _this$state = this.state,
+          post = _this$state.post,
+          title = _this$state.title,
+          author = _this$state.author,
+          status = _this$state.status,
+          slug = _this$state.slug,
+          pubDate = _this$state.pubDate,
+          embeded = _this$state.embeded,
+          heroImg = _this$state.heroImg;
+      var data = {
+        id: this.props.id,
+        post_title: title,
+        author: author,
+        status: status,
+        slug: slug,
+        date_published: pubDate,
+        embeded: embeded,
+        hero_img: heroImg,
+        blog: post.toString('html')
+      };
       var fetchUrl = "".concat(_AppConstants.APIURL, "/radio-posts/update?id=").concat(this.props.id);
-      post = post.toString('html');
       var fetchPost = fetch(fetchUrl, {
         method: 'post',
         headers: {
@@ -28503,6 +28544,7 @@ function (_Component) {
       }).then(function (resp) {
         return resp.json();
       }).then(function (resp) {
+        // should update page and list page and maybe not close...
         setTimeout(function () {
           _this3.props.close();
         }, 300);
@@ -28514,15 +28556,14 @@ function (_Component) {
       var _this4 = this;
 
       if (!this.state.loading) {
-        console.log(this.props);
-        var _this$props = this.props,
-            post_title = _this$props.post_title,
-            author = _this$props.author,
-            status = _this$props.status,
-            date_published = _this$props.date_published,
-            id = _this$props.id,
-            slug = _this$props.slug,
-            embeded = _this$props.embeded;
+        var _this$state2 = this.state,
+            title = _this$state2.title,
+            author = _this$state2.author,
+            status = _this$state2.status,
+            pubDate = _this$state2.pubDate,
+            slug = _this$state2.slug,
+            embeded = _this$state2.embeded,
+            heroImg = _this$state2.heroImg;
         return _react.default.createElement("div", {
           style: {
             padding: '1em'
@@ -28530,21 +28571,27 @@ function (_Component) {
         }, _react.default.createElement("h3", null, "Edit"), _react.default.createElement("div", null, _react.default.createElement(_Layouts.AdminSection, null, _react.default.createElement(_Layouts.FormGroup, null, _react.default.createElement("label", null, "Post Title:"), _react.default.createElement(_Forms.Input, {
           type: "text",
           placeholder: "Enter Post Title Here",
-          defaultValue: post_title,
+          defaultValue: title,
           onChange: function onChange(e) {
-            return _this4.updateData('title', e.target.value);
+            return _this4.setState({
+              title: e.target.value
+            });
           }
         })), _react.default.createElement("section", null, _react.default.createElement(_Layouts.FormGroup, null, _react.default.createElement("label", null, "Post Author:"), _react.default.createElement(_Forms.Input, {
           type: "text",
           placeholder: "Enter Author's Name",
           defaultValue: author,
           onChange: function onChange(e) {
-            return _this4.updateData('author', e.target.value);
+            return _this4.setState({
+              author: e.target.value
+            });
           }
         })), _react.default.createElement(_Layouts.FormGroup, null, _react.default.createElement("label", null, "Post Status:"), _react.default.createElement("select", {
           value: status,
           onChange: function onChange(e) {
-            return _this4.updateData('status', e.target.value);
+            return _this4.setState({
+              status: e.target.value
+            });
           }
         }, _react.default.createElement("option", {
           value: "draft"
@@ -28552,17 +28599,30 @@ function (_Component) {
           value: "published"
         }, "Published")))), _react.default.createElement("section", null, _react.default.createElement(_Layouts.FormGroup, null, _react.default.createElement("label", null, "Published Date"), _react.default.createElement("input", {
           type: "date",
-          defaultValue: date_published,
+          defaultValue: pubDate,
           onChange: function onChange(e) {
-            return updateData(id, 'date_published', e.target.value);
+            return _this4.setState({
+              pubDate: e.target.value
+            });
           }
         })), _react.default.createElement(_Layouts.FormGroup, null, _react.default.createElement("label", null, "Post Slug"), slug))), _react.default.createElement(_Layouts.AdminSection, null, _react.default.createElement(_Layouts.FormGroup, null, _react.default.createElement("label", null, "Embeded Content"), _react.default.createElement(_Forms.Input, {
           type: "text",
           defaultValue: embeded,
           onChange: function onChange(e) {
-            return updateData(id, 'embeded', e.target.value);
+            return _this4.setState({
+              embeded: e.target.value
+            });
           }
-        }))), _react.default.createElement(_Layouts.AdminSection, null, _react.default.createElement(_Layouts.FormGroup, null, _react.default.createElement("label", null, "Post Conent"), _react.default.createElement("br", null), _react.default.createElement("div", {
+        }))), _react.default.createElement(_Layouts.AdminSection, null, _react.default.createElement(_Layouts.FormGroup, null, _react.default.createElement("label", null, "Hero Image"), _react.default.createElement("p", null, _react.default.createElement("em", null, "Image Name:"), " ", heroImg), _react.default.createElement("div", {
+          style: {
+            border: '1px solid #888',
+            padding: '1em',
+            textAlign: 'center',
+            marginBottom: '1em'
+          }
+        }, _react.default.createElement("img", {
+          src: "data/radio-posts/".concat(slug, "/").concat(heroImg)
+        })), _react.default.createElement(_Layouts.PushRight, null, _react.default.createElement(_Buttons.Button, null, "Upload Image")))), _react.default.createElement(_Layouts.AdminSection, null, _react.default.createElement(_Layouts.FormGroup, null, _react.default.createElement("label", null, "Post Conent"), _react.default.createElement("br", null), _react.default.createElement("div", {
           style: {
             overflow: 'hidden',
             maxWidth: 'calc(100vw - 200px)',
@@ -28693,7 +28753,7 @@ function (_Component) {
       return _react.default.createElement(_EditRadioPosts.RadioContext.Consumer, null, function (context) {
         return _react.default.createElement(_Tables.Table, null, _react.default.createElement("thead", null, _react.default.createElement("tr", null, _react.default.createElement("td", {
           className: "center"
-        }, "ID"), _react.default.createElement("td", null, "post_title"), _react.default.createElement("td", null, "status"), _react.default.createElement("td", null, "author"), _react.default.createElement("td", null, "date_published"))), _react.default.createElement("tbody", null, context.state.radioPosts ? _react.default.createElement(PostListRows, {
+        }, "ID"), _react.default.createElement("td", null, "Post Title"), _react.default.createElement("td", null, "Status"), _react.default.createElement("td", null, "Author"), _react.default.createElement("td", null, "Date Published"))), _react.default.createElement("tbody", null, context.state.radioPosts ? _react.default.createElement(PostListRows, {
           rows: context.state.radioPosts,
           updateData: context.handleListDataUpdate,
           updateRowSelected: _this2.updateRowSelected.bind(_this2),
@@ -29167,7 +29227,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60846" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52891" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

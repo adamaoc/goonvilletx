@@ -63,10 +63,10 @@ class PostListTable extends Component {
             <thead>
               <tr>
                 <td className="center">ID</td>
-                <td>post_title</td>
-                <td>status</td>
-                <td>author</td>
-                <td>date_published</td>
+                <td>Post Title</td>
+                <td>Status</td>
+                <td>Author</td>
+                <td>Date Published</td>
               </tr>
             </thead>
             <tbody>

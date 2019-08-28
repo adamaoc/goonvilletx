@@ -44,7 +44,7 @@ class RadioModel {
     
     public function getPostData($slug)
     {
-        $list = $this->getPostList();
+        $list = $this->getPostListAll();
 
         foreach ($list as $post) {
             if ($post['slug'] === $slug) {
@@ -52,7 +52,7 @@ class RadioModel {
             }
         }
 
-        return null;
+        return array('error' => "Opps... I couldn't fine the post data...", 'data' => $list);
     }
     public function getPost($slug)
     {
@@ -60,7 +60,9 @@ class RadioModel {
         if (file_exists($fname)) {
             $post = file($fname);
             $blog_content = join('', array_slice($post, 0));
-            return $blog_content;
+            $data = $this->getPostData($slug);
+
+            return array('data' => $data, 'blog' => $blog_content);
         } else {
             return "Opps... There is no content here.";
         }
@@ -78,7 +80,32 @@ class RadioModel {
         if (!empty($postSlug)) {
             return $this->getPost($postSlug);
         } else {
-            return null;
+            return "Opps.. No post slug found " . $id;
         }
+    }
+
+    public function updateRadioPost($data)
+    {
+        $postsListFile = Config::get('data/webdata') . 'radio-posts/post-list.csv';
+        // id,post_title,status,slug,date_published,date_updated,author,hero_img,embeded
+        $postData = array(
+            'id' => $data['id'],
+            'post_title' => $data['post_title'],
+            'status' => $data['status'],
+            'slug' => $data['slug'],
+            'date_published' => $data['date_published'],
+            'date_updated' => date("Y/d/m"),
+            'author' => $data['author'],
+            'hero_img' => $data['hero_img'],
+            'embeded' => $data['embeded']
+        );
+        $postData = $this->data->updateWebData($postsListFile, $postData);
+
+        $blogData = $data['blog'];
+        $blogPostHTML = Config::get('data/webdata') . 'radio-posts/' . $data['slug'] . '/post.html';
+        $blogFile = fopen($blogPostHTML, "w") or die("Unable to open file...");
+        fwrite($blogFile, $blogData);
+        fclose($blogFile);
+        return array('postData' => $postData, 'blog' => $blogData);
     }
 }

@@ -8,7 +8,7 @@
 
 <section class="page-section">
     <div class="page-post">
-        <?php echo $data['post']; ?>
+        <?php echo $data['post']['blog']; ?>
     </div>
 </section>
 

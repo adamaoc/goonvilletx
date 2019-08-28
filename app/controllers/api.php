@@ -342,6 +342,17 @@ class API extends Controller {
           return array('data' => $data, 'name' => 'post');
         }
         break;
+      case 'update':
+        $id = $_GET['id'];
+        if ($this->_authCheck($json)) {
+          // update a post
+          $array = json_decode($json, true);
+          $postData = $radioModel->updateRadioPost($array);
+          return array('data' => $postData, 'name' => 'post');
+        } else {
+          return $this->_authError;
+        }
+        break;
       default:
         $postList = $radioModel->getPostListAll();
         return array('data' => $postList, 'name' => 'posts');
